@@ -573,8 +573,18 @@ function renderAll(){
   MX.fillStyle='#fff'; MX.fillRect(0,0,MC.width,MC.height);
   for(let i=layers.length-1;i>=0;i--){
     const l=layers[i]; if(!l.visible) continue;
-    MX.globalAlpha=l.opacity; MX.globalCompositeOperation=l.blend;
-    MX.drawImage(l.canvas,0,0);
+    if(l.mask){
+      const comp=mkC(MC.width,MC.height); const cx=comp.getContext('2d');
+      cx.drawImage(l.canvas,0,0);
+      cx.globalCompositeOperation='destination-in';
+      cx.drawImage(l.mask.canvas,0,0);
+      cx.globalCompositeOperation='source-over';
+      MX.globalAlpha=l.opacity; MX.globalCompositeOperation=l.blend;
+      MX.drawImage(comp,0,0);
+    } else {
+      MX.globalAlpha=l.opacity; MX.globalCompositeOperation=l.blend;
+      MX.drawImage(l.canvas,0,0);
+    }
   }
   MX.globalAlpha=1; MX.globalCompositeOperation='source-over';
   updateHistogram();
@@ -582,40 +592,6 @@ function renderAll(){
 
 // ── Layer drag-to-reorder ──
 let dragLayerIdx=null;
-function renderLayerList(){
-  const list=document.getElementById('layer-list'); list.innerHTML='';
-  layers.forEach((l,i)=>{
-    const d=document.createElement('div');
-    d.className='layer-item'+(i===activeIdx?' active-layer':'');
-    d.draggable=true;
-    d.dataset.i=i;
-    d.innerHTML=`<span class="ldrag" title="드래그하여 순서 변경">⠿</span><span class="lvis">${l.visible?'👁':'○'}</span><img class="lthumb" src="${l.canvas.toDataURL()}"><span class="lname">${l.name}</span><button class="ldel">✕</button>`;
-    // click
-    d.addEventListener('click',e=>{
-      if(e.target.classList.contains('ldel')||e.target.classList.contains('lvis')) return;
-      activeIdx=i; renderLayerList(); syncLayerUI();
-    });
-    d.querySelector('.lvis').addEventListener('click',()=>{l.visible=!l.visible;renderAll();renderLayerList();});
-    d.querySelector('.ldel').addEventListener('click',()=>{
-      if(layers.length===1){alert('마지막 레이어는 삭제 불가');return;}
-      layers.splice(i,1); activeIdx=Math.min(activeIdx,layers.length-1);
-      renderAll(); renderLayerList();
-    });
-    // drag reorder
-    d.addEventListener('dragstart',e=>{dragLayerIdx=i;d.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
-    d.addEventListener('dragend',()=>{d.classList.remove('dragging');document.querySelectorAll('.layer-item').forEach(el=>el.classList.remove('drag-over'));});
-    d.addEventListener('dragover',e=>{e.preventDefault();e.dataTransfer.dropEffect='move';document.querySelectorAll('.layer-item').forEach(el=>el.classList.remove('drag-over'));d.classList.add('drag-over');});
-    d.addEventListener('drop',e=>{
-      e.preventDefault(); d.classList.remove('drag-over');
-      if(dragLayerIdx===null||dragLayerIdx===i) return;
-      const moved=layers.splice(dragLayerIdx,1)[0];
-      layers.splice(i,0,moved);
-      activeIdx=layers.indexOf(getAL())||0;
-      saveUndo(); renderAll(); renderLayerList();
-    });
-    list.appendChild(d);
-  });
-}
 function syncLayerUI(){
   const l=getAL(); if(!l) return;
   document.getElementById('layer-opacity').value=Math.round(l.opacity*100);
@@ -1289,40 +1265,7 @@ document.querySelectorAll('.tb').forEach(btn => {
 // ══════════════════════════════════════════
 // Each layer can have: layer.mask = {canvas, ctx, active}
 // When rendering, layer pixels are multiplied by mask alpha
-
-function renderAllWithMask() {
-  if (!MC.width) return;
-  MX.clearRect(0, 0, MC.width, MC.height);
-  MX.fillStyle = '#fff'; MX.fillRect(0, 0, MC.width, MC.height);
-  for (let i = layers.length - 1; i >= 0; i--) {
-    const l = layers[i]; if (!l.visible) continue;
-    if (l.mask) {
-      // Composite layer with its mask
-      const comp = mkC(MC.width, MC.height);
-      const cx = comp.getContext('2d');
-      cx.drawImage(l.canvas, 0, 0);
-      cx.globalCompositeOperation = 'destination-in';
-      cx.drawImage(l.mask.canvas, 0, 0);
-      cx.globalCompositeOperation = 'source-over';
-      MX.globalAlpha = l.opacity;
-      MX.globalCompositeOperation = l.blend;
-      MX.drawImage(comp, 0, 0);
-    } else {
-      MX.globalAlpha = l.opacity;
-      MX.globalCompositeOperation = l.blend;
-      MX.drawImage(l.canvas, 0, 0);
-    }
-  }
-  MX.globalAlpha = 1; MX.globalCompositeOperation = 'source-over';
-  updateHistogram();
-}
-
-// Override renderAll to use mask-aware version
-const _renderAllOrig = renderAll;
-// Patch renderAll
-function renderAll() {
-  renderAllWithMask();
-}
+// (renderAll already handles masks — defined above)
 
 document.getElementById('btn-add-mask').addEventListener('click', () => {
   const l = getAL(); if (!l || !MC.width) { alert('캔버스를 먼저 만드세요'); return; }
