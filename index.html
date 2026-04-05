@@ -5,170 +5,206 @@
 <title>PhotoLite Pro</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-:root{
-  --bg:#1a1a1e;--surface:#242428;--s2:#2c2c32;--s3:#35353d;
-  --border:#3a3a44;--b2:#45454f;
-  --accent:#4a9eff;--adim:#2a6ab5;--aglow:rgba(74,158,255,.18);
-  --text:#e2e2e8;--dim:#8888a0;--dimmer:#55556a;
-  --red:#ff5f5f;--green:#52c97a;--yellow:#ffc355;
+:root {
+  --bg:#1a1a1e; --sf:#242428; --s2:#2c2c32; --s3:#35353d;
+  --bd:#3a3a44; --b2:#45454f;
+  --ac:#4a9eff; --ad:#2a6ab5; --ag:rgba(74,158,255,.18);
+  --tx:#e2e2e8; --dm:#8888a0; --dd:#55556a;
+  --red:#ff5f5f; --grn:#52c97a; --ylw:#ffc355;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100vh;overflow:hidden;}
-body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:11px;display:grid;grid-template-rows:40px 32px 1fr;grid-template-columns:52px 1fr 256px;}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',system-ui,sans-serif;font-size:11px;
+  display:grid;grid-template-rows:40px 32px 1fr;grid-template-columns:52px 1fr 256px;}
 
-/* ── MENUBAR ── */
-#menubar{grid-column:1/-1;background:#1e1e22;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 10px;gap:6px;user-select:none;}
-.logo{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.05em;padding:0 10px 0 2px;margin-right:4px;border-right:1px solid var(--border);}
-.abtn{background:var(--s2);border:1px solid var(--border);color:var(--dim);font-family:inherit;font-size:10px;font-weight:500;padding:4px 10px;border-radius:4px;cursor:pointer;transition:all .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;}
-.abtn:hover{background:var(--s3);color:var(--text);border-color:var(--b2);}
-.abtn.primary{background:var(--adim);border-color:var(--accent);color:var(--text);}
-.abtn.primary:hover{background:var(--accent);}
-.abtn.warn:hover{background:rgba(255,95,95,.15);border-color:var(--red);color:var(--red);}
+/* MENUBAR */
+#menubar{grid-column:1/-1;background:#1e1e22;border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;padding:0 10px;gap:6px;user-select:none;}
+.logo{font-size:12px;font-weight:600;color:var(--ac);letter-spacing:.05em;
+  padding:0 10px 0 2px;margin-right:4px;border-right:1px solid var(--bd);}
+.abtn{background:var(--s2);border:1px solid var(--bd);color:var(--dm);font-family:inherit;
+  font-size:10px;font-weight:500;padding:4px 10px;border-radius:4px;cursor:pointer;
+  transition:all .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;}
+.abtn:hover{background:var(--s3);color:var(--tx);border-color:var(--b2);}
+.abtn.pri{background:var(--ad);border-color:var(--ac);color:var(--tx);}
+.abtn.pri:hover{background:var(--ac);}
+.abtn.wrn:hover{background:rgba(255,95,95,.15);border-color:var(--red);color:var(--red);}
 label.abtn{cursor:pointer;}
 #file-input{display:none;}
 .msep{flex:1;}
-#size-info{font-size:10px;color:var(--dimmer);padding:0 8px;border-left:1px solid var(--border);}
+#size-info{font-size:10px;color:var(--dd);padding:0 8px;border-left:1px solid var(--bd);}
 
-/* ── OPTIONS BAR ── */
-#optbar{grid-column:1/-1;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 8px;gap:12px;overflow-x:auto;}
-.og{display:flex;align-items:center;gap:5px;border-right:1px solid var(--border);padding-right:12px;flex-shrink:0;}
+/* OPTIONS BAR */
+#optbar{grid-column:1/-1;background:var(--sf);border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;padding:0 8px;gap:12px;overflow-x:auto;}
+.og{display:flex;align-items:center;gap:5px;border-right:1px solid var(--bd);padding-right:12px;flex-shrink:0;}
 .og:last-child{border-right:none;}
-.ol{font-size:10px;color:var(--dimmer);font-weight:500;white-space:nowrap;}
-.oslider{-webkit-appearance:none;width:72px;height:3px;border-radius:2px;background:var(--b2);outline:none;cursor:pointer;}
-.oslider::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 4px var(--aglow);}
-.oval{font-size:10px;color:var(--dim);min-width:24px;text-align:right;font-variant-numeric:tabular-nums;}
-.oselect{background:var(--s3);border:1px solid var(--b2);color:var(--text);font-family:inherit;font-size:10px;padding:2px 4px;border-radius:3px;outline:none;cursor:pointer;}
+.ol{font-size:10px;color:var(--dd);font-weight:500;white-space:nowrap;}
+.osl{-webkit-appearance:none;width:72px;height:3px;border-radius:2px;background:var(--b2);outline:none;cursor:pointer;}
+.osl::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--ac);cursor:pointer;box-shadow:0 0 4px var(--ag);}
+.oval{font-size:10px;color:var(--dm);min-width:24px;text-align:right;font-variant-numeric:tabular-nums;}
 .swatch-wrap{position:relative;width:38px;height:24px;cursor:pointer;flex-shrink:0;}
-.swatch-bg{position:absolute;bottom:0;right:0;width:18px;height:18px;border:1.5px solid var(--b2);border-radius:2px;}
-.swatch-fg{position:absolute;top:0;left:0;width:20px;height:20px;border:1.5px solid rgba(255,255,255,.3);border-radius:2px;box-shadow:0 2px 6px rgba(0,0,0,.4);z-index:1;}
+.sw-bg{position:absolute;bottom:0;right:0;width:18px;height:18px;border:1.5px solid var(--b2);border-radius:2px;}
+.sw-fg{position:absolute;top:0;left:0;width:20px;height:20px;border:1.5px solid rgba(255,255,255,.3);border-radius:2px;box-shadow:0 2px 6px rgba(0,0,0,.4);z-index:1;}
 .swatch-wrap input[type=color]{opacity:0;position:absolute;inset:0;width:100%;height:100%;cursor:pointer;}
-#lasso-actions{display:none;gap:4px;}
+#sel-og{display:none;}
+#lasso-actions{display:flex;gap:4px;}
 
-/* ── TOOLBOX ── */
-#toolbox{grid-column:1;grid-row:3;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:6px 0;gap:2px;overflow-y:auto;}
-.tb{width:38px;height:38px;background:none;border:1px solid transparent;border-radius:5px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:background .1s;color:var(--dimmer);position:relative;}
-.tb:hover{background:var(--s3);color:var(--dim);}
-.tb.active{background:var(--adim);color:var(--text);border-color:var(--accent);box-shadow:0 0 8px var(--aglow);}
-.tb.active::after{content:'';position:absolute;left:1px;top:50%;transform:translateY(-50%);width:2px;height:16px;background:var(--accent);border-radius:2px;}
-.tsep{width:22px;height:1px;background:var(--border);margin:3px 0;}
+/* TOOLBOX */
+#toolbox{grid-column:1;grid-row:3;background:var(--sf);border-right:1px solid var(--bd);
+  display:flex;flex-direction:column;align-items:center;padding:6px 0;gap:2px;overflow-y:auto;}
+.tb{width:38px;height:38px;background:none;border:1px solid transparent;border-radius:5px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;
+  transition:background .1s;color:var(--dd);position:relative;}
+.tb:hover{background:var(--s3);color:var(--dm);}
+.tb.active{background:var(--ad);color:var(--tx);border-color:var(--ac);box-shadow:0 0 8px var(--ag);}
+.tb.active::after{content:'';position:absolute;left:1px;top:50%;transform:translateY(-50%);
+  width:2px;height:16px;background:var(--ac);border-radius:2px;}
+.tsep{width:22px;height:1px;background:var(--bd);margin:3px 0;}
 
-/* ── CANVAS ── */
-#canvas-area{grid-column:2;grid-row:3;background:#0f0f11;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:20px 20px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;cursor:default;}
+/* CANVAS AREA */
+#canvas-area{grid-column:2;grid-row:3;
+  background:#0f0f11;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:20px 20px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;cursor:default;}
 #canvas-area.panning{cursor:grab;}
 #canvas-area.panning:active{cursor:grabbing;}
-#canvas-wrap{position:relative;box-shadow:0 0 0 1px var(--border),0 0 0 2px rgba(74,158,255,.06),0 20px 60px rgba(0,0,0,.6);transform-origin:center center;transition:none;will-change:transform;}
+#canvas-wrap{position:relative;
+  box-shadow:0 0 0 1px var(--bd),0 0 0 2px rgba(74,158,255,.06),0 20px 60px rgba(0,0,0,.6);
+  transform-origin:center center;will-change:transform;}
 canvas{display:block;}
-#lasso-canvas,#overlay-canvas{position:absolute;top:0;left:0;pointer-events:none;}
-#hint-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;pointer-events:none;}
-#hint-overlay.hidden{display:none;}
+#lasso-cv,#overlay-cv,#qm-cv{position:absolute;top:0;left:0;pointer-events:none;}
+#qm-cv{display:none;opacity:.55;}
+#hint{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:14px;pointer-events:none;}
+#hint.hidden{display:none;}
 .hint-icon{font-size:46px;opacity:.15;}
-.hint-text{font-size:13px;color:var(--dimmer);font-weight:500;letter-spacing:.04em;}
-.hint-sub{font-size:10px;color:var(--dimmer);opacity:.5;}
-#text-input-box{position:absolute;display:none;background:rgba(0,0,0,.5);border:1px dashed rgba(74,158,255,.6);color:#fff;padding:4px 8px;min-width:60px;outline:none;resize:none;overflow:hidden;font-family:inherit;z-index:10;}
-#clone-hint{position:absolute;pointer-events:none;border:1.5px dashed rgba(74,158,255,.7);border-radius:50%;transform:translate(-50%,-50%);display:none;z-index:5;}
-#statusbar{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(26,26,30,.88);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:10px;color:var(--dimmer);pointer-events:none;white-space:nowrap;}
+.hint-txt{font-size:13px;color:var(--dd);font-weight:500;letter-spacing:.04em;}
+.hint-sub{font-size:10px;color:var(--dd);opacity:.5;}
+#text-box{position:absolute;display:none;background:rgba(0,0,0,.5);
+  border:1px dashed rgba(74,158,255,.6);color:#fff;padding:4px 8px;
+  min-width:60px;outline:none;resize:none;overflow:hidden;font-family:inherit;z-index:10;}
+#clone-hint{position:absolute;pointer-events:none;border:1.5px dashed rgba(74,158,255,.7);
+  border-radius:50%;transform:translate(-50%,-50%);display:none;z-index:5;}
+#statusbar{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  background:rgba(26,26,30,.88);backdrop-filter:blur(8px);border:1px solid var(--bd);
+  border-radius:20px;padding:4px 14px;font-size:10px;color:var(--dd);
+  pointer-events:none;white-space:nowrap;}
+#zoom-bar{position:absolute;bottom:8px;right:12px;display:flex;align-items:center;gap:3px;
+  background:rgba(26,26,30,.88);backdrop-filter:blur(8px);border:1px solid var(--bd);
+  border-radius:20px;padding:3px 8px;}
+#zoom-bar button{background:none;border:none;color:var(--dm);cursor:pointer;font-size:13px;
+  font-family:inherit;width:20px;height:20px;display:flex;align-items:center;
+  justify-content:center;border-radius:3px;transition:all .1s;padding:0;}
+#zoom-bar button:hover{background:var(--s3);color:var(--tx);}
+#zoom-label{font-size:10px;color:var(--tx);font-variant-numeric:tabular-nums;
+  min-width:36px;text-align:center;cursor:default;font-weight:500;}
 
-/* ── RIGHT PANEL ── */
-#rpanel{grid-column:3;grid-row:3;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
-#ptabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);}
-.ptab{flex:1;padding:7px 2px;text-align:center;font-size:10px;font-weight:500;color:var(--dimmer);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;letter-spacing:.03em;}
-.ptab:hover{color:var(--dim);}
-.ptab.active{color:var(--accent);border-bottom-color:var(--accent);}
+/* RIGHT PANEL */
+#rpanel{grid-column:3;grid-row:3;background:var(--sf);border-left:1px solid var(--bd);
+  display:flex;flex-direction:column;overflow:hidden;}
+#ptabs{display:flex;border-bottom:1px solid var(--bd);background:var(--bg);}
+.ptab{flex:1;padding:7px 2px;text-align:center;font-size:10px;font-weight:500;
+  color:var(--dd);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;letter-spacing:.03em;}
+.ptab:hover{color:var(--dm);}
+.ptab.active{color:var(--ac);border-bottom-color:var(--ac);}
 #pcontent{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent;}
 #pcontent::-webkit-scrollbar{width:4px;}
 #pcontent::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px;}
-.tab-pane{display:none;}
-.tab-pane.active{display:block;}
-.sec{border-bottom:1px solid var(--border);}
-.sec-hd{display:flex;align-items:center;justify-content:space-between;padding:8px 10px 6px;cursor:pointer;user-select:none;transition:background .1s;}
+.pane{display:none;}
+.pane.active{display:block;}
+.sec{border-bottom:1px solid var(--bd);}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;
+  padding:8px 10px 6px;cursor:pointer;user-select:none;transition:background .1s;}
 .sec-hd:hover{background:var(--s2);}
-.sec-title{font-size:9px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;}
-.sec-arr{color:var(--dimmer);font-size:9px;transition:transform .2s;}
+.sec-ti{font-size:9px;font-weight:600;color:var(--dm);text-transform:uppercase;letter-spacing:.08em;}
+.sec-ar{color:var(--dd);font-size:9px;transition:transform .2s;}
 .sec-bd{padding:4px 10px 10px;}
 .sec.collapsed .sec-bd{display:none;}
-.sec.collapsed .sec-arr{transform:rotate(-90deg);}
-.prow{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
-.prow:last-child{margin-bottom:0;}
-.pl{font-size:10px;color:var(--dimmer);min-width:52px;font-weight:500;}
+.sec.collapsed .sec-ar{transform:rotate(-90deg);}
+.pr{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+.pr:last-child{margin-bottom:0;}
+.pl{font-size:10px;color:var(--dd);min-width:52px;font-weight:500;}
 .ps{-webkit-appearance:none;flex:1;height:3px;border-radius:2px;background:var(--b2);outline:none;cursor:pointer;}
-.ps::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--accent);cursor:pointer;}
-.pv{font-size:10px;color:var(--dim);min-width:26px;text-align:right;font-variant-numeric:tabular-nums;}
-.psel{background:var(--s3);border:1px solid var(--b2);color:var(--text);font-family:inherit;font-size:10px;padding:3px 5px;border-radius:4px;outline:none;cursor:pointer;flex:1;}
+.ps::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--ac);cursor:pointer;}
+.pv{font-size:10px;color:var(--dm);min-width:26px;text-align:right;font-variant-numeric:tabular-nums;}
+.psel{background:var(--s3);border:1px solid var(--b2);color:var(--tx);font-family:inherit;
+  font-size:10px;padding:3px 5px;border-radius:4px;outline:none;cursor:pointer;flex:1;}
 .pbr{display:flex;gap:4px;margin-bottom:4px;}
-.pb{flex:1;background:var(--s3);border:1px solid var(--border);color:var(--dim);font-family:inherit;font-size:10px;font-weight:500;padding:5px 4px;border-radius:4px;cursor:pointer;text-align:center;transition:all .12s;white-space:nowrap;}
-.pb:hover{background:var(--adim);border-color:var(--accent);color:var(--text);}
-.pb.act{background:var(--adim);border-color:var(--accent);color:var(--text);}
-.pi{background:var(--s3);border:1px solid var(--border);color:var(--text);font-family:inherit;font-size:10px;padding:4px 6px;border-radius:4px;outline:none;flex:1;}
-.pi:focus{border-color:var(--accent);}
+.pb{flex:1;background:var(--s3);border:1px solid var(--bd);color:var(--dm);font-family:inherit;
+  font-size:10px;font-weight:500;padding:5px 4px;border-radius:4px;cursor:pointer;
+  text-align:center;transition:all .12s;white-space:nowrap;}
+.pb:hover{background:var(--ad);border-color:var(--ac);color:var(--tx);}
+.pi{background:var(--s3);border:1px solid var(--bd);color:var(--tx);font-family:inherit;
+  font-size:10px;padding:4px 6px;border-radius:4px;outline:none;flex:1;}
+.pi:focus{border-color:var(--ac);}
 
-/* ── BRUSH PRESETS ── */
+/* BRUSH GRID */
 #brush-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:6px;}
-.bpreset{aspect-ratio:1;background:var(--s3);border:1px solid var(--border);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:all .1s;padding:3px;}
-.bpreset:hover{border-color:var(--adim);}
-.bpreset.active{border-color:var(--accent);background:rgba(74,158,255,.12);}
-.bpreset canvas{display:block;}
-.bpname{font-size:7px;color:var(--dimmer);font-weight:500;text-align:center;line-height:1.2;}
-.bpreset.active .bpname{color:var(--text);}
+.bpr{aspect-ratio:1;background:var(--s3);border:1px solid var(--bd);border-radius:4px;
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;transition:all .1s;padding:3px;}
+.bpr:hover{border-color:var(--ad);}
+.bpr.active{border-color:var(--ac);background:rgba(74,158,255,.12);}
+.bpr canvas{display:block;}
+.bpr-nm{font-size:7px;color:var(--dd);font-weight:500;text-align:center;line-height:1.2;}
+.bpr.active .bpr-nm{color:var(--tx);}
 
-/* ── LAYERS ── */
+/* LAYERS */
 #layer-list{display:flex;flex-direction:column;gap:2px;margin-bottom:6px;max-height:200px;overflow-y:auto;}
-.layer-item{display:flex;align-items:center;gap:5px;padding:5px 6px;border-radius:4px;border:1px solid transparent;cursor:pointer;transition:all .1s;background:var(--s2);user-select:none;}
-.layer-item:hover{border-color:var(--b2);}
-.layer-item.active-layer{border-color:var(--accent);background:rgba(74,158,255,.08);}
-.layer-item.drag-over{border-color:var(--accent);border-style:dashed;background:rgba(74,158,255,.15);}
-.layer-item.dragging{opacity:.4;}
+.li{display:flex;align-items:center;gap:5px;padding:5px 6px;border-radius:4px;
+  border:1px solid transparent;cursor:pointer;transition:all .1s;background:var(--s2);user-select:none;}
+.li:hover{border-color:var(--b2);}
+.li.act{border-color:var(--ac);background:rgba(74,158,255,.08);}
+.li.mact{border-color:var(--ylw)!important;background:rgba(255,195,85,.07)!important;}
+.li.drag-over{border-color:var(--ac);border-style:dashed;background:rgba(74,158,255,.15);}
+.li.dragging{opacity:.4;}
 .lvis{font-size:11px;cursor:pointer;opacity:.7;flex-shrink:0;}
-.lthumb{width:28px;height:20px;border-radius:2px;border:1px solid var(--b2);object-fit:cover;flex-shrink:0;background:#1a1a1e;}
-.lname{flex:1;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;}
-.layer-item.active-layer .lname{color:var(--text);}
-.ldrag{font-size:10px;color:var(--dimmer);cursor:grab;padding:0 2px;flex-shrink:0;}
-.ldel{background:none;border:none;color:var(--dimmer);cursor:pointer;font-size:10px;padding:1px 3px;border-radius:2px;opacity:0;transition:opacity .1s;}
-.layer-item:hover .ldel{opacity:1;}
+.lth{width:28px;height:20px;border-radius:2px;border:1px solid var(--b2);flex-shrink:0;background:#111;}
+.lmth{width:20px;height:20px;border-radius:2px;border:1px solid var(--b2);flex-shrink:0;background:#000;}
+.lnm{flex:1;font-size:10px;color:var(--dm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;}
+.li.act .lnm,.li.mact .lnm{color:var(--tx);}
+.ldg{font-size:10px;color:var(--dd);cursor:grab;padding:0 2px;flex-shrink:0;}
+.ldel{background:none;border:none;color:var(--dd);cursor:pointer;font-size:10px;
+  padding:1px 3px;border-radius:2px;opacity:0;transition:opacity .1s;}
+.li:hover .ldel{opacity:1;}
 .ldel:hover{color:var(--red);}
+#mask-hint{display:none;font-size:9px;color:var(--dd);margin-top:4px;line-height:1.6;
+  padding:6px;background:var(--s3);border-radius:4px;border:1px solid var(--bd);}
 
-/* ── HISTOGRAM ── */
-#histogram-canvas{display:block;width:100%;height:60px;border-radius:4px;background:#0a0a0c;border:1px solid var(--border);}
+/* HISTOGRAM */
+#histogram-cv{display:block;width:100%;height:60px;border-radius:4px;background:#0a0a0c;border:1px solid var(--bd);}
 
-/* ── FLOATING PANELS ── */
-.fpanel{position:fixed;background:var(--surface);border:1px solid var(--b2);border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);z-index:200;display:none;min-width:280px;user-select:none;}
-.fpanel.open{display:block;}
-.fpanel-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px 8px;border-bottom:1px solid var(--border);cursor:move;}
-.fpanel-title{font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px;}
-.fpanel-title::before{content:'';width:3px;height:13px;background:var(--accent);border-radius:2px;}
-.fpanel-close{background:none;border:none;color:var(--dimmer);cursor:pointer;font-size:14px;padding:2px 5px;border-radius:3px;line-height:1;}
-.fpanel-close:hover{color:var(--text);background:var(--s3);}
-.fpanel-body{padding:12px;}
-.fpanel-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.fpanel-row:last-child{margin-bottom:0;}
-.fpanel-label{font-size:10px;color:var(--dimmer);min-width:54px;font-weight:500;}
-.fpanel-btns{display:flex;gap:6px;margin-top:4px;}
-.fpanel-btn{flex:1;padding:6px;font-family:inherit;font-size:11px;font-weight:500;border-radius:5px;cursor:pointer;border:1px solid var(--b2);background:var(--s3);color:var(--dim);transition:all .12s;}
-.fpanel-btn:hover{background:var(--s2);color:var(--text);}
-.fpanel-btn.primary{background:var(--adim);border-color:var(--accent);color:var(--text);}
-.fpanel-btn.primary:hover{background:var(--accent);}
-#curves-canvas{background:#0a0a0c;border:1px solid var(--border);border-radius:4px;cursor:crosshair;display:block;}
-.ftip{font-size:9px;color:var(--dimmer);margin-top:4px;}
-#blur-preview-canvas{display:block;border-radius:4px;border:1px solid var(--border);max-width:260px;}
-
-/* ── LAYER MASK ── */
-.layer-item.has-mask .lthumb-wrap{display:flex;gap:3px;align-items:center;}
-.lmask-thumb{width:20px;height:20px;border-radius:2px;border:1px solid var(--b2);flex-shrink:0;background:#000;}
-.lmask-link{font-size:8px;color:var(--dimmer);}
-.layer-item.mask-active{border-color:var(--yellow)!important;background:rgba(255,195,85,.07)!important;}
-.layer-item.mask-active .lname{color:var(--yellow)!important;}
-
-/* ── QUICK MASK OVERLAY ── */
-#qm-canvas{position:absolute;top:0;left:0;pointer-events:none;opacity:0.55;}
-
-/* ── ZOOM BAR ── */
-#zoom-bar{position:absolute;bottom:8px;right:12px;display:flex;align-items:center;gap:3px;background:rgba(26,26,30,.88);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:20px;padding:3px 8px;pointer-events:all;}
-#zoom-bar button{background:none;border:none;color:var(--dim);cursor:pointer;font-size:13px;font-family:inherit;width:20px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:3px;transition:background .1s,color .1s;padding:0;}
-#zoom-bar button:hover{background:var(--s3);color:var(--text);}
-#zoom-label{font-size:10px;color:var(--text);font-variant-numeric:tabular-nums;min-width:36px;text-align:center;cursor:default;font-weight:500;}
-
-/* ── COLOR RANGE SELECTION marching ants animation ── */
-@keyframes march{to{stroke-dashoffset:-16px;}}
-.marching-ants{animation:march .5s linear infinite;}
+/* FLOATING PANELS */
+.fp{position:fixed;background:var(--sf);border:1px solid var(--b2);border-radius:8px;
+  box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);
+  z-index:200;display:none;min-width:280px;user-select:none;}
+.fp.open{display:block;}
+.fp-hd{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 12px 8px;border-bottom:1px solid var(--bd);cursor:move;}
+.fp-ti{font-size:12px;font-weight:600;color:var(--tx);display:flex;align-items:center;gap:8px;}
+.fp-ti::before{content:'';width:3px;height:13px;background:var(--ac);border-radius:2px;}
+.fp-x{background:none;border:none;color:var(--dd);cursor:pointer;font-size:14px;
+  padding:2px 5px;border-radius:3px;line-height:1;}
+.fp-x:hover{color:var(--tx);background:var(--s3);}
+.fp-bd{padding:12px;}
+.fp-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.fp-row:last-child{margin-bottom:0;}
+.fp-lb{font-size:10px;color:var(--dd);min-width:54px;font-weight:500;}
+.fp-btns{display:flex;gap:6px;margin-top:8px;}
+.fp-btn{flex:1;padding:6px;font-family:inherit;font-size:11px;font-weight:500;border-radius:5px;
+  cursor:pointer;border:1px solid var(--b2);background:var(--s3);color:var(--dm);transition:all .12s;}
+.fp-btn:hover{background:var(--s2);color:var(--tx);}
+.fp-btn.pri{background:var(--ad);border-color:var(--ac);color:var(--tx);}
+.fp-btn.pri:hover{background:var(--ac);}
+.fp-tip{font-size:9px;color:var(--dd);margin-top:4px;}
+#curves-cv{background:#0a0a0c;border:1px solid var(--bd);border-radius:4px;cursor:crosshair;display:block;}
+#blur-prev-cv{display:block;border-radius:4px;border:1px solid var(--bd);max-width:260px;}
+#cr-prev-cv{display:block;width:100%;border:1px solid var(--bd);border-radius:4px;background:#0a0a0c;margin-bottom:8px;cursor:crosshair;}
+#levels-cv{display:block;width:100%;border:1px solid var(--bd);border-radius:4px;background:#0a0a0c;margin-bottom:8px;}
 </style>
 </head>
 <body>
@@ -179,8 +215,8 @@ canvas{display:block;}
   <label class="abtn" for="file-input">📂 열기</label>
   <input type="file" id="file-input" accept="image/*">
   <button class="abtn" id="btn-new">✦ 새 파일</button>
-  <button class="abtn primary" id="btn-save">↓ 저장</button>
-  <button class="abtn warn" id="btn-undo">↩ 실행취소</button>
+  <button class="abtn pri" id="btn-save">↓ 저장</button>
+  <button class="abtn wrn" id="btn-undo">↩ 실행취소</button>
   <button class="abtn" id="btn-redo">↪ 다시실행</button>
   <div class="msep"></div>
   <span id="size-info">— × —</span>
@@ -189,42 +225,43 @@ canvas{display:block;}
 <!-- OPTIONS BAR -->
 <div id="optbar">
   <div class="og">
-    <div class="swatch-wrap" title="전경색">
-      <div class="swatch-bg" id="swatch-bg" style="background:#fff"></div>
-      <div class="swatch-fg" id="swatch-fg" style="background:#4a9eff"></div>
+    <div class="swatch-wrap" title="전경색/배경색">
+      <div class="sw-bg" id="sw-bg" style="background:#fff"></div>
+      <div class="sw-fg" id="sw-fg" style="background:#4a9eff"></div>
       <input type="color" id="color-fg" value="#4a9eff" style="z-index:2">
     </div>
-    <input type="color" id="color-bg" value="#ffffff" style="width:18px;height:18px;border:none;background:none;cursor:pointer;opacity:0;position:absolute;margin-left:20px">
+    <input type="color" id="color-bg" value="#ffffff"
+      style="width:18px;height:18px;border:none;background:none;cursor:pointer;opacity:0;position:absolute;margin-left:20px">
   </div>
-  <div class="og"><span class="ol">크기</span><input type="range" class="oslider" id="brush-size" min="1" max="200" value="12"><span class="oval" id="v-sz">12</span></div>
-  <div class="og"><span class="ol">불투명</span><input type="range" class="oslider" id="opacity" min="1" max="100" value="100"><span class="oval" id="v-op">100%</span></div>
-  <div class="og"><span class="ol">흐름</span><input type="range" class="oslider" id="flow" min="1" max="100" value="80"><span class="oval" id="v-fl">80%</span></div>
-  <div class="og"><span class="ol">경도</span><input type="range" class="oslider" id="hardness" min="0" max="100" value="70"><span class="oval" id="v-hd">70%</span></div>
-  <div class="og"><span class="ol">간격</span><input type="range" class="oslider" id="spacing" min="1" max="100" value="20"><span class="oval" id="v-sp">20%</span></div>
-  <div class="og" id="sel-og" style="display:none">
+  <div class="og"><span class="ol">크기</span><input type="range" class="osl" id="o-sz" min="1" max="200" value="12"><span class="oval" id="ov-sz">12</span></div>
+  <div class="og"><span class="ol">불투명</span><input type="range" class="osl" id="o-op" min="1" max="100" value="100"><span class="oval" id="ov-op">100%</span></div>
+  <div class="og"><span class="ol">흐름</span><input type="range" class="osl" id="o-fl" min="1" max="100" value="80"><span class="oval" id="ov-fl">80%</span></div>
+  <div class="og"><span class="ol">경도</span><input type="range" class="osl" id="o-hd" min="0" max="100" value="70"><span class="oval" id="ov-hd">70%</span></div>
+  <div class="og"><span class="ol">간격</span><input type="range" class="osl" id="o-sp" min="1" max="100" value="20"><span class="oval" id="ov-sp">20%</span></div>
+  <div class="og" id="sel-og">
     <div id="lasso-actions">
-      <button class="pb" id="btn-lsel-blur">블러</button>
-      <button class="pb" id="btn-lsel-cut">삭제</button>
-      <button class="pb" id="btn-lsel-copy">복사→레이어</button>
-      <button class="pb" id="btn-lsel-clear">해제</button>
+      <button class="pb" id="btn-ls-blur">블러</button>
+      <button class="pb" id="btn-ls-cut">삭제</button>
+      <button class="pb" id="btn-ls-copy">→레이어</button>
+      <button class="pb" id="btn-ls-clear">해제</button>
     </div>
   </div>
 </div>
 
 <!-- TOOLBOX -->
 <div id="toolbox">
-  <button class="tb" data-tool="rect-sel" title="사각 선택 M">⬚</button>
-  <button class="tb" data-tool="lasso" title="올가미 L">🔆</button>
-  <button class="tb" data-tool="color-range" title="색상 범위 선택 W">◈</button>
-  <button class="tb" data-tool="quick-mask" title="퀵 마스크 Q" id="tb-quickmask">◧</button>
+  <button class="tb" data-tool="rect-sel" title="사각 선택">⬚</button>
+  <button class="tb" data-tool="lasso" title="올가미">🔆</button>
+  <button class="tb" data-tool="color-range" title="색상 범위 선택">◈</button>
+  <button class="tb" data-tool="quick-mask" title="퀵 마스크 Q" id="tb-qm">◧</button>
   <div class="tsep"></div>
   <button class="tb active" data-tool="brush" title="브러시 B">🖌</button>
   <button class="tb" data-tool="eraser" title="지우개 E">◻</button>
   <button class="tb" data-tool="fill" title="채우기 G">🪣</button>
   <button class="tb" data-tool="clone" title="클론 스탬프 S">⊕</button>
-  <button class="tb" data-tool="smudge" title="번짐 도구">〜</button>
-  <button class="tb" data-tool="dodge" title="닷지(밝게)">☀</button>
-  <button class="tb" data-tool="burn" title="번(어둡게)">◑</button>
+  <button class="tb" data-tool="smudge" title="번짐">〜</button>
+  <button class="tb" data-tool="dodge" title="밝게">☀</button>
+  <button class="tb" data-tool="burn" title="어둡게">◑</button>
   <div class="tsep"></div>
   <button class="tb" data-tool="line" title="선">╱</button>
   <button class="tb" data-tool="rect" title="사각형">▭</button>
@@ -239,25 +276,25 @@ canvas{display:block;}
 <!-- CANVAS -->
 <div id="canvas-area">
   <div id="canvas-wrap">
-    <canvas id="main-canvas"></canvas>
-    <canvas id="lasso-canvas"></canvas>
-    <canvas id="overlay-canvas"></canvas>
-    <canvas id="qm-canvas" style="display:none"></canvas>
+    <canvas id="main-cv"></canvas>
+    <canvas id="lasso-cv"></canvas>
+    <canvas id="overlay-cv"></canvas>
+    <canvas id="qm-cv"></canvas>
     <div id="clone-hint"></div>
-    <textarea id="text-input-box" rows="1"></textarea>
+    <textarea id="text-box" rows="1"></textarea>
   </div>
-  <div id="hint-overlay">
+  <div id="hint">
     <div class="hint-icon">⬡</div>
-    <div class="hint-text">이미지를 열거나 새 캔버스를 만드세요</div>
+    <div class="hint-txt">이미지를 열거나 새 캔버스를 만드세요</div>
     <div class="hint-sub">드래그 앤 드롭 지원</div>
   </div>
   <div id="statusbar">PhotoLite Pro · 준비</div>
   <div id="zoom-bar">
-    <button id="btn-zoom-out" title="축소 (-)">−</button>
+    <button id="btn-zo" title="축소 (-)">−</button>
     <span id="zoom-label">100%</span>
-    <button id="btn-zoom-in" title="확대 (+)">+</button>
-    <button id="btn-zoom-fit" title="화면에 맞춤">⊡</button>
-    <button id="btn-zoom-100" title="실제 크기">1:1</button>
+    <button id="btn-zi" title="확대 (+)">+</button>
+    <button id="btn-zf" title="화면에 맞춤 (0)">⊡</button>
+    <button id="btn-z1" title="실제 크기 (1)">1:1</button>
   </div>
 </div>
 
@@ -272,56 +309,63 @@ canvas{display:block;}
   <div id="pcontent">
 
     <!-- BRUSHES -->
-    <div class="tab-pane active" id="pane-brushes">
+    <div class="pane active" id="pane-brushes">
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">브러시 프리셋</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">브러시 프리셋</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd"><div id="brush-grid"></div></div>
       </div>
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">브러시 설정</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">브러시 설정</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
-          <div class="prow"><span class="pl">크기</span><input type="range" class="ps" id="p-sz" min="1" max="200" value="12"><span class="pv" id="pv-sz">12</span></div>
-          <div class="prow"><span class="pl">경도</span><input type="range" class="ps" id="p-hd" min="0" max="100" value="70"><span class="pv" id="pv-hd">70%</span></div>
-          <div class="prow"><span class="pl">불투명</span><input type="range" class="ps" id="p-op" min="1" max="100" value="100"><span class="pv" id="pv-op">100%</span></div>
-          <div class="prow"><span class="pl">흐름</span><input type="range" class="ps" id="p-fl" min="1" max="100" value="80"><span class="pv" id="pv-fl">80%</span></div>
-          <div class="prow"><span class="pl">간격</span><input type="range" class="ps" id="p-sp" min="1" max="100" value="20"><span class="pv" id="pv-sp">20%</span></div>
-          <div class="prow"><span class="pl">산란</span><input type="range" class="ps" id="p-sc" min="0" max="100" value="0"><span class="pv" id="pv-sc">0</span></div>
-          <div class="prow"><span class="pl">각도</span><input type="range" class="ps" id="p-ag" min="0" max="360" value="0"><span class="pv" id="pv-ag">0°</span></div>
+          <div class="pr"><span class="pl">크기</span><input type="range" class="ps" id="p-sz" min="1" max="200" value="12"><span class="pv" id="pv-sz">12</span></div>
+          <div class="pr"><span class="pl">경도</span><input type="range" class="ps" id="p-hd" min="0" max="100" value="70"><span class="pv" id="pv-hd">70%</span></div>
+          <div class="pr"><span class="pl">불투명</span><input type="range" class="ps" id="p-op" min="1" max="100" value="100"><span class="pv" id="pv-op">100%</span></div>
+          <div class="pr"><span class="pl">흐름</span><input type="range" class="ps" id="p-fl" min="1" max="100" value="80"><span class="pv" id="pv-fl">80%</span></div>
+          <div class="pr"><span class="pl">간격</span><input type="range" class="ps" id="p-sp" min="1" max="100" value="20"><span class="pv" id="pv-sp">20%</span></div>
+          <div class="pr"><span class="pl">산란</span><input type="range" class="ps" id="p-sc" min="0" max="100" value="0"><span class="pv" id="pv-sc">0</span></div>
+          <div class="pr"><span class="pl">각도</span><input type="range" class="ps" id="p-ag" min="0" max="360" value="0"><span class="pv" id="pv-ag">0°</span></div>
         </div>
       </div>
     </div>
 
     <!-- LAYERS -->
-    <div class="tab-pane" id="pane-layers">
+    <div class="pane" id="pane-layers">
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">레이어</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">레이어</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
           <div id="layer-list"></div>
           <div class="pbr">
-            <button class="pb" id="btn-add-layer">+ 추가</button>
-            <button class="pb" id="btn-dup-layer">복제</button>
-            <button class="pb" id="btn-del-layer">삭제</button>
-            <button class="pb" id="btn-merge-layer">병합</button>
+            <button class="pb" id="btn-lay-add">+ 추가</button>
+            <button class="pb" id="btn-lay-dup">복제</button>
+            <button class="pb" id="btn-lay-del">삭제</button>
+            <button class="pb" id="btn-lay-mrg">병합</button>
           </div>
           <div class="pbr" style="margin-top:4px">
-            <button class="pb" id="btn-add-mask" title="레이어 마스크 추가">⬡ 마스크 추가</button>
-            <button class="pb" id="btn-apply-mask" title="마스크 적용(병합)">✓ 마스크 적용</button>
+            <button class="pb" id="btn-mask-add">⬡ 마스크 추가</button>
+            <button class="pb" id="btn-mask-apply">✓ 마스크 적용</button>
           </div>
-          <div id="mask-hint" style="display:none;font-size:9px;color:var(--dimmer);margin-top:4px;line-height:1.5;padding:6px 4px;background:var(--s3);border-radius:4px;border:1px solid var(--border)">
-            🖌 흰색 브러시 = 보이기<br>⬛ 검은색 브러시 = 숨기기<br>회색 = 반투명<br><span style="color:var(--accent)">마스크 레이어가 활성화됨</span>
-          </div>
-          <div class="prow" style="margin-top:5px"><span class="pl">불투명</span><input type="range" class="ps" id="layer-opacity" min="0" max="100" value="100"><span class="pv" id="pv-lop">100%</span></div>
-          <div class="prow">
+          <div id="mask-hint">🖌 흰색=보이기 &nbsp; ⬛ 검은색=숨기기<br>
+            <span style="color:var(--ac)">▶ 마스크 편집 중</span></div>
+          <div class="pr" style="margin-top:6px"><span class="pl">불투명</span><input type="range" class="ps" id="lay-op" min="0" max="100" value="100"><span class="pv" id="pv-lop">100%</span></div>
+          <div class="pr">
             <span class="pl">블렌드</span>
-            <select class="psel" id="layer-blend">
-              <option value="source-over">Normal</option><option value="multiply">Multiply</option>
-              <option value="screen">Screen</option><option value="overlay">Overlay</option>
-              <option value="darken">Darken</option><option value="lighten">Lighten</option>
-              <option value="color-dodge">Color Dodge</option><option value="color-burn">Color Burn</option>
-              <option value="hard-light">Hard Light</option><option value="soft-light">Soft Light</option>
-              <option value="difference">Difference</option><option value="exclusion">Exclusion</option>
-              <option value="hue">Hue</option><option value="saturation">Saturation</option>
-              <option value="color">Color</option><option value="luminosity">Luminosity</option>
+            <select class="psel" id="lay-blend">
+              <option value="source-over">Normal</option>
+              <option value="multiply">Multiply</option>
+              <option value="screen">Screen</option>
+              <option value="overlay">Overlay</option>
+              <option value="darken">Darken</option>
+              <option value="lighten">Lighten</option>
+              <option value="color-dodge">Color Dodge</option>
+              <option value="color-burn">Color Burn</option>
+              <option value="hard-light">Hard Light</option>
+              <option value="soft-light">Soft Light</option>
+              <option value="difference">Difference</option>
+              <option value="exclusion">Exclusion</option>
+              <option value="hue">Hue</option>
+              <option value="saturation">Saturation</option>
+              <option value="color">Color</option>
+              <option value="luminosity">Luminosity</option>
             </select>
           </div>
         </div>
@@ -329,54 +373,58 @@ canvas{display:block;}
     </div>
 
     <!-- ADJUST -->
-    <div class="tab-pane" id="pane-adjust">
+    <div class="pane" id="pane-adjust">
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">히스토그램</span><span class="sec-arr">▾</span></div>
-        <div class="sec-bd"><canvas id="histogram-canvas" height="60"></canvas></div>
+        <div class="sec-hd"><span class="sec-ti">히스토그램</span><span class="sec-ar">▾</span></div>
+        <div class="sec-bd"><canvas id="histogram-cv" height="60"></canvas></div>
       </div>
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">기본 조정</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">기본 조정</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
-          <div class="prow"><span class="pl">밝기</span><input type="range" class="ps adj" id="adj-brightness" min="-100" max="100" value="0"><span class="pv" id="val-brightness">0</span></div>
-          <div class="prow"><span class="pl">대비</span><input type="range" class="ps adj" id="adj-contrast" min="-100" max="100" value="0"><span class="pv" id="val-contrast">0</span></div>
-          <div class="prow"><span class="pl">채도</span><input type="range" class="ps adj" id="adj-saturation" min="-100" max="100" value="0"><span class="pv" id="val-saturation">0</span></div>
-          <div class="prow"><span class="pl">색조</span><input type="range" class="ps adj" id="adj-hue" min="-180" max="180" value="0"><span class="pv" id="val-hue">0</span></div>
-          <div class="prow"><span class="pl">노출</span><input type="range" class="ps adj" id="adj-exposure" min="-100" max="100" value="0"><span class="pv" id="val-exposure">0</span></div>
-          <div class="prow"><span class="pl">선명도</span><input type="range" class="ps adj" id="adj-vibrance" min="-100" max="100" value="0"><span class="pv" id="val-vibrance">0</span></div>
-          <div class="pbr" style="margin-top:7px"><button class="pb" id="btn-adj-apply">적용</button><button class="pb" id="btn-adj-reset">초기화</button></div>
-          <button class="pb" id="btn-curves" style="width:100%;margin-top:5px">📈 커브 (Curves)</button>
-          <button class="pb" id="btn-levels" style="width:100%;margin-top:4px">▐ 레벨 (Levels)</button>
-          <button class="pb" id="btn-hsl" style="width:100%;margin-top:4px">🎨 색조/채도 (Hue·Sat)</button>
+          <div class="pr"><span class="pl">밝기</span><input type="range" class="ps" id="adj-br" min="-100" max="100" value="0"><span class="pv" id="av-br">0</span></div>
+          <div class="pr"><span class="pl">대비</span><input type="range" class="ps" id="adj-co" min="-100" max="100" value="0"><span class="pv" id="av-co">0</span></div>
+          <div class="pr"><span class="pl">채도</span><input type="range" class="ps" id="adj-sa" min="-100" max="100" value="0"><span class="pv" id="av-sa">0</span></div>
+          <div class="pr"><span class="pl">색조</span><input type="range" class="ps" id="adj-hu" min="-180" max="180" value="0"><span class="pv" id="av-hu">0</span></div>
+          <div class="pr"><span class="pl">노출</span><input type="range" class="ps" id="adj-ex" min="-100" max="100" value="0"><span class="pv" id="av-ex">0</span></div>
+          <div class="pbr" style="margin-top:7px"><button class="pb" id="btn-adj-ok">적용</button><button class="pb" id="btn-adj-rst">초기화</button></div>
+          <button class="pb" style="width:100%;margin-top:5px" id="btn-open-curves">📈 커브</button>
+          <button class="pb" style="width:100%;margin-top:4px" id="btn-open-levels">▐ 레벨</button>
+          <button class="pb" style="width:100%;margin-top:4px" id="btn-open-hsl">🎨 색조/채도</button>
         </div>
       </div>
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">변환</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">변환</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
           <div class="pbr"><button class="pb" id="btn-rot-l">↺ 좌회전</button><button class="pb" id="btn-rot-r">↻ 우회전</button></div>
           <div class="pbr"><button class="pb" id="btn-flip-h">↔ 좌우반전</button><button class="pb" id="btn-flip-v">↕ 상하반전</button></div>
-          <div class="prow" style="margin-top:4px">
+          <div class="pr" style="margin-top:4px">
             <span class="pl">리사이즈</span>
-            <input type="number" class="pi" id="rw" placeholder="W" style="width:42px;flex:none">
-            <span style="color:var(--dimmer)">×</span>
-            <input type="number" class="pi" id="rh" placeholder="H" style="width:42px;flex:none">
+            <input type="number" class="pi" id="rs-w" placeholder="W" style="width:42px;flex:none">
+            <span style="color:var(--dd)">×</span>
+            <input type="number" class="pi" id="rs-h" placeholder="H" style="width:42px;flex:none">
             <button class="pb" id="btn-resize" style="flex:none;padding:4px 7px">✓</button>
           </div>
         </div>
       </div>
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">텍스트</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">텍스트</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
-          <div class="prow"><span class="pl">내용</span><input type="text" class="pi" id="text-content" placeholder="텍스트 입력"></div>
-          <div class="prow"><span class="pl">크기</span><input type="range" class="ps" id="font-size" min="8" max="200" value="32"><span class="pv" id="pv-fs">32</span></div>
-          <div class="prow"><span class="pl">폰트</span><select class="psel" id="font-family"><option>Inter</option><option>Georgia</option><option>Times New Roman</option><option>Courier New</option><option>Impact</option><option>Arial Black</option></select></div>
+          <div class="pr"><span class="pl">내용</span><input type="text" class="pi" id="txt-content" placeholder="텍스트 입력"></div>
+          <div class="pr"><span class="pl">크기</span><input type="range" class="ps" id="txt-sz" min="8" max="200" value="32"><span class="pv" id="pv-txtsz">32</span></div>
+          <div class="pr"><span class="pl">폰트</span>
+            <select class="psel" id="txt-font">
+              <option>Inter</option><option>Georgia</option><option>Times New Roman</option>
+              <option>Courier New</option><option>Impact</option><option>Arial Black</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- FILTERS -->
-    <div class="tab-pane" id="pane-filters">
+    <div class="pane" id="pane-filters">
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">색보정</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">색보정</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
           <div class="pbr"><button class="pb" data-filter="grayscale">흑백</button><button class="pb" data-filter="sepia">세피아</button></div>
           <div class="pbr"><button class="pb" data-filter="invert">색상반전</button><button class="pb" data-filter="cool">쿨톤</button></div>
@@ -384,14 +432,14 @@ canvas{display:block;}
         </div>
       </div>
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">블러 / 선명도</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">블러 / 선명도</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
-          <div class="pbr"><button class="pb" id="btn-gaussian">가우시안 블러</button><button class="pb" data-filter="sharpen">샤프닝</button></div>
+          <div class="pbr"><button class="pb" id="btn-open-blur">가우시안 블러</button><button class="pb" data-filter="sharpen">샤프닝</button></div>
           <div class="pbr"><button class="pb" data-filter="motionblur">모션 블러</button><button class="pb" data-filter="unsharp">언샤프 마스크</button></div>
         </div>
       </div>
       <div class="sec">
-        <div class="sec-hd"><span class="sec-title">스타일화</span><span class="sec-arr">▾</span></div>
+        <div class="sec-hd"><span class="sec-ti">스타일화</span><span class="sec-ar">▾</span></div>
         <div class="sec-bd">
           <div class="pbr"><button class="pb" data-filter="emboss">엠보스</button><button class="pb" data-filter="vignette">비네트</button></div>
           <div class="pbr"><button class="pb" data-filter="noise">노이즈</button><button class="pb" data-filter="pixelate">픽셀화</button></div>
@@ -403,441 +451,404 @@ canvas{display:block;}
   </div>
 </div>
 
-<!-- ═══ FLOATING PANELS ═══ -->
-
-<!-- CURVES -->
-<div class="fpanel" id="fp-curves" style="right:270px;top:80px">
-  <div class="fpanel-header">
-    <div class="fpanel-title">커브 (Curves)</div>
-    <button class="fpanel-close" data-close="fp-curves">✕</button>
-  </div>
-  <div class="fpanel-body">
-    <div class="fpanel-row">
-      <span class="fpanel-label">채널</span>
-      <select class="psel" id="curves-channel"><option value="rgb">RGB</option><option value="r">Red</option><option value="g">Green</option><option value="b">Blue</option></select>
+<!-- FLOATING PANELS -->
+<div class="fp" id="fp-curves" style="right:270px;top:80px">
+  <div class="fp-hd"><div class="fp-ti">커브 (Curves)</div><button class="fp-x" data-fp="fp-curves">✕</button></div>
+  <div class="fp-bd">
+    <div class="fp-row"><span class="fp-lb">채널</span>
+      <select class="psel" id="cur-ch"><option value="rgb">RGB</option><option value="r">Red</option><option value="g">Green</option><option value="b">Blue</option></select>
     </div>
-    <canvas id="curves-canvas" width="256" height="256"></canvas>
-    <div class="ftip">클릭: 포인트 추가 · 드래그: 이동 · 더블클릭: 삭제</div>
-    <div class="fpanel-btns" style="margin-top:8px">
-      <button class="fpanel-btn" id="btn-curves-reset">초기화</button>
-      <button class="fpanel-btn primary" id="btn-curves-apply">적용</button>
-    </div>
+    <canvas id="curves-cv" width="256" height="256"></canvas>
+    <div class="fp-tip">클릭: 추가 · 드래그: 이동 · 더블클릭: 삭제</div>
+    <div class="fp-btns"><button class="fp-btn" id="btn-cur-rst">초기화</button><button class="fp-btn pri" id="btn-cur-ok">적용</button></div>
   </div>
 </div>
 
-<!-- LEVELS -->
-<div class="fpanel" id="fp-levels" style="right:270px;top:80px">
-  <div class="fpanel-header">
-    <div class="fpanel-title">레벨 (Levels)</div>
-    <button class="fpanel-close" data-close="fp-levels">✕</button>
-  </div>
-  <div class="fpanel-body">
-    <canvas id="levels-canvas" width="256" height="80" style="display:block;width:100%;border:1px solid var(--border);border-radius:4px;background:#0a0a0c;margin-bottom:8px"></canvas>
-    <div class="fpanel-row"><span class="fpanel-label">입력 어두움</span><input type="range" class="ps" id="lvl-black" min="0" max="254" value="0"><span class="pv" id="pv-lvlb">0</span></div>
-    <div class="fpanel-row"><span class="fpanel-label">입력 밝음</span><input type="range" class="ps" id="lvl-white" min="1" max="255" value="255"><span class="pv" id="pv-lvlw">255</span></div>
-    <div class="fpanel-row"><span class="fpanel-label">감마</span><input type="range" class="ps" id="lvl-gamma" min="10" max="300" value="100"><span class="pv" id="pv-lvlg">1.0</span></div>
-    <div class="fpanel-btns" style="margin-top:8px">
-      <button class="fpanel-btn" id="btn-lvl-reset">초기화</button>
-      <button class="fpanel-btn primary" id="btn-lvl-apply">적용</button>
-    </div>
+<div class="fp" id="fp-levels" style="right:270px;top:80px">
+  <div class="fp-hd"><div class="fp-ti">레벨 (Levels)</div><button class="fp-x" data-fp="fp-levels">✕</button></div>
+  <div class="fp-bd">
+    <canvas id="levels-cv" width="256" height="80"></canvas>
+    <div class="fp-row"><span class="fp-lb">어두움</span><input type="range" class="ps" id="lvl-b" min="0" max="254" value="0" style="flex:1"><span class="pv" id="pv-lvb">0</span></div>
+    <div class="fp-row"><span class="fp-lb">밝음</span><input type="range" class="ps" id="lvl-w" min="1" max="255" value="255" style="flex:1"><span class="pv" id="pv-lvw">255</span></div>
+    <div class="fp-row"><span class="fp-lb">감마</span><input type="range" class="ps" id="lvl-g" min="10" max="300" value="100" style="flex:1"><span class="pv" id="pv-lvg">1.0</span></div>
+    <div class="fp-btns"><button class="fp-btn" id="btn-lvl-rst">초기화</button><button class="fp-btn pri" id="btn-lvl-ok">적용</button></div>
   </div>
 </div>
 
-<!-- HUE/SAT -->
-<div class="fpanel" id="fp-hsl" style="right:270px;top:80px">
-  <div class="fpanel-header">
-    <div class="fpanel-title">색조 / 채도 (Hue·Sat)</div>
-    <button class="fpanel-close" data-close="fp-hsl">✕</button>
-  </div>
-  <div class="fpanel-body">
-    <div class="fpanel-row"><span class="fpanel-label">색조</span><input type="range" class="ps" id="hsl-h" min="-180" max="180" value="0"><span class="pv" id="pv-hslh">0°</span></div>
-    <div class="fpanel-row"><span class="fpanel-label">채도</span><input type="range" class="ps" id="hsl-s" min="-100" max="100" value="0"><span class="pv" id="pv-hsls">0</span></div>
-    <div class="fpanel-row"><span class="fpanel-label">밝기</span><input type="range" class="ps" id="hsl-l" min="-100" max="100" value="0"><span class="pv" id="pv-hsll">0</span></div>
-    <div class="fpanel-row" style="align-items:center;gap:8px"><label style="font-size:10px;color:var(--dimmer);display:flex;align-items:center;gap:4px"><input type="checkbox" id="hsl-colorize"> 색상화</label></div>
-    <div class="fpanel-btns" style="margin-top:4px">
-      <button class="fpanel-btn" id="btn-hsl-reset">초기화</button>
-      <button class="fpanel-btn primary" id="btn-hsl-apply">적용</button>
-    </div>
+<div class="fp" id="fp-hsl" style="right:270px;top:80px">
+  <div class="fp-hd"><div class="fp-ti">색조 / 채도</div><button class="fp-x" data-fp="fp-hsl">✕</button></div>
+  <div class="fp-bd">
+    <div class="fp-row"><span class="fp-lb">색조</span><input type="range" class="ps" id="hsl-h" min="-180" max="180" value="0" style="flex:1"><span class="pv" id="pv-hslh">0°</span></div>
+    <div class="fp-row"><span class="fp-lb">채도</span><input type="range" class="ps" id="hsl-s" min="-100" max="100" value="0" style="flex:1"><span class="pv" id="pv-hsls">0</span></div>
+    <div class="fp-row"><span class="fp-lb">밝기</span><input type="range" class="ps" id="hsl-l" min="-100" max="100" value="0" style="flex:1"><span class="pv" id="pv-hsll">0</span></div>
+    <div class="fp-row"><label style="font-size:10px;color:var(--dd);display:flex;align-items:center;gap:4px"><input type="checkbox" id="hsl-col"> 색상화</label></div>
+    <div class="fp-btns"><button class="fp-btn" id="btn-hsl-rst">초기화</button><button class="fp-btn pri" id="btn-hsl-ok">적용</button></div>
   </div>
 </div>
 
-<!-- GAUSSIAN BLUR -->
-<div class="fpanel" id="fp-blur" style="right:270px;top:80px">
-  <div class="fpanel-header">
-    <div class="fpanel-title">가우시안 블러</div>
-    <button class="fpanel-close" data-close="fp-blur">✕</button>
-  </div>
-  <div class="fpanel-body">
-    <canvas id="blur-preview-canvas"></canvas>
-    <div class="fpanel-row" style="margin-top:8px"><span class="fpanel-label">반경 (px)</span><input type="range" class="ps" id="gauss-r" min="1" max="40" value="5" style="flex:1"><span class="pv" id="pv-gr">5</span></div>
-    <div class="fpanel-btns" style="margin-top:8px">
-      <button class="fpanel-btn primary" id="btn-blur-apply">적용</button>
-    </div>
+<div class="fp" id="fp-blur" style="right:270px;top:80px">
+  <div class="fp-hd"><div class="fp-ti">가우시안 블러</div><button class="fp-x" data-fp="fp-blur">✕</button></div>
+  <div class="fp-bd">
+    <canvas id="blur-prev-cv"></canvas>
+    <div class="fp-row" style="margin-top:8px"><span class="fp-lb">반경 (px)</span><input type="range" class="ps" id="blur-r" min="1" max="40" value="5" style="flex:1"><span class="pv" id="pv-blr">5</span></div>
+    <div class="fp-btns"><button class="fp-btn pri" id="btn-blur-ok">적용</button></div>
   </div>
 </div>
 
-<!-- COLOR RANGE SELECT -->
-<div class="fpanel" id="fp-colorrange" style="right:270px;top:80px">
-  <div class="fpanel-header">
-    <div class="fpanel-title">색상 범위로 선택</div>
-    <button class="fpanel-close" data-close="fp-colorrange">✕</button>
-  </div>
-  <div class="fpanel-body">
-    <div style="font-size:9px;color:var(--dimmer);margin-bottom:8px;line-height:1.6">캔버스를 클릭하여 선택할 색상을 지정하세요.<br>허용 오차를 높이면 더 넓은 색상 범위가 선택됩니다.</div>
-    <canvas id="cr-preview" style="display:block;width:100%;border:1px solid var(--border);border-radius:4px;background:#0a0a0c;margin-bottom:8px;cursor:crosshair"></canvas>
-    <div class="fpanel-row">
-      <span class="fpanel-label">허용 오차</span>
-      <input type="range" class="ps" id="cr-tolerance" min="1" max="200" value="40" style="flex:1">
-      <span class="pv" id="pv-crt">40</span>
+<div class="fp" id="fp-cr" style="right:270px;top:80px">
+  <div class="fp-hd"><div class="fp-ti">색상 범위 선택</div><button class="fp-x" data-fp="fp-cr">✕</button></div>
+  <div class="fp-bd">
+    <div style="font-size:9px;color:var(--dd);margin-bottom:8px;line-height:1.6">캔버스를 클릭하여 선택할 색상을 지정하세요.</div>
+    <canvas id="cr-prev-cv" height="120"></canvas>
+    <div class="fp-row"><span class="fp-lb">허용 오차</span><input type="range" class="ps" id="cr-tol" min="1" max="200" value="40" style="flex:1"><span class="pv" id="pv-crt">40</span></div>
+    <div class="fp-row">
+      <span class="fp-lb">선택 색상</span>
+      <div id="cr-swatch" style="width:20px;height:20px;border-radius:3px;border:1px solid var(--b2);background:#888;flex-shrink:0"></div>
+      <span id="cr-info" style="font-size:9px;color:var(--dd);flex:1;margin-left:4px">클릭으로 선택</span>
     </div>
-    <div class="fpanel-row">
-      <span class="fpanel-label">선택 색상</span>
-      <div id="cr-swatch" style="width:24px;height:24px;border-radius:4px;border:1px solid var(--b2);background:#888;flex-shrink:0"></div>
-      <span id="cr-info" style="font-size:9px;color:var(--dimmer);flex:1">클릭으로 선택</span>
+    <div class="fp-row" style="gap:10px">
+      <label style="font-size:10px;color:var(--dd);display:flex;align-items:center;gap:4px"><input type="checkbox" id="cr-inv"> 반전</label>
+      <label style="font-size:10px;color:var(--dd);display:flex;align-items:center;gap:4px"><input type="checkbox" id="cr-add"> 추가 모드</label>
     </div>
-    <div class="fpanel-row" style="gap:4px">
-      <label style="font-size:10px;color:var(--dimmer);display:flex;align-items:center;gap:4px;cursor:pointer">
-        <input type="checkbox" id="cr-invert"> 반전 선택
-      </label>
-      <label style="font-size:10px;color:var(--dimmer);display:flex;align-items:center;gap:4px;cursor:pointer;margin-left:8px">
-        <input type="checkbox" id="cr-addmode"> 추가 모드 (+)
-      </label>
-    </div>
-    <div class="fpanel-btns" style="margin-top:8px">
-      <button class="fpanel-btn" id="btn-cr-reset">초기화</button>
-      <button class="fpanel-btn primary" id="btn-cr-apply">선택 확정</button>
-    </div>
+    <div class="fp-btns"><button class="fp-btn" id="btn-cr-rst">초기화</button><button class="fp-btn pri" id="btn-cr-ok">선택 확정</button></div>
   </div>
 </div>
 
-<!-- QUICK MASK INFO -->
-<div class="fpanel" id="fp-quickmask" style="left:70px;top:80px;min-width:220px">
-  <div class="fpanel-header">
-    <div class="fpanel-title">퀵 마스크 모드</div>
-    <button class="fpanel-close" data-close="fp-quickmask">✕</button>
-  </div>
-  <div class="fpanel-body">
-    <div style="font-size:10px;color:var(--text-dim);line-height:1.7;margin-bottom:10px">
-      <span style="color:var(--accent);font-weight:600">빨간 영역</span> = 마스크(선택 제외)<br>
-      <span style="color:var(--green);font-weight:600">흰색 브러시</span>로 칠하면 선택 추가<br>
-      <span style="color:var(--red);font-weight:600">검은색 브러시</span>로 칠하면 선택 제거
+<div class="fp" id="fp-qm" style="left:70px;top:80px;min-width:220px">
+  <div class="fp-hd"><div class="fp-ti">퀵 마스크</div><button class="fp-x" data-fp="fp-qm">✕</button></div>
+  <div class="fp-bd">
+    <div style="font-size:10px;color:var(--dm);line-height:1.7;margin-bottom:10px">
+      <b style="color:var(--red)">빨간 영역</b> = 선택 제외<br>
+      <b style="color:var(--grn)">흰 브러시</b> = 선택 추가<br>
+      <b style="color:var(--red)">검은 브러시</b> = 선택 제거
     </div>
-    <div id="qm-status" style="font-size:10px;color:var(--dimmer);padding:6px;background:var(--s3);border-radius:4px;border:1px solid var(--border);margin-bottom:8px">
-      ● 퀵 마스크 활성화됨
-    </div>
-    <div class="fpanel-btns">
-      <button class="fpanel-btn primary" id="btn-qm-exit">마스크 → 선택 영역으로</button>
-    </div>
+    <div class="fp-btns"><button class="fp-btn pri" id="btn-qm-exit">→ 선택 영역으로 변환</button></div>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════
-// GLOBALS
-// ══════════════════════════════════════════
-const MC=document.getElementById('main-canvas'), MX=MC.getContext('2d');
-const LC=document.getElementById('lasso-canvas'), LX=LC.getContext('2d');
-const OC=document.getElementById('overlay-canvas'), OX=OC.getContext('2d');
-const hint=document.getElementById('hint-overlay');
-const statusBar=document.getElementById('statusbar');
-let tool='brush', brushId='soft-round';
-let drawing=false, sx=0,sy=0,lx=0,ly=0;
-let undoStack=[], redoStack=[], MAX_UNDO=30;
-let prevData=null, accDist=0;
-let cropDrag=false, cropA=null, cropB=null;
-let lassopts=[], lassoActive=false, lassoMask=null;
-let rectSelDrag=false, rectSel=null;
-let cloneSrc=null, smudgeBuf=null;
-let moveStart=null, moveLayers=null;
-const textBox=document.getElementById('text-input-box');
-const setStatus=m=>statusBar.textContent=m;
+// ═══════════════════════════════════════════════════════
+// CANVAS REFERENCES
+// ═══════════════════════════════════════════════════════
+const MC  = document.getElementById('main-cv');
+const MX  = MC.getContext('2d');
+const LC  = document.getElementById('lasso-cv');
+const LX  = LC.getContext('2d');
+const OC  = document.getElementById('overlay-cv');
+const OX  = OC.getContext('2d');
+const QC  = document.getElementById('qm-cv');
+const QX  = QC.getContext('2d');
+const hintEl = document.getElementById('hint');
+const sb  = document.getElementById('statusbar');
+const setStatus = m => sb.textContent = m;
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+let tool = 'brush';
+let brushId = 'soft-round';
+let drawing = false;
+let sx = 0, sy = 0, lx = 0, ly = 0;
+let accDist = 0;
+let prevData = null;
+let undoStack = [], redoStack = [];
+let cropDrag = false, cropA = null, cropB = null;
+let lassopts = [], lassoActive = false, lassoMask = null;
+let rectSelDrag = false, rectSel = null;
+let cloneSrc = null, smudgeBuf = null;
+let moveStart = null, moveSnapshot = null;
+let crColor = null, crMask = null;
+let qmActive = false;
+let dragLayerIdx = null;
+
+// ═══════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════
+const mkC = (w, h) => { const c = document.createElement('canvas'); c.width = w || 1; c.height = h || 1; return c; };
+const hexRgb = h => {
+  const c = h.replace('#','');
+  const full = c.length === 3 ? c.split('').map(x=>x+x).join('') : c;
+  return [parseInt(full.slice(0,2),16), parseInt(full.slice(2,4),16), parseInt(full.slice(4,6),16)];
+};
+const hexA   = (hex, a) => { const [r,g,b] = hexRgb(hex); return `rgba(${r},${g},${b},${a})`; };
+const $ = id => document.getElementById(id);
+
+// ═══════════════════════════════════════════════════════
 // LAYERS
-// ══════════════════════════════════════════
-let layers=[], activeIdx=0;
-const mkC=(w,h)=>{const c=document.createElement('canvas');c.width=w||800;c.height=h||600;return c;};
-const getAL=()=>layers[activeIdx];
+// ═══════════════════════════════════════════════════════
+let layers = [], activeIdx = 0;
+const getAL = () => layers[activeIdx];
+const getDrawCtx = () => {
+  const l = getAL(); if (!l) return null;
+  return (l.maskActive && l.mask) ? l.mask.ctx : l.ctx;
+};
 
-function addLayer(name,w,h,src){
-  const c=mkC(w,h); const cx=c.getContext('2d');
-  if(src) cx.drawImage(src,0,0);
-  const l={id:Date.now(),name:name||`레이어 ${layers.length+1}`,canvas:c,ctx:cx,opacity:1,blend:'source-over',visible:true};
-  layers.splice(activeIdx+1,0,l); activeIdx=layers.indexOf(l);
+function addLayer(name, w, h, src) {
+  const c = mkC(w, h), cx = c.getContext('2d');
+  if (src) cx.drawImage(src, 0, 0);
+  const l = { id: Date.now(), name: name || `레이어 ${layers.length+1}`, canvas: c, ctx: cx, opacity: 1, blend: 'source-over', visible: true, mask: null, maskActive: false };
+  layers.splice(activeIdx + 1, 0, l);
+  activeIdx = layers.indexOf(l);
   renderAll(); renderLayerList(); return l;
 }
 
-function renderAll(){
-  if(!MC.width) return;
-  MX.clearRect(0,0,MC.width,MC.height);
-  MX.fillStyle='#fff'; MX.fillRect(0,0,MC.width,MC.height);
-  for(let i=layers.length-1;i>=0;i--){
-    const l=layers[i]; if(!l.visible) continue;
-    if(l.mask){
-      const comp=mkC(MC.width,MC.height); const cx=comp.getContext('2d');
-      cx.drawImage(l.canvas,0,0);
-      cx.globalCompositeOperation='destination-in';
-      cx.drawImage(l.mask.canvas,0,0);
-      cx.globalCompositeOperation='source-over';
-      MX.globalAlpha=l.opacity; MX.globalCompositeOperation=l.blend;
-      MX.drawImage(comp,0,0);
+function renderAll() {
+  if (!MC.width) return;
+  MX.clearRect(0, 0, MC.width, MC.height);
+  MX.fillStyle = '#fff'; MX.fillRect(0, 0, MC.width, MC.height);
+  for (let i = layers.length - 1; i >= 0; i--) {
+    const l = layers[i]; if (!l.visible) continue;
+    MX.globalAlpha = l.opacity;
+    MX.globalCompositeOperation = l.blend;
+    if (l.mask) {
+      const tmp = mkC(MC.width, MC.height), tc = tmp.getContext('2d');
+      tc.drawImage(l.canvas, 0, 0);
+      tc.globalCompositeOperation = 'destination-in';
+      tc.drawImage(l.mask.canvas, 0, 0);
+      MX.drawImage(tmp, 0, 0);
     } else {
-      MX.globalAlpha=l.opacity; MX.globalCompositeOperation=l.blend;
-      MX.drawImage(l.canvas,0,0);
+      MX.drawImage(l.canvas, 0, 0);
     }
   }
-  MX.globalAlpha=1; MX.globalCompositeOperation='source-over';
+  MX.globalAlpha = 1; MX.globalCompositeOperation = 'source-over';
   updateHistogram();
 }
 
-// ── Layer drag-to-reorder ──
-let dragLayerIdx=null;
-function syncLayerUI(){
-  const l=getAL(); if(!l) return;
-  document.getElementById('layer-opacity').value=Math.round(l.opacity*100);
-  document.getElementById('pv-lop').textContent=Math.round(l.opacity*100)+'%';
-  document.getElementById('layer-blend').value=l.blend;
+function renderLayerList() {
+  const list = $('layer-list'); list.innerHTML = '';
+  layers.forEach((l, i) => {
+    const d = document.createElement('div');
+    const isAct = i === activeIdx;
+    const isMaskAct = isAct && l.maskActive && l.mask;
+    d.className = 'li' + (isMaskAct ? ' mact' : isAct ? ' act' : '');
+    d.draggable = true; d.dataset.i = i;
+    const maskThumb = l.mask ? `<img class="lmth" src="${l.mask.canvas.toDataURL()}" title="마스크 (클릭으로 편집 전환)">` : '';
+    d.innerHTML = `<span class="ldg">⠿</span><span class="lvis">${l.visible?'👁':'○'}</span><img class="lth" src="${l.canvas.toDataURL()}">${maskThumb}<span class="lnm">${l.name}</span><button class="ldel">✕</button>`;
+
+    d.addEventListener('click', e => {
+      if (e.target.classList.contains('ldel') || e.target.classList.contains('lvis')) return;
+      if (e.target.classList.contains('lmth')) {
+        l.maskActive = !l.maskActive;
+        $('mask-hint').style.display = l.maskActive ? 'block' : 'none';
+        renderLayerList(); return;
+      }
+      layers.forEach(ll => { ll.maskActive = false; });
+      activeIdx = i;
+      $('mask-hint').style.display = 'none';
+      renderLayerList(); syncLayerUI();
+    });
+    d.querySelector('.lvis').addEventListener('click', () => { l.visible = !l.visible; renderAll(); renderLayerList(); });
+    d.querySelector('.ldel').addEventListener('click', () => {
+      if (layers.length === 1) { alert('마지막 레이어는 삭제할 수 없습니다'); return; }
+      layers.splice(i, 1); activeIdx = Math.min(activeIdx, layers.length - 1);
+      renderAll(); renderLayerList();
+    });
+    d.addEventListener('dragstart', e => { dragLayerIdx = i; d.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+    d.addEventListener('dragend',   () => { d.classList.remove('dragging'); document.querySelectorAll('.li').forEach(el => el.classList.remove('drag-over')); });
+    d.addEventListener('dragover',  e => { e.preventDefault(); document.querySelectorAll('.li').forEach(el => el.classList.remove('drag-over')); d.classList.add('drag-over'); });
+    d.addEventListener('drop', e => {
+      e.preventDefault(); d.classList.remove('drag-over');
+      if (dragLayerIdx === null || dragLayerIdx === i) return;
+      const moved = layers.splice(dragLayerIdx, 1)[0];
+      layers.splice(i, 0, moved);
+      activeIdx = Math.max(0, Math.min(layers.indexOf(getAL()), layers.length - 1));
+      saveUndo(); renderAll(); renderLayerList();
+    });
+    list.appendChild(d);
+  });
 }
-document.getElementById('btn-add-layer').addEventListener('click',()=>addLayer(null,MC.width,MC.height));
-document.getElementById('btn-dup-layer').addEventListener('click',()=>{const l=getAL();if(l) addLayer(l.name+' 복사',MC.width,MC.height,l.canvas);});
-document.getElementById('btn-del-layer').addEventListener('click',()=>{
-  if(layers.length===1){alert('마지막 레이어는 삭제 불가');return;}
-  layers.splice(activeIdx,1); activeIdx=Math.min(activeIdx,layers.length-1); renderAll(); renderLayerList();
+
+function syncLayerUI() {
+  const l = getAL(); if (!l) return;
+  $('lay-op').value   = Math.round(l.opacity * 100);
+  $('pv-lop').textContent = Math.round(l.opacity * 100) + '%';
+  $('lay-blend').value = l.blend;
+}
+
+$('btn-lay-add').addEventListener('click', () => addLayer(null, MC.width || 800, MC.height || 600));
+$('btn-lay-dup').addEventListener('click', () => { const l = getAL(); if (l) addLayer(l.name + ' 복사', MC.width, MC.height, l.canvas); });
+$('btn-lay-del').addEventListener('click', () => {
+  if (layers.length === 1) { alert('마지막 레이어는 삭제할 수 없습니다'); return; }
+  layers.splice(activeIdx, 1); activeIdx = Math.min(activeIdx, layers.length - 1);
+  renderAll(); renderLayerList();
 });
-document.getElementById('btn-merge-layer').addEventListener('click',()=>{
-  if(activeIdx>=layers.length-1){alert('아래 레이어가 없습니다');return;}
+$('btn-lay-mrg').addEventListener('click', () => {
+  if (activeIdx >= layers.length - 1) { alert('아래 레이어가 없습니다'); return; }
   saveUndo();
-  const top=layers[activeIdx], bot=layers[activeIdx+1];
-  bot.ctx.globalAlpha=top.opacity; bot.ctx.globalCompositeOperation=top.blend;
-  bot.ctx.drawImage(top.canvas,0,0);
-  bot.ctx.globalAlpha=1; bot.ctx.globalCompositeOperation='source-over';
-  layers.splice(activeIdx,1); activeIdx=Math.min(activeIdx,layers.length-1);
+  const top = layers[activeIdx], bot = layers[activeIdx + 1];
+  bot.ctx.globalAlpha = top.opacity; bot.ctx.globalCompositeOperation = top.blend;
+  bot.ctx.drawImage(top.canvas, 0, 0);
+  bot.ctx.globalAlpha = 1; bot.ctx.globalCompositeOperation = 'source-over';
+  layers.splice(activeIdx, 1); activeIdx = Math.min(activeIdx, layers.length - 1);
   renderAll(); renderLayerList(); saveUndo();
 });
-document.getElementById('layer-opacity').addEventListener('input',function(){
-  const l=getAL(); if(!l) return; l.opacity=this.value/100;
-  document.getElementById('pv-lop').textContent=this.value+'%'; renderAll();
+$('lay-op').addEventListener('input', function () {
+  const l = getAL(); if (!l) return;
+  l.opacity = this.value / 100; $('pv-lop').textContent = this.value + '%'; renderAll();
 });
-document.getElementById('layer-blend').addEventListener('change',function(){const l=getAL();if(l){l.blend=this.value;renderAll();}});
+$('lay-blend').addEventListener('change', function () { const l = getAL(); if (l) { l.blend = this.value; renderAll(); } });
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// LAYER MASK
+// ═══════════════════════════════════════════════════════
+$('btn-mask-add').addEventListener('click', () => {
+  const l = getAL(); if (!l || !MC.width) { alert('캔버스를 먼저 만드세요'); return; }
+  if (l.mask) { alert('이미 마스크가 있습니다'); return; }
+  saveUndo();
+  const mc = mkC(MC.width, MC.height), mx = mc.getContext('2d');
+  if (lassoMask) {
+    const id = mx.createImageData(MC.width, MC.height), d = id.data, md = lassoMask.data;
+    for (let i = 0; i < d.length; i += 4) { const a = md[i+3]; d[i]=a; d[i+1]=a; d[i+2]=a; d[i+3]=255; }
+    mx.putImageData(id, 0, 0);
+    clearSelection();
+    setStatus('선택 영역으로 레이어 마스크 생성');
+  } else {
+    mx.fillStyle = '#fff'; mx.fillRect(0, 0, MC.width, MC.height);
+    setStatus('레이어 마스크 추가됨');
+  }
+  l.mask = { canvas: mc, ctx: mx }; l.maskActive = true;
+  $('mask-hint').style.display = 'block';
+  renderAll(); renderLayerList(); saveUndo();
+});
+$('btn-mask-apply').addEventListener('click', () => {
+  const l = getAL(); if (!l || !l.mask) { alert('마스크가 없습니다'); return; }
+  if (!confirm('마스크를 적용(병합)하겠습니까?')) return;
+  saveUndo();
+  const tmp = mkC(MC.width, MC.height), tc = tmp.getContext('2d');
+  tc.drawImage(l.canvas, 0, 0);
+  tc.globalCompositeOperation = 'destination-in'; tc.drawImage(l.mask.canvas, 0, 0);
+  l.ctx.clearRect(0, 0, l.canvas.width, l.canvas.height); l.ctx.drawImage(tmp, 0, 0);
+  l.mask = null; l.maskActive = false;
+  $('mask-hint').style.display = 'none';
+  renderAll(); renderLayerList(); saveUndo(); setStatus('마스크 적용 완료');
+});
+
+// ═══════════════════════════════════════════════════════
+// UNDO / REDO
+// ═══════════════════════════════════════════════════════
+function saveUndo() {
+  const snap = layers.map(l => ({
+    id: l.id, name: l.name, opacity: l.opacity, blend: l.blend, visible: l.visible,
+    data: l.ctx.getImageData(0, 0, l.canvas.width, l.canvas.height),
+    mask: l.mask ? l.mask.ctx.getImageData(0, 0, l.mask.canvas.width, l.mask.canvas.height) : null
+  }));
+  undoStack.push({ snap, ai: activeIdx, w: MC.width, h: MC.height });
+  if (undoStack.length > 30) undoStack.shift();
+  redoStack = [];
+}
+function restoreSnap(s) {
+  [MC, LC, OC, QC].forEach(c => { c.width = s.w; c.height = s.h; });
+  layers = s.snap.map(ss => {
+    const c = mkC(s.w, s.h), cx = c.getContext('2d'); cx.putImageData(ss.data, 0, 0);
+    let mask = null;
+    if (ss.mask) { const mc = mkC(s.w, s.h), mx = mc.getContext('2d'); mx.putImageData(ss.mask, 0, 0); mask = { canvas: mc, ctx: mx }; }
+    return { id: ss.id, name: ss.name, canvas: c, ctx: cx, opacity: ss.opacity, blend: ss.blend, visible: ss.visible, mask, maskActive: false };
+  });
+  activeIdx = s.ai; renderAll(); renderLayerList(); syncLayerUI();
+}
+$('btn-undo').addEventListener('click', () => {
+  if (undoStack.length <= 1) return;
+  redoStack.push(undoStack.pop()); restoreSnap(undoStack[undoStack.length - 1]); setStatus('실행취소');
+});
+$('btn-redo').addEventListener('click', () => {
+  if (!redoStack.length) return;
+  const r = redoStack.pop(); undoStack.push(r); restoreSnap(r); setStatus('다시실행');
+});
+document.addEventListener('keydown', e => {
+  const tag = document.activeElement.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+  if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); $('btn-undo').click(); }
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.shiftKey && e.key === 'z'))) { e.preventDefault(); $('btn-redo').click(); }
+});
+
+// ═══════════════════════════════════════════════════════
 // INIT / FILE
-// ══════════════════════════════════════════
-function initCanvas(w,h){
-  [MC,LC,OC].forEach(c=>{c.width=w;c.height=h;});
-  layers=[]; activeIdx=0;
-  const c=mkC(w,h); const cx=c.getContext('2d');
-  cx.fillStyle='#fff'; cx.fillRect(0,0,w,h);
-  layers.push({id:Date.now(),name:'배경',canvas:c,ctx:cx,opacity:1,blend:'source-over',visible:true});
+// ═══════════════════════════════════════════════════════
+function initCanvas(w, h) {
+  [MC, LC, OC, QC].forEach(c => { c.width = w; c.height = h; });
+  layers = []; activeIdx = 0;
+  const c = mkC(w, h), cx = c.getContext('2d');
+  cx.fillStyle = '#fff'; cx.fillRect(0, 0, w, h);
+  layers.push({ id: Date.now(), name: '배경', canvas: c, ctx: cx, opacity: 1, blend: 'source-over', visible: true, mask: null, maskActive: false });
   renderAll(); renderLayerList();
-  hint.classList.add('hidden');
-  document.getElementById('size-info').textContent=`${w} × ${h} px`;
-  undoStack=[]; redoStack=[]; saveUndo(); setStatus(`캔버스 ${w}×${h}`);
-  // Auto-fit new canvas
+  hintEl.classList.add('hidden');
+  $('size-info').textContent = `${w} × ${h} px`;
+  undoStack = []; redoStack = []; saveUndo();
+  setStatus(`캔버스 ${w}×${h}`);
   requestAnimationFrame(zoomFit);
 }
-document.getElementById('file-input').addEventListener('change',e=>{
-  const f=e.target.files[0]; if(!f) return;
-  const img=new Image(); img.onload=()=>{initCanvas(img.width,img.height);getAL().ctx.drawImage(img,0,0);renderAll();saveUndo();setStatus(`열림: ${f.name}`);};
-  img.src=URL.createObjectURL(f);
+$('file-input').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  const img = new Image();
+  img.onload = () => { initCanvas(img.width, img.height); getAL().ctx.drawImage(img, 0, 0); renderAll(); saveUndo(); setStatus(`열림: ${f.name}`); };
+  img.src = URL.createObjectURL(f);
 });
-document.getElementById('btn-new').addEventListener('click',()=>{
-  const w=parseInt(prompt('너비 (px)','1280'))||1280, h=parseInt(prompt('높이 (px)','720'))||720; initCanvas(w,h);
+$('btn-new').addEventListener('click', () => {
+  const w = parseInt(prompt('너비 (px)', '1280')) || 1280;
+  const h = parseInt(prompt('높이 (px)', '720')) || 720;
+  initCanvas(w, h);
 });
-document.getElementById('btn-save').addEventListener('click',()=>{const a=document.createElement('a');a.download='photolite.png';a.href=MC.toDataURL();a.click();setStatus('저장 완료');});
-document.getElementById('canvas-area').addEventListener('dragover',e=>e.preventDefault());
-document.getElementById('canvas-area').addEventListener('drop',e=>{
-  e.preventDefault(); const f=e.dataTransfer.files[0]; if(!f||!f.type.startsWith('image/')) return;
-  const img=new Image(); img.onload=()=>{initCanvas(img.width,img.height);getAL().ctx.drawImage(img,0,0);renderAll();saveUndo();};
-  img.src=URL.createObjectURL(f);
+$('btn-save').addEventListener('click', () => {
+  const a = document.createElement('a'); a.download = 'photolite.png'; a.href = MC.toDataURL(); a.click();
+  setStatus('저장 완료');
 });
-
-// ══════════════════════════════════════════
-// UNDO / REDO
-// ══════════════════════════════════════════
-function saveUndo(){
-  const snap=layers.map(l=>({id:l.id,name:l.name,opacity:l.opacity,blend:l.blend,visible:l.visible,data:l.ctx.getImageData(0,0,l.canvas.width,l.canvas.height)}));
-  undoStack.push({snap,ai:activeIdx,w:MC.width,h:MC.height});
-  if(undoStack.length>MAX_UNDO) undoStack.shift();
-  redoStack=[];
-}
-function restoreSnap(snap,ai,w,h){
-  [MC,LC,OC].forEach(c=>{c.width=w;c.height=h;});
-  layers=snap.map(s=>{const c=mkC(w,h);const cx=c.getContext('2d');cx.putImageData(s.data,0,0);return{id:s.id,name:s.name,canvas:c,ctx:cx,opacity:s.opacity,blend:s.blend,visible:s.visible};});
-  activeIdx=ai; renderAll(); renderLayerList(); syncLayerUI();
-}
-document.getElementById('btn-undo').addEventListener('click',()=>{
-  if(undoStack.length<=1) return;
-  redoStack.push(undoStack.pop());
-  const u=undoStack[undoStack.length-1]; restoreSnap(u.snap,u.ai,u.w,u.h); setStatus('실행취소');
-});
-document.getElementById('btn-redo').addEventListener('click',()=>{
-  if(!redoStack.length) return;
-  const r=redoStack.pop(); undoStack.push(r); restoreSnap(r.snap,r.ai,r.w,r.h); setStatus('다시실행');
-});
-document.addEventListener('keydown',e=>{
-  if(e.ctrlKey||e.metaKey){
-    if(e.key==='z'){e.preventDefault();document.getElementById('btn-undo').click();}
-    if(e.key==='y'||(e.shiftKey&&e.key==='z')){e.preventDefault();document.getElementById('btn-redo').click();}
-  }
+const ca = $('canvas-area');
+ca.addEventListener('dragover', e => e.preventDefault());
+ca.addEventListener('drop', e => {
+  e.preventDefault(); const f = e.dataTransfer.files[0]; if (!f || !f.type.startsWith('image/')) return;
+  const img = new Image();
+  img.onload = () => { initCanvas(img.width, img.height); getAL().ctx.drawImage(img, 0, 0); renderAll(); saveUndo(); };
+  img.src = URL.createObjectURL(f);
 });
 
-// ══════════════════════════════════════════
-// BRUSH ENGINE
-// ══════════════════════════════════════════
-const BRUSHES=[
-  {id:'hard-round',  name:'원형',    type:'round'},
-  {id:'soft-round',  name:'소프트',  type:'soft'},
-  {id:'semi-soft',   name:'반소프트',type:'semi'},
-  {id:'hard-sq',     name:'사각형',  type:'square'},
-  {id:'soft-sq',     name:'소프트□', type:'softsq'},
-  {id:'chalk',       name:'분필',    type:'chalk'},
-  {id:'spray',       name:'스프레이',type:'spray'},
-  {id:'pencil',      name:'연필',    type:'pencil'},
-  {id:'watercolor',  name:'수채화',  type:'water'},
-  {id:'oil',         name:'유화',    type:'oil'},
-  {id:'star',        name:'별',      type:'star'},
-  {id:'grass',       name:'풀잎',    type:'grass'},
-];
-
-function drawBrushIcon(canvas,brush){
-  const ctx=canvas.getContext('2d');const w=canvas.width,h=canvas.height;
-  ctx.clearRect(0,0,w,h);const cx=w/2,cy=h/2,r=w*0.32;
-  ctx.fillStyle='#9ab8e0'; ctx.strokeStyle='#9ab8e0'; ctx.lineWidth=1.2;
-  switch(brush.type){
-    case 'round':ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();break;
-    case 'soft':{const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r*1.2);g.addColorStop(0,'#9ab8e0');g.addColorStop(1,'rgba(154,184,224,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r*1.2,0,Math.PI*2);ctx.fill();break;}
-    case 'semi':{const g=ctx.createRadialGradient(cx,cy,r*.3,cx,cy,r*1.1);g.addColorStop(0,'#9ab8e0');g.addColorStop(1,'rgba(154,184,224,.1)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r*1.1,0,Math.PI*2);ctx.fill();break;}
-    case 'square':ctx.fillRect(cx-r,cy-r,r*2,r*2);break;
-    case 'softsq':{const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r*1.2);g.addColorStop(0,'#9ab8e0');g.addColorStop(1,'rgba(154,184,224,0)');ctx.fillStyle=g;ctx.fillRect(cx-r*1.1,cy-r*1.1,r*2.2,r*2.2);break;}
-    case 'chalk':for(let i=0;i<30;i++){ctx.globalAlpha=Math.random()*.7+.2;ctx.fillRect(cx+(Math.random()-.5)*r*2,cy+(Math.random()-.5)*r*2,Math.random()*2+.5,Math.random()*2+.5);}ctx.globalAlpha=1;break;
-    case 'spray':for(let i=0;i<50;i++){const a=Math.random()*Math.PI*2,d=Math.random()*r;ctx.globalAlpha=Math.random()*.4+.1;ctx.beginPath();ctx.arc(cx+Math.cos(a)*d,cy+Math.sin(a)*d,.8,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;break;
-    case 'pencil':ctx.save();ctx.translate(cx,cy);ctx.rotate(.4);ctx.scale(.4,1);const gp=ctx.createRadialGradient(0,0,r*.7,0,0,r);gp.addColorStop(0,'rgba(154,184,224,.9)');gp.addColorStop(1,'rgba(154,184,224,0)');ctx.fillStyle=gp;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();ctx.restore();break;
-    case 'water':{const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r*1.3);g.addColorStop(0,'rgba(154,184,224,.4)');g.addColorStop(.5,'rgba(154,184,224,.5)');g.addColorStop(1,'rgba(154,184,224,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r*1.3,0,Math.PI*2);ctx.fill();break;}
-    case 'oil':ctx.save();ctx.translate(cx,cy);ctx.scale(1.4,.7);const go=ctx.createRadialGradient(0,0,0,0,0,r);go.addColorStop(0,'#9ab8e0');go.addColorStop(.6,'rgba(154,184,224,.8)');go.addColorStop(1,'rgba(154,184,224,0)');ctx.fillStyle=go;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();ctx.restore();break;
-    case 'star':ctx.beginPath();for(let i=0;i<5;i++){const a=(i*4*Math.PI/5)-Math.PI/2,b=((i*4+2)*Math.PI/5)-Math.PI/2;if(i===0)ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a));else ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));ctx.lineTo(cx+r*.4*Math.cos(b),cy+r*.4*Math.sin(b));}ctx.closePath();ctx.fill();break;
-    case 'grass':for(let i=0;i<5;i++){const x=cx+(i-2)*r*.4;ctx.beginPath();ctx.moveTo(x,cy+r);ctx.quadraticCurveTo(x+(Math.random()-.5)*r*.6,cy,x+(Math.random()-.5)*r*.3,cy-r);ctx.stroke();}break;
-  }
-}
-function buildBrushGrid(){
-  const grid=document.getElementById('brush-grid'); grid.innerHTML='';
-  BRUSHES.forEach(b=>{
-    const div=document.createElement('div'); div.className='bpreset'+(b.id===brushId?' active':''); div.dataset.bid=b.id;
-    const cv=document.createElement('canvas'); cv.width=36;cv.height=28; drawBrushIcon(cv,b);
-    const nm=document.createElement('div'); nm.className='bpname'; nm.textContent=b.name;
-    div.append(cv,nm);
-    div.addEventListener('click',()=>{brushId=b.id;document.querySelectorAll('.bpreset').forEach(e=>e.classList.remove('active'));div.classList.add('active');setStatus(`브러시: ${b.name}`);});
-    grid.appendChild(div);
-  });
-}
-
-function hexA(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return `rgba(${r},${g},${b},${a})`;}
-
-function paintStroke(ctx,x,y,params,erase=false){
-  const{size,opacity,flow,hardness,scatter,angle,color}=params;
-  const r=size/2;
-  const b=BRUSHES.find(b=>b.id===brushId)||BRUSHES[1];
-  ctx.save();
-  let px=x,py=y;
-  if(scatter>0){px+=(Math.random()-.5)*scatter*r*.04;py+=(Math.random()-.5)*scatter*r*.04;}
-  ctx.translate(px,py);
-  if(angle) ctx.rotate(angle);
-  ctx.globalAlpha=opacity*flow;
-  if(erase) ctx.globalCompositeOperation='destination-out';
-  switch(b.type){
-    case 'round':{const edge=Math.max(.01,1-hardness);const g=ctx.createRadialGradient(0,0,r*Math.max(0,hardness-.01),0,0,r);g.addColorStop(0,color);g.addColorStop(1,hexA(color,0));ctx.fillStyle=edge<.05?color:g;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();break;}
-    case 'soft':{const g=ctx.createRadialGradient(0,0,0,0,0,r);g.addColorStop(0,hexA(color,1));g.addColorStop(.5,hexA(color,.6));g.addColorStop(1,hexA(color,0));ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();break;}
-    case 'semi':{const g=ctx.createRadialGradient(0,0,r*hardness*.6,0,0,r);g.addColorStop(0,hexA(color,1));g.addColorStop(.7,hexA(color,.8));g.addColorStop(1,hexA(color,0));ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();break;}
-    case 'square':ctx.fillStyle=color;ctx.fillRect(-r,-r,size,size);break;
-    case 'softsq':{const g=ctx.createRadialGradient(0,0,0,0,0,r*1.2);g.addColorStop(0,hexA(color,1));g.addColorStop(1,hexA(color,0));ctx.fillStyle=g;ctx.fillRect(-r,-r,size,size);break;}
-    case 'chalk':{const n=Math.max(5,Math.round(r*2));for(let i=0;i<n;i++){const ox=(Math.random()-.5)*r*2,oy=(Math.random()-.5)*r*2;if(ox*ox+oy*oy>r*r) continue;ctx.globalAlpha=(Math.random()*.4+.3)*opacity*flow;ctx.fillStyle=color;ctx.fillRect(ox,oy,Math.random()*2+.5,Math.random()*2+.5);}break;}
-    case 'spray':{const n=Math.round(r*3);for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,d=Math.random()*r;ctx.globalAlpha=(Math.random()*.3+.05)*opacity*flow;ctx.fillStyle=color;ctx.beginPath();ctx.arc(Math.cos(a)*d,Math.sin(a)*d,.8,0,Math.PI*2);ctx.fill();}break;}
-    case 'pencil':{ctx.scale(.4,1);const g=ctx.createRadialGradient(0,0,r*.7,0,0,r);g.addColorStop(0,hexA(color,.9));g.addColorStop(1,hexA(color,0));ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();break;}
-    case 'water':{ctx.globalAlpha=opacity*flow*.3;const g=ctx.createRadialGradient(0,0,0,0,0,r*1.2);g.addColorStop(0,hexA(color,.5));g.addColorStop(.6,hexA(color,.3));g.addColorStop(1,hexA(color,0));ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,r*1.2,0,Math.PI*2);ctx.fill();break;}
-    case 'oil':{ctx.scale(1.3,.6);const g=ctx.createRadialGradient(0,0,r*.4,0,0,r);g.addColorStop(0,hexA(color,1));g.addColorStop(.7,hexA(color,.9));g.addColorStop(1,hexA(color,0));ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();break;}
-    case 'star':{ctx.fillStyle=color;ctx.beginPath();for(let i=0;i<5;i++){const a=(i*4*Math.PI/5)-Math.PI/2,b2=((i*4+2)*Math.PI/5)-Math.PI/2;if(i===0)ctx.moveTo(r*Math.cos(a),r*Math.sin(a));else ctx.lineTo(r*Math.cos(a),r*Math.sin(a));ctx.lineTo(r*.4*Math.cos(b2),r*.4*Math.sin(b2));}ctx.closePath();ctx.fill();break;}
-    case 'grass':{const blades=Math.max(2,Math.round(r*.4));for(let i=0;i<blades;i++){const ox=(Math.random()-.5)*r*2;ctx.globalAlpha=(Math.random()*.4+.4)*opacity*flow;ctx.strokeStyle=color;ctx.lineWidth=Math.random()*1.5+.5;ctx.beginPath();ctx.moveTo(ox,r*.4);ctx.quadraticCurveTo(ox+(Math.random()-.5)*r*.8,0,ox+(Math.random()-.5)*r*.4,-r);ctx.stroke();}break;}
-  }
-  ctx.restore();
-}
-
-function getBP(){return{size:parseInt(document.getElementById('brush-size').value),opacity:parseInt(document.getElementById('opacity').value)/100,flow:parseInt(document.getElementById('flow').value)/100,hardness:parseInt(document.getElementById('hardness').value)/100,spacing:parseInt(document.getElementById('spacing').value)/100,scatter:parseInt(document.getElementById('p-sc').value),angle:parseInt(document.getElementById('p-ag').value)*Math.PI/180,color:document.getElementById('color-fg').value};}
-
-// ══════════════════════════════════════════
-// TOOLS
-// ══════════════════════════════════════════
-document.querySelectorAll('.tb').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active'); tool=btn.dataset.tool;
-    commitText();
-    lassopts=[]; LX.clearRect(0,0,LC.width,LC.height);
-    document.getElementById('lasso-actions').style.display='none';
-    document.getElementById('sel-og').style.display='none';
-    smudgeBuf=null;
-    setStatus(btn.title||tool);
-  });
-});
-
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // ZOOM & PAN
-// ══════════════════════════════════════════
-let zoom = 1;
-let panX = 0, panY = 0;
-let isPanning = false, panStartX = 0, panStartY = 0, panOriginX = 0, panOriginY = 0;
-const MIN_ZOOM = 0.05, MAX_ZOOM = 32;
+// ═══════════════════════════════════════════════════════
+let zoom = 1, panX = 0, panY = 0;
+let isPanning = false, panSX = 0, panSY = 0, panOX = 0, panOY = 0;
+let spaceDown = false;
+const cw = $('canvas-wrap');
 const ZOOM_STEPS = [0.05,0.08,0.1,0.125,0.167,0.25,0.33,0.5,0.67,0.75,1,1.5,2,3,4,6,8,12,16,24,32];
-const canvasArea = document.getElementById('canvas-area');
-const canvasWrap = document.getElementById('canvas-wrap');
 
-function applyTransform() {
-  canvasWrap.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
-  document.getElementById('zoom-label').textContent = Math.round(zoom * 100) + '%';
+function applyZoom() {
+  cw.style.transform = `translate(${panX}px,${panY}px) scale(${zoom})`;
+  $('zoom-label').textContent = Math.round(zoom * 100) + '%';
 }
-
-function zoomTo(newZoom, pivotX, pivotY) {
-  // pivotX/Y are coords relative to canvasArea center
-  const area = canvasArea.getBoundingClientRect();
-  const cx = (pivotX !== undefined ? pivotX : area.width / 2);
-  const cy = (pivotY !== undefined ? pivotY : area.height / 2);
-  // Point on canvas under pivot before zoom
-  const oldZoom = zoom;
-  newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
-  // Adjust pan so pivot point stays fixed
-  panX = cx - (cx - panX) * (newZoom / oldZoom);
-  panY = cy - (cy - panY) * (newZoom / oldZoom);
-  zoom = newZoom;
-  applyTransform();
+function zoomTo(nz, px, py) {
+  const area = ca.getBoundingClientRect();
+  const cx2 = px !== undefined ? px : area.width / 2;
+  const cy2 = py !== undefined ? py : area.height / 2;
+  const old = zoom; nz = Math.max(0.05, Math.min(32, nz));
+  panX = cx2 - (cx2 - panX) * (nz / old);
+  panY = cy2 - (cy2 - panY) * (nz / old);
+  zoom = nz; applyZoom();
 }
-
-function zoomStep(dir, pivotX, pivotY) {
+function zoomStep(dir, px, py) {
   const idx = ZOOM_STEPS.findIndex(s => dir > 0 ? s > zoom + 0.001 : s >= zoom - 0.001);
-  let next;
-  if (dir > 0) next = ZOOM_STEPS[Math.min(idx < 0 ? ZOOM_STEPS.length - 1 : idx, ZOOM_STEPS.length - 1)];
-  else next = ZOOM_STEPS[Math.max((idx < 0 ? ZOOM_STEPS.length : idx) - 1, 0)];
-  zoomTo(next, pivotX, pivotY);
+  const next = dir > 0
+    ? ZOOM_STEPS[Math.min(idx < 0 ? ZOOM_STEPS.length - 1 : idx, ZOOM_STEPS.length - 1)]
+    : ZOOM_STEPS[Math.max((idx < 0 ? ZOOM_STEPS.length : idx) - 1, 0)];
+  zoomTo(next, px, py);
 }
-
 function zoomFit() {
   if (!MC.width) return;
-  const area = canvasArea.getBoundingClientRect();
-  const fitZ = Math.min((area.width - 40) / MC.width, (area.height - 40) / MC.height, 1);
-  panX = 0; panY = 0;
-  zoom = fitZ;
-  applyTransform();
+  const area = ca.getBoundingClientRect();
+  zoom = Math.min((area.width - 40) / MC.width, (area.height - 40) / MC.height, 1);
+  panX = 0; panY = 0; applyZoom();
 }
+function zoom100() { zoom = 1; panX = 0; panY = 0; applyZoom(); }
 
-function zoom100() {
-  panX = 0; panY = 0; zoom = 1; applyTransform();
-}
+$('btn-zi').addEventListener('click', () => zoomStep(1));
+$('btn-zo').addEventListener('click', () => zoomStep(-1));
+$('btn-zf').addEventListener('click', zoomFit);
+$('btn-z1').addEventListener('click', zoom100);
 
-// Buttons
-document.getElementById('btn-zoom-in').addEventListener('click', () => zoomStep(1));
-document.getElementById('btn-zoom-out').addEventListener('click', () => zoomStep(-1));
-document.getElementById('btn-zoom-fit').addEventListener('click', zoomFit);
-document.getElementById('btn-zoom-100').addEventListener('click', zoom100);
+ca.addEventListener('wheel', e => {
+  e.preventDefault();
+  const r = ca.getBoundingClientRect();
+  zoomStep(e.deltaY < 0 ? 1 : -1, e.clientX - r.left, e.clientY - r.top);
+}, { passive: false });
 
-// Keyboard shortcuts
 document.addEventListener('keydown', e => {
   const tag = document.activeElement.tagName;
   if (tag === 'INPUT' || tag === 'TEXTAREA') return;
@@ -845,900 +856,717 @@ document.addEventListener('keydown', e => {
   if (e.key === '-' || e.key === '_') { e.preventDefault(); zoomStep(-1); }
   if (e.key === '0') { e.preventDefault(); zoomFit(); }
   if (e.key === '1') { e.preventDefault(); zoom100(); }
-});
-
-// Mouse wheel zoom (pivot at cursor)
-canvasArea.addEventListener('wheel', e => {
-  e.preventDefault();
-  const area = canvasArea.getBoundingClientRect();
-  const px = e.clientX - area.left;
-  const py = e.clientY - area.top;
-  // Normalise delta
-  const delta = e.deltaY < 0 ? 1 : -1;
-  zoomStep(delta, px, py);
-}, { passive: false });
-
-// Middle-mouse / Space+drag panning
-let spaceDown = false;
-document.addEventListener('keydown', e => {
-  if (e.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-    e.preventDefault(); spaceDown = true; canvasArea.classList.add('panning');
-  }
+  if (e.code === 'Space') { e.preventDefault(); spaceDown = true; ca.classList.add('panning'); }
+  if ((e.key === 'q' || e.key === 'Q') && !qmActive) enterQuickMask();
+  else if ((e.key === 'q' || e.key === 'Q') && qmActive) exitQuickMask();
 });
 document.addEventListener('keyup', e => {
-  if (e.code === 'Space') { spaceDown = false; canvasArea.classList.remove('panning'); }
+  if (e.code === 'Space') { spaceDown = false; if (!isPanning) ca.classList.remove('panning'); }
 });
-
-canvasArea.addEventListener('mousedown', e => {
+ca.addEventListener('mousedown', e => {
   if (e.button === 1 || spaceDown) {
     e.preventDefault(); isPanning = true;
-    panStartX = e.clientX; panStartY = e.clientY;
-    panOriginX = panX; panOriginY = panY;
-    canvasArea.classList.add('panning');
+    panSX = e.clientX; panSY = e.clientY; panOX = panX; panOY = panY;
+    ca.classList.add('panning');
   }
 });
 document.addEventListener('mousemove', e => {
   if (!isPanning) return;
-  panX = panOriginX + (e.clientX - panStartX);
-  panY = panOriginY + (e.clientY - panStartY);
-  applyTransform();
+  panX = panOX + (e.clientX - panSX); panY = panOY + (e.clientY - panSY); applyZoom();
 });
 document.addEventListener('mouseup', e => {
-  if (e.button === 1 || isPanning) {
-    isPanning = false;
-    if (!spaceDown) canvasArea.classList.remove('panning');
-  }
+  if (isPanning && (e.button === 1 || !spaceDown)) { isPanning = false; if (!spaceDown) ca.classList.remove('panning'); }
 });
 
-function getPos(e){
-  const r=MC.getBoundingClientRect();
-  // Account for zoom: divide by zoom to get actual canvas coords
-  return{
-    x:((e.touches?e.touches[0].clientX:e.clientX)-r.left)/zoom,
-    y:((e.touches?e.touches[0].clientY:e.clientY)-r.top)/zoom
-  };
+function getPos(e) {
+  const r = MC.getBoundingClientRect();
+  const cx2 = e.touches ? e.touches[0].clientX : e.clientX;
+  const cy2 = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x: (cx2 - r.left) / zoom, y: (cy2 - r.top) / zoom };
 }
 
-MC.addEventListener('mousedown',onDown);
-MC.addEventListener('mousemove',onMove);
-MC.addEventListener('mouseup',onUp);
-MC.addEventListener('mouseleave',onUp);
+// ═══════════════════════════════════════════════════════
+// BRUSH PRESETS
+// ═══════════════════════════════════════════════════════
+const BRUSHES = [
+  { id:'hard-round',  name:'원형',    type:'round'  },
+  { id:'soft-round',  name:'소프트',  type:'soft'   },
+  { id:'semi-soft',   name:'반소프트',type:'semi'   },
+  { id:'hard-sq',     name:'사각형',  type:'square' },
+  { id:'soft-sq',     name:'소프트□', type:'softsq' },
+  { id:'chalk',       name:'분필',    type:'chalk'  },
+  { id:'spray',       name:'스프레이',type:'spray'  },
+  { id:'pencil',      name:'연필',    type:'pencil' },
+  { id:'watercolor',  name:'수채화',  type:'water'  },
+  { id:'oil',         name:'유화',    type:'oil'    },
+  { id:'star',        name:'별',      type:'star'   },
+  { id:'grass',       name:'풀잎',    type:'grass'  },
+];
 
-function onDown(e){
-  if(!MC.width) return;
-  const{x,y}=getPos(e);
-
-  // Quick mask painting mode
-  if(quickMaskActive){
-    drawing=true; lx=x; ly=y; accDist=0;
-    const isWhite = document.getElementById('color-fg').value.toLowerCase() !== '#000000'
-      && document.getElementById('color-fg').value.toLowerCase() !== '#000';
-    // Determine white/black from actual color brightness
-    const fg = hexRgb(document.getElementById('color-fg').value);
-    const bright = (fg[0]+fg[1]+fg[2])/3;
-    paintQuickMask(x, y, bright > 128);
-    return;
-  }
-
-  // Color range tool — click picks color
-  if(tool==='color-range'){
-    handleColorRangeMouseDown(x,y); return;
-  }
-
-  if(tool==='clone'&&e.altKey){cloneSrc={x,y};setStatus('클론 기준점 설정됨');return;}
-  if(tool==='eyedropper'){const p=MX.getImageData(Math.round(x),Math.round(y),1,1).data;const hex='#'+[p[0],p[1],p[2]].map(v=>v.toString(16).padStart(2,'0')).join('');document.getElementById('color-fg').value=hex;document.getElementById('swatch-fg').style.background=hex;setStatus(`색상 선택: ${hex}`);return;}
-  if(tool==='fill'){saveUndo();floodFill(x,y,document.getElementById('color-fg').value);return;}
-  if(tool==='text'){commitText();textBox.style.left=x+'px';textBox.style.top=y+'px';textBox.style.display='block';textBox.style.color=document.getElementById('color-fg').value;textBox.style.fontSize=document.getElementById('font-size').value+'px';textBox.style.fontFamily=document.getElementById('font-family').value;textBox.value=document.getElementById('text-content').value||'';textBox.focus();return;}
-  if(tool==='crop'){cropDrag=true;cropA={x,y};cropB={x,y};return;}
-  if(tool==='lasso'){lassopts=[{x,y}];lassoActive=true;LX.clearRect(0,0,LC.width,LC.height);return;}
-  if(tool==='rect-sel'){rectSelDrag=true;rectSel={x1:x,y1:y,x2:x,y2:y};return;}
-  if(tool==='move'){moveStart={x,y};moveLayers=layers.map(l=>l.ctx.getImageData(0,0,l.canvas.width,l.canvas.height));return;}
-  drawing=true; sx=x; sy=y; lx=x; ly=y; accDist=0;
-
-  // Use mask-aware context for painting
-  const activeL = getAL();
-  const lc = (activeL && activeL.maskActive && activeL.mask) ? activeL.mask.ctx : (activeL ? activeL.ctx : null);
-  if (!lc) return;
-
-  if(['brush','eraser','clone','smudge','dodge','burn'].includes(tool)){
-    saveUndo();
-    const bp=getBP();
-    if(tool==='brush') paintStroke(lc,x,y,bp);
-    else if(tool==='eraser'){lc.save();lc.globalCompositeOperation='destination-out';paintStroke(lc,x,y,{...bp,color:'#000'},true);lc.restore();}
-    else if(tool==='clone'&&cloneSrc) doClone(lc,x,y,bp.size,bp.opacity);
-    else if(tool==='dodge'||tool==='burn') doDodgeBurn(lc,x,y,bp.size,bp.opacity,tool==='burn');
-    renderAll();
-  }
-  if(['line','rect','circle'].includes(tool)) prevData=lc.getImageData(0,0,lc.canvas.width,lc.canvas.height);
-}
-
-function onMove(e){
-  const{x,y}=getPos(e);
-  if(MC.width) setStatus(`${Math.round(x)}, ${Math.round(y)} px`);
-
-  // Quick mask painting
-  if(quickMaskActive&&drawing&&(e.buttons&1)){
-    const fg=hexRgb(document.getElementById('color-fg').value);
-    paintQuickMask(x,y,(fg[0]+fg[1]+fg[2])/3>128);
-    lx=x;ly=y;return;
-  }
-
-  if(tool==='clone'){const ch=document.getElementById('clone-hint');const sz=parseInt(document.getElementById('brush-size').value)*zoom;ch.style.display='block';ch.style.left=x*zoom+'px';ch.style.top=y*zoom+'px';ch.style.width=sz+'px';ch.style.height=sz+'px';}
-  else document.getElementById('clone-hint').style.display='none';
-  if(tool==='move'&&moveStart&&(e.buttons&1)){
-    const dx=x-moveStart.x,dy=y-moveStart.y;
-    const lc=getAL().ctx;
-    const tmp=mkC(MC.width,MC.height);tmp.getContext('2d').putImageData(moveLayers[activeIdx],0,0);
-    lc.clearRect(0,0,MC.width,MC.height);lc.drawImage(tmp,dx,dy);
-    renderAll();return;
-  }
-  if(cropDrag){cropB={x,y};OX.clearRect(0,0,OC.width,OC.height);const l=Math.min(cropA.x,x),t=Math.min(cropA.y,y),w=Math.abs(x-cropA.x),h2=Math.abs(y-cropA.y);OX.strokeStyle='rgba(74,158,255,.8)';OX.lineWidth=1;OX.setLineDash([5,3]);OX.strokeRect(l,t,w,h2);OX.fillStyle='rgba(74,158,255,.04)';OX.fillRect(l,t,w,h2);OX.setLineDash([]);[1/3,2/3].forEach(f=>{OX.strokeStyle='rgba(74,158,255,.2)';OX.lineWidth=.5;OX.beginPath();OX.moveTo(l+w*f,t);OX.lineTo(l+w*f,t+h2);OX.stroke();OX.beginPath();OX.moveTo(l,t+h2*f);OX.lineTo(l+w,t+h2*f);OX.stroke();});return;}
-  if(tool==='lasso'&&lassoActive&&(e.buttons&1)){lassopts.push({x,y});drawLassoPath();return;}
-  if(rectSelDrag){rectSel.x2=x;rectSel.y2=y;OX.clearRect(0,0,OC.width,OC.height);const l=Math.min(rectSel.x1,x),t=Math.min(rectSel.y1,y),w=Math.abs(x-rectSel.x1),h2=Math.abs(y-rectSel.y1);OX.strokeStyle='rgba(74,158,255,.8)';OX.lineWidth=1;OX.setLineDash([4,3]);OX.strokeRect(l,t,w,h2);OX.setLineDash([]);return;}
-  if(!drawing) return;
-
-  const bp=getBP();
-  const activeL=getAL();
-  const lc=(activeL&&activeL.maskActive&&activeL.mask)?activeL.mask.ctx:(activeL?activeL.ctx:null);
-  if(!lc) return;
-
-  const dx=x-lx,dy=y-ly;const dist=Math.sqrt(dx*dx+dy*dy);accDist+=dist;const step=Math.max(1,bp.size*bp.spacing);
-  if(tool==='brush'||tool==='eraser'){
-    if(accDist>=step||dist<1){
-      const er=tool==='eraser';if(er){lc.save();lc.globalCompositeOperation='destination-out';}
-      const steps=Math.max(1,Math.floor(dist/Math.max(1,step*.8)));
-      for(let i=0;i<=steps;i++){const t2=steps===0?1:i/steps;paintStroke(lc,lx+dx*t2,ly+dy*t2,bp,er);}
-      if(er) lc.restore();accDist=0;renderAll();
-    }
-  } else if(tool==='smudge'){doSmudge(lc,x,y,lx,ly,bp.size);renderAll();}
-  else if(tool==='clone'&&cloneSrc){doClone(lc,x,y,bp.size,bp.opacity);renderAll();}
-  else if(tool==='dodge'||tool==='burn'){doDodgeBurn(lc,x,y,bp.size,bp.opacity,tool==='burn');renderAll();}
-  else if(tool==='line'){lc.putImageData(prevData,0,0);lc.globalAlpha=bp.opacity;lc.strokeStyle=bp.color;lc.lineWidth=Math.max(1,bp.size*.2);lc.lineCap='round';lc.beginPath();lc.moveTo(sx,sy);lc.lineTo(x,y);lc.stroke();lc.globalAlpha=1;renderAll();}
-  else if(tool==='rect'){lc.putImageData(prevData,0,0);lc.globalAlpha=bp.opacity;lc.strokeStyle=bp.color;lc.lineWidth=Math.max(1,bp.size*.1);lc.strokeRect(sx,sy,x-sx,y-sy);lc.globalAlpha=1;renderAll();}
-  else if(tool==='circle'){lc.putImageData(prevData,0,0);lc.globalAlpha=bp.opacity;lc.strokeStyle=bp.color;lc.lineWidth=Math.max(1,bp.size*.1);lc.beginPath();lc.ellipse(sx+(x-sx)/2,sy+(y-sy)/2,Math.abs(x-sx)/2,Math.abs(y-sy)/2,0,0,Math.PI*2);lc.stroke();lc.globalAlpha=1;renderAll();}
-  lx=x;ly=y;
-}
-
-function onUp(e){
-  if(cropDrag){
-    cropDrag=false;OX.clearRect(0,0,OC.width,OC.height);
-    if(cropA&&cropB&&Math.abs(cropB.x-cropA.x)>10&&Math.abs(cropB.y-cropA.y)>10){
-      if(confirm('이 영역으로 자르겠습니까?')){
-        const l=Math.min(cropA.x,cropB.x),t=Math.min(cropA.y,cropB.y),w=Math.abs(cropB.x-cropA.x),h2=Math.abs(cropB.y-cropA.y);
-        saveUndo();layers.forEach(ly=>{const cd=ly.ctx.getImageData(l,t,w,h2);ly.canvas.width=w;ly.canvas.height=h2;ly.ctx.putImageData(cd,0,0);});
-        [MC,LC,OC].forEach(c=>{c.width=w;c.height=h2;});document.getElementById('size-info').textContent=`${w} × ${h2} px`;
-        renderAll();saveUndo();setStatus(`자르기: ${w}×${h2}`);
-      }
-    }
-    return;
-  }
-  if(tool==='lasso'&&lassoActive){drawLassoPath(true);buildLassoMask();document.getElementById('lasso-actions').style.display='flex';document.getElementById('sel-og').style.display='flex';lassoActive=false;return;}
-  if(rectSelDrag){
-    rectSelDrag=false;OX.clearRect(0,0,OC.width,OC.height);
-    lassopts=[{x:rectSel.x1,y:rectSel.y1},{x:rectSel.x2,y:rectSel.y1},{x:rectSel.x2,y:rectSel.y2},{x:rectSel.x1,y:rectSel.y2}];
-    drawLassoPath(true);buildLassoMask();document.getElementById('lasso-actions').style.display='flex';document.getElementById('sel-og').style.display='flex';return;
-  }
-  if(tool==='move'&&moveStart){moveStart=null;moveLayers=null;saveUndo();return;}
-  if(!drawing) return;
-  drawing=false; smudgeBuf=null;
-  if(['line','rect','circle'].includes(tool)) saveUndo();
-  prevData=null;
-}
-
-// ══════════════════════════════════════════
-// SPECIAL TOOLS
-// ══════════════════════════════════════════
-function floodFill(sx2,sy2,fc){
-  const lc=getAL().ctx,W=MC.width,H=MC.height,id=lc.getImageData(0,0,W,H),d=id.data;
-  const idx=(x,y)=>(y*W+x)*4,si=idx(Math.round(sx2),Math.round(sy2));
-  const tr=d[si],tg=d[si+1],tb=d[si+2],fr=hexRgb(fc);
-  if(tr===fr[0]&&tg===fr[1]&&tb===fr[2]) return;
-  const stk=[[Math.round(sx2),Math.round(sy2)]],vis=new Uint8Array(W*H);
-  while(stk.length){const[x,y]=stk.pop();if(x<0||x>=W||y<0||y>=H) continue;const i=idx(x,y);if(vis[y*W+x]) continue;if(Math.abs(d[i]-tr)>30||Math.abs(d[i+1]-tg)>30||Math.abs(d[i+2]-tb)>30) continue;vis[y*W+x]=1;d[i]=fr[0];d[i+1]=fr[1];d[i+2]=fr[2];d[i+3]=255;stk.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);}
-  lc.putImageData(id,0,0);renderAll();
-}
-function hexRgb(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
-
-function doClone(ctx,x,y,size,op){
-  if(!cloneSrc) return;
-  const tmp=mkC(size,size);tmp.getContext('2d').drawImage(MC,cloneSrc.x-size/2,cloneSrc.y-size/2,size,size,0,0,size,size);
-  ctx.globalAlpha=op;ctx.drawImage(tmp,x-size/2,y-size/2);ctx.globalAlpha=1;
-}
-
-function doSmudge(ctx,x,y,px2,py2,size){
-  if(!smudgeBuf){smudgeBuf=ctx.getImageData(Math.round(px2-size/2),Math.round(py2-size/2),size,size);}
-  const str=parseInt(document.getElementById('opacity').value)/100*.7;
-  const sx3=Math.round(x-size/2),sy3=Math.round(y-size/2);
-  const dest=ctx.getImageData(sx3,sy3,size,size);
-  for(let i=0;i<dest.data.length;i+=4){const ii=Math.min(i,smudgeBuf.data.length-4);dest.data[i]=dest.data[i]*(1-str)+smudgeBuf.data[ii]*str;dest.data[i+1]=dest.data[i+1]*(1-str)+smudgeBuf.data[ii+1]*str;dest.data[i+2]=dest.data[i+2]*(1-str)+smudgeBuf.data[ii+2]*str;}
-  ctx.putImageData(dest,sx3,sy3);smudgeBuf=ctx.getImageData(Math.round(x-size/2),Math.round(y-size/2),size,size);
-}
-
-function doDodgeBurn(ctx,x,y,size,op,burn){
-  const r=size/2,id=ctx.getImageData(Math.round(x-r),Math.round(y-r),size,size),d=id.data;
-  const str=op*.3*(burn?-1:1);
-  for(let i=0;i<d.length;i+=4){const dist=Math.hypot(((i/4)%size)-r,Math.floor((i/4)/size)-r);const fade=Math.max(0,1-dist/r);d[i]=Math.max(0,Math.min(255,d[i]+str*fade*100));d[i+1]=Math.max(0,Math.min(255,d[i+1]+str*fade*100));d[i+2]=Math.max(0,Math.min(255,d[i+2]+str*fade*100));}
-  ctx.putImageData(id,Math.round(x-r),Math.round(y-r));
-}
-
-function commitText(){
-  if(textBox.style.display!=='none'&&textBox.value){
-    const x=parseInt(textBox.style.left),y=parseInt(textBox.style.top);
-    const lc=getAL().ctx;lc.globalAlpha=getBP().opacity;lc.fillStyle=document.getElementById('color-fg').value;
-    const fs=document.getElementById('font-size').value;lc.font=`${fs}px ${document.getElementById('font-family').value}`;
-    lc.fillText(textBox.value,x,y+parseInt(fs));lc.globalAlpha=1;renderAll();saveUndo();
-  }
-  textBox.style.display='none';textBox.value='';
-}
-textBox.addEventListener('blur',commitText);
-textBox.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();commitText();}});
-
-// ══════════════════════════════════════════
-// LASSO
-// ══════════════════════════════════════════
-function drawLassoPath(close=false){
-  LX.clearRect(0,0,LC.width,LC.height);if(lassopts.length<2) return;
-  LX.beginPath();LX.moveTo(lassopts[0].x,lassopts[0].y);lassopts.forEach(p=>LX.lineTo(p.x,p.y));
-  if(close) LX.closePath();
-  LX.strokeStyle='rgba(74,158,255,.9)';LX.lineWidth=1.5;LX.setLineDash([5,3]);LX.stroke();LX.setLineDash([]);
-  if(close){LX.fillStyle='rgba(74,158,255,.07)';LX.fill();}
-}
-function buildLassoMask(){
-  if(lassopts.length<3) return;
-  const oc=document.createElement('canvas');oc.width=MC.width;oc.height=MC.height;
-  const ox=oc.getContext('2d');ox.beginPath();ox.moveTo(lassopts[0].x,lassopts[0].y);lassopts.forEach(p=>ox.lineTo(p.x,p.y));ox.closePath();ox.fill();
-  lassoMask=ox.getImageData(0,0,MC.width,MC.height);
-}
-document.getElementById('btn-lsel-clear').addEventListener('click',()=>{lassopts=[];lassoMask=null;LX.clearRect(0,0,LC.width,LC.height);document.getElementById('lasso-actions').style.display='none';document.getElementById('sel-og').style.display='none';});
-document.getElementById('btn-lsel-cut').addEventListener('click',()=>{
-  if(!lassoMask) return;saveUndo();const lc=getAL().ctx;const id=lc.getImageData(0,0,MC.width,MC.height);
-  for(let i=0;i<lassoMask.data.length;i+=4) if(lassoMask.data[i+3]>0) id.data[i+3]=0;
-  lc.putImageData(id,0,0);renderAll();saveUndo();document.getElementById('btn-lsel-clear').click();
-});
-document.getElementById('btn-lsel-copy').addEventListener('click',()=>{
-  if(!lassoMask) return;saveUndo();
-  const src=getAL().ctx.getImageData(0,0,MC.width,MC.height);
-  const newC=mkC(MC.width,MC.height);const newCtx=newC.getContext('2d');
-  const newId=newCtx.getImageData(0,0,MC.width,MC.height);
-  for(let i=0;i<lassoMask.data.length;i+=4){if(lassoMask.data[i+3]>0){newId.data[i]=src.data[i];newId.data[i+1]=src.data[i+1];newId.data[i+2]=src.data[i+2];newId.data[i+3]=src.data[i+3];}}
-  newCtx.putImageData(newId,0,0);
-  layers.splice(activeIdx,0,{id:Date.now(),name:'선택 복사',canvas:newC,ctx:newCtx,opacity:1,blend:'source-over',visible:true});
-  renderAll();renderLayerList();document.getElementById('btn-lsel-clear').click();setStatus('선택 → 새 레이어');
-});
-document.getElementById('btn-lsel-blur').addEventListener('click',()=>{
-  if(!lassoMask) return;saveUndo();const r2=parseInt(prompt('블러 반경(px)','8'))||8;
-  applyGaussBlurMasked(getAL().ctx,lassoMask,r2);renderAll();saveUndo();document.getElementById('btn-lsel-clear').click();
-});
-
-// ══════════════════════════════════════════
-// 1. COLOR RANGE SELECTION (색상 범위 선택)
-// ══════════════════════════════════════════
-const QMC = document.getElementById('qm-canvas');
-const QMX = QMC.getContext('2d');
-let crPickedColor = null;   // {r,g,b} picked from canvas
-let crMaskData = null;      // ImageData of current color-range mask
-let quickMaskActive = false;
-let quickMaskData = null;   // ImageData of the grey paint on qm-canvas
-
-document.getElementById('btn-cr-apply').addEventListener('click', () => {
-  if (!crMaskData) return;
-  // Convert crMaskData into lassoMask format and activate selection
-  lassoMask = crMaskData;
-  LX.clearRect(0, 0, LC.width, LC.height);
-  drawColorRangeOverlay();
-  document.getElementById('lasso-actions').style.display = 'flex';
-  document.getElementById('sel-og').style.display = 'flex';
-  closeFP('fp-colorrange');
-  setStatus('색상 범위 선택 완료 — 옵션바에서 작업 선택');
-});
-
-document.getElementById('btn-cr-reset').addEventListener('click', () => {
-  crPickedColor = null; crMaskData = null;
-  document.getElementById('cr-swatch').style.background = '#888';
-  document.getElementById('cr-info').textContent = '클릭으로 선택';
-  LX.clearRect(0, 0, LC.width, LC.height);
-  drawCRPreview();
-});
-
-document.getElementById('cr-tolerance').addEventListener('input', function () {
-  document.getElementById('pv-crt').textContent = this.value;
-  if (crPickedColor) buildColorRangeMask();
-});
-document.getElementById('cr-invert').addEventListener('change', () => { if (crPickedColor) buildColorRangeMask(); });
-
-// Click on main canvas while color-range tool is active
-function onColorRangeClick(x, y) {
-  const px = MX.getImageData(Math.round(x), Math.round(y), 1, 1).data;
-  crPickedColor = { r: px[0], g: px[1], b: px[2] };
-  const hex = '#' + [px[0], px[1], px[2]].map(v => v.toString(16).padStart(2,'0')).join('');
-  document.getElementById('cr-swatch').style.background = hex;
-  document.getElementById('cr-info').textContent = `RGB(${px[0]}, ${px[1]}, ${px[2]})`;
-  buildColorRangeMask();
-}
-
-function buildColorRangeMask() {
-  if (!crPickedColor || !MC.width) return;
-  const tol = parseInt(document.getElementById('cr-tolerance').value);
-  const inv = document.getElementById('cr-invert').checked;
-  const addMode = document.getElementById('cr-addmode').checked;
-  const W = MC.width, H = MC.height;
-  const src = MX.getImageData(0, 0, W, H).data;
-  const oc = mkC(W, H); const ox = oc.getContext('2d');
-  const id = ox.createImageData(W, H); const d = id.data;
-  const { r: pr, g: pg, b: pb } = crPickedColor;
-
-  // If add mode and we have an existing mask, start from it
-  let prevMask = null;
-  if (addMode && crMaskData) prevMask = crMaskData.data;
-
-  for (let i = 0; i < src.length; i += 4) {
-    const dr = src[i] - pr, dg = src[i+1] - pg, db = src[i+2] - pb;
-    const dist = Math.sqrt(dr*dr + dg*dg + db*db);
-    // Soft falloff at tolerance edge
-    let alpha = Math.max(0, Math.min(255, Math.round((1 - dist / tol) * 255)));
-    if (inv) alpha = 255 - alpha;
-    if (addMode && prevMask) alpha = Math.max(alpha, prevMask[i+3]);
-    d[i] = 255; d[i+1] = 255; d[i+2] = 255; d[i+3] = alpha;
-  }
-  ox.putImageData(id, 0, 0);
-  crMaskData = id;
-  drawColorRangeOverlay();
-  drawCRPreview();
-}
-
-function drawColorRangeOverlay() {
-  // Show marching ants / blue tint over selected pixels on lasso canvas
-  LX.clearRect(0, 0, LC.width, LC.height);
-  if (!crMaskData) return;
-  const W = MC.width, H = MC.height;
-  const oc = mkC(W, H); const ox = oc.getContext('2d');
-  const id = ox.createImageData(W, H); const d = id.data;
-  const md = crMaskData.data;
-  for (let i = 0; i < d.length; i += 4) {
-    if (md[i+3] > 20) { d[i]=74; d[i+1]=158; d[i+2]=255; d[i+3]=Math.round(md[i+3]*0.35); }
-  }
-  ox.putImageData(id, 0, 0);
-  LX.drawImage(oc, 0, 0);
-}
-
-function drawCRPreview() {
-  const prev = document.getElementById('cr-preview');
-  if (!prev) return;
-  const W = MC.width || 300, H = MC.height || 200;
-  const sc = Math.min(232 / W, 120 / H, 1);
-  prev.width = Math.round(W * sc); prev.height = Math.round(H * sc);
-  const pctx = prev.getContext('2d');
-  pctx.clearRect(0, 0, prev.width, prev.height);
-  if (!MC.width) { pctx.fillStyle='#1a1a1e'; pctx.fillRect(0,0,prev.width,prev.height); return; }
-  // Draw grayscale preview showing mask
-  if (crMaskData) {
-    const oc = mkC(W, H); const ox = oc.getContext('2d');
-    const id = ox.createImageData(W, H); const d = id.data; const md = crMaskData.data;
-    for (let i = 0; i < d.length; i += 4) {
-      const v = md[i+3]; d[i] = v; d[i+1] = v; d[i+2] = v; d[i+3] = 255;
-    }
-    ox.putImageData(id, 0, 0);
-    pctx.drawImage(oc, 0, 0, prev.width, prev.height);
-  } else {
-    pctx.drawImage(MC, 0, 0, prev.width, prev.height);
+function drawBrushIcon(cv, b) {
+  const ctx = cv.getContext('2d'), w = cv.width, h = cv.height, cx2 = w/2, cy2 = h/2, r = w*0.32;
+  ctx.clearRect(0,0,w,h); ctx.fillStyle='#9ab8e0'; ctx.strokeStyle='#9ab8e0'; ctx.lineWidth=1.2;
+  switch (b.type) {
+    case 'round': ctx.beginPath(); ctx.arc(cx2,cy2,r,0,Math.PI*2); ctx.fill(); break;
+    case 'soft': { const g=ctx.createRadialGradient(cx2,cy2,0,cx2,cy2,r*1.2); g.addColorStop(0,'#9ab8e0'); g.addColorStop(1,'rgba(154,184,224,0)'); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx2,cy2,r*1.2,0,Math.PI*2); ctx.fill(); break; }
+    case 'semi': { const g=ctx.createRadialGradient(cx2,cy2,r*.3,cx2,cy2,r*1.1); g.addColorStop(0,'#9ab8e0'); g.addColorStop(1,'rgba(154,184,224,.1)'); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx2,cy2,r*1.1,0,Math.PI*2); ctx.fill(); break; }
+    case 'square': ctx.fillRect(cx2-r,cy2-r,r*2,r*2); break;
+    case 'softsq': { const g=ctx.createRadialGradient(cx2,cy2,0,cx2,cy2,r*1.2); g.addColorStop(0,'#9ab8e0'); g.addColorStop(1,'rgba(154,184,224,0)'); ctx.fillStyle=g; ctx.fillRect(cx2-r*1.1,cy2-r*1.1,r*2.2,r*2.2); break; }
+    case 'chalk': for(let i=0;i<30;i++){ctx.globalAlpha=Math.random()*.7+.2; ctx.fillRect(cx2+(Math.random()-.5)*r*2,cy2+(Math.random()-.5)*r*2,Math.random()*2+.5,Math.random()*2+.5);} ctx.globalAlpha=1; break;
+    case 'spray': for(let i=0;i<50;i++){const a=Math.random()*Math.PI*2,d=Math.random()*r; ctx.globalAlpha=Math.random()*.4+.1; ctx.beginPath(); ctx.arc(cx2+Math.cos(a)*d,cy2+Math.sin(a)*d,.8,0,Math.PI*2); ctx.fill();} ctx.globalAlpha=1; break;
+    case 'pencil': ctx.save(); ctx.translate(cx2,cy2); ctx.rotate(.4); ctx.scale(.4,1); const gp=ctx.createRadialGradient(0,0,r*.7,0,0,r); gp.addColorStop(0,'rgba(154,184,224,.9)'); gp.addColorStop(1,'rgba(154,184,224,0)'); ctx.fillStyle=gp; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill(); ctx.restore(); break;
+    case 'water': { const g=ctx.createRadialGradient(cx2,cy2,0,cx2,cy2,r*1.3); g.addColorStop(0,'rgba(154,184,224,.4)'); g.addColorStop(.5,'rgba(154,184,224,.5)'); g.addColorStop(1,'rgba(154,184,224,0)'); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx2,cy2,r*1.3,0,Math.PI*2); ctx.fill(); break; }
+    case 'oil': ctx.save(); ctx.translate(cx2,cy2); ctx.scale(1.4,.7); const go=ctx.createRadialGradient(0,0,0,0,0,r); go.addColorStop(0,'#9ab8e0'); go.addColorStop(.6,'rgba(154,184,224,.8)'); go.addColorStop(1,'rgba(154,184,224,0)'); ctx.fillStyle=go; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill(); ctx.restore(); break;
+    case 'star': ctx.beginPath(); for(let i=0;i<5;i++){const a=(i*4*Math.PI/5)-Math.PI/2,b2=((i*4+2)*Math.PI/5)-Math.PI/2; if(i===0) ctx.moveTo(cx2+r*Math.cos(a),cy2+r*Math.sin(a)); else ctx.lineTo(cx2+r*Math.cos(a),cy2+r*Math.sin(a)); ctx.lineTo(cx2+r*.4*Math.cos(b2),cy2+r*.4*Math.sin(b2));} ctx.closePath(); ctx.fill(); break;
+    case 'grass': for(let i=0;i<5;i++){const x2=cx2+(i-2)*r*.4; ctx.beginPath(); ctx.moveTo(x2,cy2+r); ctx.quadraticCurveTo(x2+(Math.random()-.5)*r*.6,cy2,x2+(Math.random()-.5)*r*.3,cy2-r); ctx.stroke();} break;
   }
 }
 
-// Wire up color-range tool click on main canvas
-document.getElementById('btn-cr-apply'); // just reference to confirm exists
-function handleColorRangeMouseDown(x, y) {
-  onColorRangeClick(x, y);
-}
-
-// Open color range panel
-document.querySelectorAll('.tb').forEach(btn => {
-  if (btn.dataset.tool === 'color-range') {
-    btn.addEventListener('click', () => {
-      openFP('fp-colorrange');
-      drawCRPreview();
-    });
-  }
-});
-
-// ══════════════════════════════════════════
-// 2. LAYER MASK (레이어 마스크)
-// ══════════════════════════════════════════
-// Each layer can have: layer.mask = {canvas, ctx, active}
-// When rendering, layer pixels are multiplied by mask alpha
-// (renderAll already handles masks — defined above)
-
-document.getElementById('btn-add-mask').addEventListener('click', () => {
-  const l = getAL(); if (!l || !MC.width) { alert('캔버스를 먼저 만드세요'); return; }
-  if (l.mask) { alert('이미 마스크가 있습니다'); return; }
-  saveUndo();
-  const mc = mkC(MC.width, MC.height);
-  const mx2 = mc.getContext('2d');
-  // Default: white mask = fully visible
-  // If there's an active selection (lassoMask), initialize mask from it
-  if (lassoMask) {
-    const id = mx2.createImageData(MC.width, MC.height);
-    const d = id.data; const md = lassoMask.data;
-    for (let i = 0; i < d.length; i += 4) {
-      const a = md[i+3];
-      d[i] = a; d[i+1] = a; d[i+2] = a; d[i+3] = 255;
-    }
-    mx2.putImageData(id, 0, 0);
-    document.getElementById('btn-lsel-clear').click();
-    setStatus('선택 영역으로 레이어 마스크 생성');
-  } else {
-    mx2.fillStyle = '#fff'; mx2.fillRect(0, 0, MC.width, MC.height);
-    setStatus('레이어 마스크 추가됨 — 검은 브러시로 숨기기');
-  }
-  l.mask = { canvas: mc, ctx: mx2, active: true };
-  l.maskActive = true;
-  document.getElementById('mask-hint').style.display = 'block';
-  renderAll(); renderLayerList(); saveUndo();
-});
-
-document.getElementById('btn-apply-mask').addEventListener('click', () => {
-  const l = getAL(); if (!l || !l.mask) { alert('마스크가 없습니다'); return; }
-  if (!confirm('마스크를 레이어에 적용(병합)하겠습니까? 되돌릴 수 없습니다.')) return;
-  saveUndo();
-  const comp = mkC(MC.width, MC.height); const cx2 = comp.getContext('2d');
-  cx2.drawImage(l.canvas, 0, 0);
-  cx2.globalCompositeOperation = 'destination-in';
-  cx2.drawImage(l.mask.canvas, 0, 0);
-  l.ctx.clearRect(0, 0, l.canvas.width, l.canvas.height);
-  l.ctx.drawImage(comp, 0, 0);
-  delete l.mask; delete l.maskActive;
-  document.getElementById('mask-hint').style.display = 'none';
-  renderAll(); renderLayerList(); saveUndo();
-  setStatus('마스크 적용 완료');
-});
-
-// Patch renderLayerList to show mask thumbnail and active state
-const _origRenderLayerList = renderLayerList;
-function renderLayerList() {
-  const list = document.getElementById('layer-list'); list.innerHTML = '';
-  layers.forEach((l, i) => {
-    const d = document.createElement('div');
-    const isMaskActive = l.maskActive && l.mask;
-    d.className = 'layer-item' + (i === activeIdx ? (isMaskActive ? ' mask-active' : ' active-layer') : '');
-    d.draggable = true; d.dataset.i = i;
-
-    const thumbSrc = l.canvas.toDataURL();
-    const maskSrc = l.mask ? l.mask.canvas.toDataURL() : null;
-    const maskHtml = maskSrc
-      ? `<img class="lmask-thumb" src="${maskSrc}" title="마스크 썸네일"><span class="lmask-link" title="마스크 연결됨">⛓</span>`
-      : '';
-
-    d.innerHTML = `<span class="ldrag">⠿</span><span class="lvis">${l.visible ? '👁' : '○'}</span><img class="lthumb" src="${thumbSrc}">${maskHtml}<span class="lname">${isMaskActive ? '🎭 ' : ''}${l.name}</span><button class="ldel">✕</button>`;
-
-    d.addEventListener('click', e => {
-      if (e.target.classList.contains('ldel') || e.target.classList.contains('lvis')) return;
-      // Click mask thumb toggles mask editing
-      if (e.target.classList.contains('lmask-thumb')) {
-        l.maskActive = !l.maskActive;
-        document.getElementById('mask-hint').style.display = l.maskActive ? 'block' : 'none';
-        renderLayerList(); return;
-      }
-      activeIdx = i;
-      // Turn off mask editing when switching layers
-      layers.forEach(ll => { if (ll !== l) ll.maskActive = false; });
-      document.getElementById('mask-hint').style.display = (l.mask && l.maskActive) ? 'block' : 'none';
-      renderLayerList(); syncLayerUI();
-    });
-    d.querySelector('.lvis').addEventListener('click', () => { l.visible = !l.visible; renderAll(); renderLayerList(); });
-    d.querySelector('.ldel').addEventListener('click', () => {
-      if (layers.length === 1) { alert('마지막 레이어는 삭제 불가'); return; }
-      layers.splice(i, 1); activeIdx = Math.min(activeIdx, layers.length - 1);
-      renderAll(); renderLayerList();
-    });
-    d.addEventListener('dragstart', e => { dragLayerIdx = i; d.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
-    d.addEventListener('dragend', () => { d.classList.remove('dragging'); document.querySelectorAll('.layer-item').forEach(el => el.classList.remove('drag-over')); });
-    d.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; document.querySelectorAll('.layer-item').forEach(el => el.classList.remove('drag-over')); d.classList.add('drag-over'); });
-    d.addEventListener('drop', e => {
-      e.preventDefault(); d.classList.remove('drag-over');
-      if (dragLayerIdx === null || dragLayerIdx === i) return;
-      const moved = layers.splice(dragLayerIdx, 1)[0];
-      layers.splice(i, 0, moved);
-      activeIdx = layers.indexOf(getAL()) || 0;
-      saveUndo(); renderAll(); renderLayerList();
-    });
-    list.appendChild(d);
+function buildBrushGrid() {
+  const grid = $('brush-grid'); grid.innerHTML = '';
+  BRUSHES.forEach(b => {
+    const div = document.createElement('div'); div.className='bpr'+(b.id===brushId?' active':''); div.dataset.bid=b.id;
+    const cv = document.createElement('canvas'); cv.width=36; cv.height=28; drawBrushIcon(cv, b);
+    const nm = document.createElement('div'); nm.className='bpr-nm'; nm.textContent=b.name;
+    div.append(cv, nm);
+    div.addEventListener('click', () => { brushId=b.id; document.querySelectorAll('.bpr').forEach(el=>el.classList.remove('active')); div.classList.add('active'); setStatus(`브러시: ${b.name}`); });
+    grid.appendChild(div);
   });
 }
 
-// Patch brush painting to target mask when maskActive
-function getMaskAwareCtx() {
-  const l = getAL();
-  if (l && l.maskActive && l.mask) return l.mask.ctx;
-  return l ? l.ctx : null;
+// ═══════════════════════════════════════════════════════
+// BRUSH ENGINE
+// ═══════════════════════════════════════════════════════
+function getBP() {
+  return {
+    size:     parseInt($('o-sz').value),
+    opacity:  parseInt($('o-op').value) / 100,
+    flow:     parseInt($('o-fl').value) / 100,
+    hardness: parseInt($('o-hd').value) / 100,
+    spacing:  parseInt($('o-sp').value) / 100,
+    scatter:  parseInt($('p-sc').value),
+    angle:    parseInt($('p-ag').value) * Math.PI / 180,
+    color:    $('color-fg').value,
+  };
 }
 
-// ══════════════════════════════════════════
-// 3. QUICK MASK (퀵 마스크)
-// ══════════════════════════════════════════
-function enterQuickMask() {
-  if (!MC.width) { alert('캔버스를 먼저 만드세요'); return; }
-  quickMaskActive = true;
-  QMC.width = MC.width; QMC.height = MC.height;
-  QMC.style.display = 'block';
-  QMX.clearRect(0, 0, QMC.width, QMC.height);
-
-  // If selection exists, initialize QM from it (black = masked, clear = selected)
-  if (lassoMask) {
-    const id = QMX.createImageData(MC.width, MC.height);
-    const d = id.data; const md = lassoMask.data;
-    for (let i = 0; i < d.length; i += 4) {
-      // Red overlay where NOT selected
-      if (md[i+3] < 128) { d[i]=220; d[i+1]=30; d[i+2]=30; d[i+3]=160; }
-    }
-    QMX.putImageData(id, 0, 0);
-    document.getElementById('btn-lsel-clear').click();
-  }
-
-  document.getElementById('tb-quickmask').classList.add('active');
-  document.getElementById('tb-quickmask').style.background = 'rgba(220,60,60,.25)';
-  document.getElementById('tb-quickmask').style.borderColor = '#e04040';
-  openFP('fp-quickmask');
-  setStatus('퀵 마스크 활성화 — 흰 브러시: 선택 추가, 검은 브러시: 선택 제거');
-  quickMaskData = null; // reset so we repaint each stroke
-}
-
-function exitQuickMask() {
-  if (!quickMaskActive) return;
-  quickMaskActive = false;
-
-  // Convert QM red overlay back to selection mask
-  const id = QMX.getImageData(0, 0, QMC.width, QMC.height);
-  const md = id.data;
-  const oc = mkC(MC.width, MC.height); const ox = oc.getContext('2d');
-  const newId = ox.createImageData(MC.width, MC.height); const nd = newId.data;
-  for (let i = 0; i < md.length; i += 4) {
-    // Red = masked (not selected), transparent = selected
-    const isRed = md[i] > 150 && md[i+1] < 80 && md[i+3] > 50;
-    nd[i] = 255; nd[i+1] = 255; nd[i+2] = 255;
-    nd[i+3] = isRed ? 0 : 255;
-  }
-  ox.putImageData(newId, 0, 0);
-  lassoMask = newId;
-
-  // Draw selection outline
-  lassopts = [];
-  drawColorRangeOverlay(); // reuse overlay drawing
-  LX.clearRect(0, 0, LC.width, LC.height);
-  // Draw blue tint for selected area
-  const selOc = mkC(MC.width, MC.height); const selOx = selOc.getContext('2d');
-  const selId = selOx.createImageData(MC.width, MC.height); const sd = selId.data;
-  for (let i = 0; i < nd.length; i += 4) {
-    if (nd[i+3] > 0) { sd[i]=74; sd[i+1]=158; sd[i+2]=255; sd[i+3]=60; }
-  }
-  selOx.putImageData(selId, 0, 0); LX.drawImage(selOc, 0, 0);
-
-  document.getElementById('lasso-actions').style.display = 'flex';
-  document.getElementById('sel-og').style.display = 'flex';
-  QMC.style.display = 'none';
-  QMX.clearRect(0, 0, QMC.width, QMC.height);
-  document.getElementById('tb-quickmask').classList.remove('active');
-  document.getElementById('tb-quickmask').style.background = '';
-  document.getElementById('tb-quickmask').style.borderColor = '';
-  closeFP('fp-quickmask');
-  setStatus('퀵 마스크 → 선택 영역 변환 완료');
-}
-
-function paintQuickMask(x, y, isWhite) {
-  const size = parseInt(document.getElementById('brush-size').value);
+function paintStroke(ctx, x, y, bp, erase) {
+  const { size, opacity, flow, hardness, scatter, angle, color } = bp;
   const r = size / 2;
-  // White brush erases red (= adds to selection), black brush adds red (= removes from selection)
-  if (isWhite) {
-    QMX.save();
-    QMX.globalCompositeOperation = 'destination-out';
-    const g = QMX.createRadialGradient(x, y, 0, x, y, r);
-    g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
-    QMX.fillStyle = g;
-    QMX.beginPath(); QMX.arc(x, y, r, 0, Math.PI*2); QMX.fill();
-    QMX.restore();
-  } else {
-    QMX.save();
-    const g = QMX.createRadialGradient(x, y, 0, x, y, r);
-    g.addColorStop(0, 'rgba(220,30,30,0.85)'); g.addColorStop(1, 'rgba(220,30,30,0)');
-    QMX.fillStyle = g;
-    QMX.beginPath(); QMX.arc(x, y, r, 0, Math.PI*2); QMX.fill();
-    QMX.restore();
+  const b = BRUSHES.find(b => b.id === brushId) || BRUSHES[1];
+  ctx.save();
+  let px = x, py = y;
+  if (scatter > 0) { px += (Math.random()-.5)*scatter*r*.04; py += (Math.random()-.5)*scatter*r*.04; }
+  ctx.translate(px, py); if (angle) ctx.rotate(angle);
+  ctx.globalAlpha = opacity * flow;
+  if (erase) ctx.globalCompositeOperation = 'destination-out';
+  switch (b.type) {
+    case 'round': { const edge=Math.max(.01,1-hardness); const g=ctx.createRadialGradient(0,0,r*Math.max(0,hardness-.01),0,0,r); g.addColorStop(0,color); g.addColorStop(1,hexA(color,0)); ctx.fillStyle=edge<.05?color:g; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill(); break; }
+    case 'soft':  { const g=ctx.createRadialGradient(0,0,0,0,0,r); g.addColorStop(0,hexA(color,1)); g.addColorStop(.5,hexA(color,.6)); g.addColorStop(1,hexA(color,0)); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill(); break; }
+    case 'semi':  { const g=ctx.createRadialGradient(0,0,r*hardness*.6,0,0,r); g.addColorStop(0,hexA(color,1)); g.addColorStop(.7,hexA(color,.8)); g.addColorStop(1,hexA(color,0)); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill(); break; }
+    case 'square': ctx.fillStyle=color; ctx.fillRect(-r,-r,size,size); break;
+    case 'softsq': { const g=ctx.createRadialGradient(0,0,0,0,0,r*1.2); g.addColorStop(0,hexA(color,1)); g.addColorStop(1,hexA(color,0)); ctx.fillStyle=g; ctx.fillRect(-r,-r,size,size); break; }
+    case 'chalk': { const n=Math.max(5,Math.round(r*2)); for(let i=0;i<n;i++){const ox=(Math.random()-.5)*r*2,oy=(Math.random()-.5)*r*2; if(ox*ox+oy*oy>r*r) continue; ctx.globalAlpha=(Math.random()*.4+.3)*opacity*flow; ctx.fillStyle=color; ctx.fillRect(ox,oy,Math.random()*2+.5,Math.random()*2+.5);} break; }
+    case 'spray': { const n=Math.round(r*3); for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,d=Math.random()*r; ctx.globalAlpha=(Math.random()*.3+.05)*opacity*flow; ctx.fillStyle=color; ctx.beginPath(); ctx.arc(Math.cos(a)*d,Math.sin(a)*d,.8,0,Math.PI*2); ctx.fill();} break; }
+    case 'pencil': { ctx.scale(.4,1); const g=ctx.createRadialGradient(0,0,r*.7,0,0,r); g.addColorStop(0,hexA(color,.9)); g.addColorStop(1,hexA(color,0)); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill(); break; }
+    case 'water': { ctx.globalAlpha=opacity*flow*.3; const g=ctx.createRadialGradient(0,0,0,0,0,r*1.2); g.addColorStop(0,hexA(color,.5)); g.addColorStop(.6,hexA(color,.3)); g.addColorStop(1,hexA(color,0)); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,r*1.2,0,Math.PI*2); ctx.fill(); break; }
+    case 'oil':   { ctx.scale(1.3,.6); const g=ctx.createRadialGradient(0,0,r*.4,0,0,r); g.addColorStop(0,hexA(color,1)); g.addColorStop(.7,hexA(color,.9)); g.addColorStop(1,hexA(color,0)); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill(); break; }
+    case 'star':  { ctx.fillStyle=color; ctx.beginPath(); for(let i=0;i<5;i++){const a=(i*4*Math.PI/5)-Math.PI/2,b2=((i*4+2)*Math.PI/5)-Math.PI/2; if(i===0) ctx.moveTo(r*Math.cos(a),r*Math.sin(a)); else ctx.lineTo(r*Math.cos(a),r*Math.sin(a)); ctx.lineTo(r*.4*Math.cos(b2),r*.4*Math.sin(b2));} ctx.closePath(); ctx.fill(); break; }
+    case 'grass': { const bl=Math.max(2,Math.round(r*.4)); for(let i=0;i<bl;i++){const ox=(Math.random()-.5)*r*2; ctx.globalAlpha=(Math.random()*.4+.4)*opacity*flow; ctx.strokeStyle=color; ctx.lineWidth=Math.random()*1.5+.5; ctx.beginPath(); ctx.moveTo(ox,r*.4); ctx.quadraticCurveTo(ox+(Math.random()-.5)*r*.8,0,ox+(Math.random()-.5)*r*.4,-r); ctx.stroke();} break; }
   }
+  ctx.restore();
 }
 
-document.getElementById('btn-qm-exit').addEventListener('click', exitQuickMask);
-document.querySelector('.fpanel-close[data-close="fp-quickmask"]').addEventListener('click', exitQuickMask);
-document.getElementById('tb-quickmask').addEventListener('click', () => {
-  if (quickMaskActive) exitQuickMask();
-  else enterQuickMask();
-});
-// Keyboard shortcut Q
-document.addEventListener('keydown', e => {
-  if (e.key === 'q' || e.key === 'Q') {
-    if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-      if (quickMaskActive) exitQuickMask(); else enterQuickMask();
-    }
-  }
+// ═══════════════════════════════════════════════════════
+// TOOL SWITCHING
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.tb').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.id === 'tb-qm') return; // handled separately
+    document.querySelectorAll('.tb').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active'); tool = btn.dataset.tool;
+    commitText(); clearSelection(); smudgeBuf = null;
+    if (tool === 'color-range') openFP('fp-cr');
+    setStatus(btn.title || tool);
+  });
 });
 
-// ══════════════════════════════════════════
-// CSS filter 방식으로 빠르고 확실하게 가우시안 블러 적용
-function applyGaussBlurCSS(srcCanvas, radius) {
-  const W = srcCanvas.width, H = srcCanvas.height;
-  const tmp = mkC(W + radius*4, H + radius*4);
-  const tctx = tmp.getContext('2d');
-  tctx.filter = `blur(${radius}px)`;
-  tctx.drawImage(srcCanvas, radius*2, radius*2);
-  tctx.filter = 'none';
-  const out = mkC(W, H);
-  out.getContext('2d').drawImage(tmp, radius*2, radius*2, W, H, 0, 0, W, H);
+// ═══════════════════════════════════════════════════════
+// MOUSE EVENTS
+// ═══════════════════════════════════════════════════════
+MC.addEventListener('mousedown', onDown);
+MC.addEventListener('mousemove', onMove);
+MC.addEventListener('mouseup',   onUp);
+MC.addEventListener('mouseleave', onUp);
+
+function onDown(e) {
+  if (!MC.width) return;
+  if (isPanning || spaceDown) return;
+  const { x, y } = getPos(e);
+
+  // Quick mask painting
+  if (qmActive) { drawing=true; lx=x; ly=y; paintQuickMask(x,y); return; }
+
+  // Color range — pick color on click
+  if (tool === 'color-range') { pickColorRange(x, y); return; }
+
+  // Eyedropper
+  if (tool === 'eyedropper') {
+    const p = MX.getImageData(Math.round(x), Math.round(y), 1, 1).data;
+    const hex = '#' + [p[0],p[1],p[2]].map(v=>v.toString(16).padStart(2,'0')).join('');
+    $('color-fg').value = hex; $('sw-fg').style.background = hex; setStatus(`색상: ${hex}`); return;
+  }
+
+  if (tool === 'fill')  { saveUndo(); floodFill(x, y, $('color-fg').value); return; }
+  if (tool === 'text')  { spawnTextBox(x, y); return; }
+  if (tool === 'crop')  { cropDrag=true; cropA={x,y}; cropB={x,y}; return; }
+  if (tool === 'lasso') { lassopts=[{x,y}]; lassoActive=true; LX.clearRect(0,0,LC.width,LC.height); return; }
+  if (tool === 'rect-sel') { rectSelDrag=true; rectSel={x1:x,y1:y,x2:x,y2:y}; return; }
+  if (tool === 'move')  { moveStart={x,y}; moveSnapshot=getAL().ctx.getImageData(0,0,MC.width,MC.height); return; }
+  if (tool === 'clone' && e.altKey) { cloneSrc={x,y}; setStatus('클론 기준점 설정됨'); return; }
+
+  drawing=true; sx=x; sy=y; lx=x; ly=y; accDist=0;
+  const ctx = getDrawCtx(); if (!ctx) return;
+  const bp = getBP();
+
+  if (['brush','eraser','clone','smudge','dodge','burn'].includes(tool)) {
+    saveUndo();
+    if (tool === 'brush')  paintStroke(ctx, x, y, bp);
+    else if (tool === 'eraser') { ctx.save(); ctx.globalCompositeOperation='destination-out'; paintStroke(ctx, x, y, {...bp, color:'#000000'}, true); ctx.restore(); }
+    else if (tool === 'clone' && cloneSrc) doClone(ctx, x, y, bp);
+    else if (tool === 'smudge') { /* starts on move */ }
+    else if (tool === 'dodge' || tool === 'burn') doDodgeBurn(ctx, x, y, bp.size, bp.opacity, tool==='burn');
+    renderAll();
+  }
+  if (['line','rect','circle'].includes(tool)) prevData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+
+function onMove(e) {
+  if (!MC.width) return;
+  const { x, y } = getPos(e);
+  setStatus(`${Math.round(x)}, ${Math.round(y)} px`);
+
+  // Quick mask
+  if (qmActive && drawing && (e.buttons & 1)) { paintQuickMask(x, y); lx=x; ly=y; return; }
+
+  // Clone hint cursor
+  if (tool === 'clone') {
+    const ch = $('clone-hint'), sz = parseInt($('o-sz').value) * zoom;
+    ch.style.display='block'; ch.style.left=x*zoom+'px'; ch.style.top=y*zoom+'px'; ch.style.width=sz+'px'; ch.style.height=sz+'px';
+  } else { $('clone-hint').style.display='none'; }
+
+  // Move tool
+  if (tool === 'move' && moveStart && (e.buttons & 1)) {
+    const dx=x-moveStart.x, dy=y-moveStart.y, lc=getAL().ctx;
+    const tmp=mkC(MC.width,MC.height); tmp.getContext('2d').putImageData(moveSnapshot,0,0);
+    lc.clearRect(0,0,MC.width,MC.height); lc.drawImage(tmp,dx,dy);
+    renderAll(); return;
+  }
+
+  // Crop overlay
+  if (cropDrag) {
+    cropB={x,y}; OX.clearRect(0,0,OC.width,OC.height);
+    const l2=Math.min(cropA.x,x),t2=Math.min(cropA.y,y),w2=Math.abs(x-cropA.x),h2=Math.abs(y-cropA.y);
+    OX.strokeStyle='rgba(74,158,255,.8)'; OX.lineWidth=1; OX.setLineDash([5,3]); OX.strokeRect(l2,t2,w2,h2);
+    OX.fillStyle='rgba(74,158,255,.04)'; OX.fillRect(l2,t2,w2,h2); OX.setLineDash([]);
+    [1/3,2/3].forEach(f=>{
+      OX.strokeStyle='rgba(74,158,255,.2)'; OX.lineWidth=.5;
+      OX.beginPath(); OX.moveTo(l2+w2*f,t2); OX.lineTo(l2+w2*f,t2+h2); OX.stroke();
+      OX.beginPath(); OX.moveTo(l2,t2+h2*f); OX.lineTo(l2+w2,t2+h2*f); OX.stroke();
+    });
+    return;
+  }
+
+  // Lasso / rect-sel
+  if (tool==='lasso' && lassoActive && (e.buttons&1)) { lassopts.push({x,y}); drawLassoPath(); return; }
+  if (rectSelDrag) {
+    rectSel.x2=x; rectSel.y2=y; OX.clearRect(0,0,OC.width,OC.height);
+    const l2=Math.min(rectSel.x1,x),t2=Math.min(rectSel.y1,y),w2=Math.abs(x-rectSel.x1),h2=Math.abs(y-rectSel.y1);
+    OX.strokeStyle='rgba(74,158,255,.8)'; OX.lineWidth=1; OX.setLineDash([4,3]); OX.strokeRect(l2,t2,w2,h2); OX.setLineDash([]);
+    return;
+  }
+
+  if (!drawing) return;
+  const bp=getBP(), ctx=getDrawCtx(); if (!ctx) return;
+  const dx=x-lx, dy=y-ly, dist=Math.sqrt(dx*dx+dy*dy);
+  accDist+=dist; const step=Math.max(1,bp.size*bp.spacing);
+
+  if (tool==='brush' || tool==='eraser') {
+    if (accDist>=step || dist<1) {
+      const er=tool==='eraser';
+      if (er) { ctx.save(); ctx.globalCompositeOperation='destination-out'; }
+      const steps=Math.max(1,Math.floor(dist/Math.max(1,step*.8)));
+      for (let i=0;i<=steps;i++) { const t2=steps===0?1:i/steps; paintStroke(ctx,lx+dx*t2,ly+dy*t2, er?{...bp,color:'#000000'}:bp, er); }
+      if (er) ctx.restore();
+      accDist=0; renderAll();
+    }
+  } else if (tool==='smudge')  { doSmudge(ctx,x,y,lx,ly,bp.size); renderAll(); }
+  else if (tool==='clone' && cloneSrc) { doClone(ctx,x,y,bp); renderAll(); }
+  else if (tool==='dodge'||tool==='burn') { doDodgeBurn(ctx,x,y,bp.size,bp.opacity,tool==='burn'); renderAll(); }
+  else if (tool==='line') {
+    ctx.putImageData(prevData,0,0); ctx.globalAlpha=bp.opacity; ctx.strokeStyle=bp.color;
+    ctx.lineWidth=Math.max(1,bp.size*.2); ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(x,y); ctx.stroke(); ctx.globalAlpha=1; renderAll();
+  } else if (tool==='rect') {
+    ctx.putImageData(prevData,0,0); ctx.globalAlpha=bp.opacity; ctx.strokeStyle=bp.color;
+    ctx.lineWidth=Math.max(1,bp.size*.1); ctx.strokeRect(sx,sy,x-sx,y-sy); ctx.globalAlpha=1; renderAll();
+  } else if (tool==='circle') {
+    ctx.putImageData(prevData,0,0); ctx.globalAlpha=bp.opacity; ctx.strokeStyle=bp.color;
+    ctx.lineWidth=Math.max(1,bp.size*.1); ctx.beginPath();
+    ctx.ellipse(sx+(x-sx)/2,sy+(y-sy)/2,Math.abs(x-sx)/2,Math.abs(y-sy)/2,0,0,Math.PI*2);
+    ctx.stroke(); ctx.globalAlpha=1; renderAll();
+  }
+  lx=x; ly=y;
+}
+
+function onUp(e) {
+  // Crop
+  if (cropDrag) {
+    cropDrag=false; OX.clearRect(0,0,OC.width,OC.height);
+    if (cropA&&cropB&&Math.abs(cropB.x-cropA.x)>10&&Math.abs(cropB.y-cropA.y)>10) {
+      if (confirm('이 영역으로 자르겠습니까?')) {
+        const l2=Math.min(cropA.x,cropB.x),t2=Math.min(cropA.y,cropB.y),w2=Math.abs(cropB.x-cropA.x),h2=Math.abs(cropB.y-cropA.y);
+        saveUndo();
+        layers.forEach(ly => { const cd=ly.ctx.getImageData(l2,t2,w2,h2); ly.canvas.width=w2; ly.canvas.height=h2; ly.ctx.putImageData(cd,0,0); });
+        [MC,LC,OC,QC].forEach(c=>{c.width=w2;c.height=h2;});
+        $('size-info').textContent=`${w2} × ${h2} px`; renderAll(); saveUndo(); setStatus(`자르기: ${w2}×${h2}`);
+      }
+    }
+    return;
+  }
+  // Lasso
+  if (tool==='lasso' && lassoActive) { drawLassoPath(true); buildLassoMask(); showSelActions(); lassoActive=false; return; }
+  // Rect sel
+  if (rectSelDrag) {
+    rectSelDrag=false; OX.clearRect(0,0,OC.width,OC.height);
+    lassopts=[{x:rectSel.x1,y:rectSel.y1},{x:rectSel.x2,y:rectSel.y1},{x:rectSel.x2,y:rectSel.y2},{x:rectSel.x1,y:rectSel.y2}];
+    drawLassoPath(true); buildLassoMask(); showSelActions(); return;
+  }
+  // Move
+  if (tool==='move' && moveStart) { moveStart=null; moveSnapshot=null; saveUndo(); return; }
+
+  if (!drawing) return;
+  drawing=false; smudgeBuf=null;
+  if (['line','rect','circle'].includes(tool)) saveUndo();
+  prevData=null;
+}
+
+// ═══════════════════════════════════════════════════════
+// SPECIAL TOOLS
+// ═══════════════════════════════════════════════════════
+function floodFill(fx, fy, fc) {
+  const lc=getAL().ctx, W=MC.width, H=MC.height;
+  const id=lc.getImageData(0,0,W,H), d=id.data;
+  const idx=(x,y)=>(y*W+x)*4, si=idx(Math.round(fx),Math.round(fy));
+  const tr=d[si],tg=d[si+1],tb=d[si+2];
+  const [fr,fg2,fb]=hexRgb(fc);
+  if(tr===fr&&tg===fg2&&tb===fb) return;
+  const stk=[[Math.round(fx),Math.round(fy)]], vis=new Uint8Array(W*H);
+  while(stk.length){
+    const [x,y]=stk.pop(); if(x<0||x>=W||y<0||y>=H) continue;
+    const i=idx(x,y); if(vis[y*W+x]) continue;
+    if(Math.abs(d[i]-tr)>30||Math.abs(d[i+1]-tg)>30||Math.abs(d[i+2]-tb)>30) continue;
+    vis[y*W+x]=1; d[i]=fr; d[i+1]=fg2; d[i+2]=fb; d[i+3]=255;
+    stk.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);
+  }
+  lc.putImageData(id,0,0); renderAll();
+}
+
+function doClone(ctx, x, y, bp) {
+  if (!cloneSrc) return;
+  const sz=bp.size, tmp=mkC(sz,sz);
+  tmp.getContext('2d').drawImage(MC,cloneSrc.x-sz/2,cloneSrc.y-sz/2,sz,sz,0,0,sz,sz);
+  ctx.globalAlpha=bp.opacity; ctx.drawImage(tmp,x-sz/2,y-sz/2); ctx.globalAlpha=1;
+}
+
+function doSmudge(ctx, x, y, px2, py2, size) {
+  if (!smudgeBuf) smudgeBuf=ctx.getImageData(Math.round(px2-size/2),Math.round(py2-size/2),size,size);
+  const str=parseInt($('o-op').value)/100*.7;
+  const sx2=Math.round(x-size/2), sy2=Math.round(y-size/2);
+  const dest=ctx.getImageData(sx2,sy2,size,size);
+  for(let i=0;i<dest.data.length;i+=4){
+    const ii=Math.min(i,smudgeBuf.data.length-4);
+    dest.data[i]  =dest.data[i]  *(1-str)+smudgeBuf.data[ii]  *str;
+    dest.data[i+1]=dest.data[i+1]*(1-str)+smudgeBuf.data[ii+1]*str;
+    dest.data[i+2]=dest.data[i+2]*(1-str)+smudgeBuf.data[ii+2]*str;
+  }
+  ctx.putImageData(dest,sx2,sy2);
+  smudgeBuf=ctx.getImageData(Math.round(x-size/2),Math.round(y-size/2),size,size);
+}
+
+function doDodgeBurn(ctx, x, y, size, op, burn) {
+  const r=size/2, id2=ctx.getImageData(Math.round(x-r),Math.round(y-r),size,size), d=id2.data;
+  const str=op*.3*(burn?-1:1);
+  for(let i=0;i<d.length;i+=4){
+    const dist=Math.hypot((i/4)%size-r,Math.floor((i/4)/size)-r), fade=Math.max(0,1-dist/r);
+    d[i]  =Math.max(0,Math.min(255,d[i]  +str*fade*100));
+    d[i+1]=Math.max(0,Math.min(255,d[i+1]+str*fade*100));
+    d[i+2]=Math.max(0,Math.min(255,d[i+2]+str*fade*100));
+  }
+  ctx.putImageData(id2,Math.round(x-r),Math.round(y-r));
+}
+
+// TEXT
+const textBox = $('text-box');
+function spawnTextBox(x, y) {
+  commitText();
+  textBox.style.left=x+'px'; textBox.style.top=y+'px'; textBox.style.display='block';
+  textBox.style.color=$('color-fg').value;
+  textBox.style.fontSize=$('txt-sz').value+'px'; textBox.style.fontFamily=$('txt-font').value;
+  textBox.value=$('txt-content').value||''; textBox.focus();
+}
+function commitText() {
+  if (textBox.style.display!=='none' && textBox.value) {
+    const x=parseInt(textBox.style.left), y=parseInt(textBox.style.top);
+    const lc=getAL().ctx, fs=$('txt-sz').value;
+    lc.globalAlpha=getBP().opacity; lc.fillStyle=$('color-fg').value;
+    lc.font=`${fs}px ${$('txt-font').value}`; lc.fillText(textBox.value,x,y+parseInt(fs));
+    lc.globalAlpha=1; renderAll(); saveUndo();
+  }
+  textBox.style.display='none'; textBox.value='';
+}
+textBox.addEventListener('blur', commitText);
+textBox.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();commitText();} });
+
+// ═══════════════════════════════════════════════════════
+// SELECTION (LASSO / RECT)
+// ═══════════════════════════════════════════════════════
+function showSelActions() { $('lasso-actions').style.display='flex'; $('sel-og').style.display='flex'; }
+function clearSelection() { lassopts=[]; lassoMask=null; lassoActive=false; LX.clearRect(0,0,LC.width,LC.height); $('lasso-actions').style.display='none'; $('sel-og').style.display='none'; }
+
+function drawLassoPath(close=false) {
+  LX.clearRect(0,0,LC.width,LC.height); if(lassopts.length<2) return;
+  LX.beginPath(); LX.moveTo(lassopts[0].x,lassopts[0].y); lassopts.forEach(p=>LX.lineTo(p.x,p.y));
+  if(close) LX.closePath();
+  LX.strokeStyle='rgba(74,158,255,.9)'; LX.lineWidth=1.5; LX.setLineDash([5,3]); LX.stroke(); LX.setLineDash([]);
+  if(close){LX.fillStyle='rgba(74,158,255,.07)'; LX.fill();}
+}
+function buildLassoMask() {
+  if(lassopts.length<3) return;
+  const oc=mkC(MC.width,MC.height), ox=oc.getContext('2d');
+  ox.beginPath(); ox.moveTo(lassopts[0].x,lassopts[0].y); lassopts.forEach(p=>ox.lineTo(p.x,p.y)); ox.closePath(); ox.fill();
+  lassoMask=ox.getImageData(0,0,MC.width,MC.height);
+}
+function drawSelOverlay(mask) {
+  LX.clearRect(0,0,LC.width,LC.height);
+  if(!mask) return;
+  const oc=mkC(MC.width,MC.height), ox=oc.getContext('2d');
+  const id2=ox.createImageData(MC.width,MC.height), d=id2.data, md=mask.data;
+  for(let i=0;i<d.length;i+=4) if(md[i+3]>20){d[i]=74;d[i+1]=158;d[i+2]=255;d[i+3]=Math.round(md[i+3]*.35);}
+  ox.putImageData(id2,0,0); LX.drawImage(oc,0,0);
+}
+
+$('btn-ls-clear').addEventListener('click', clearSelection);
+$('btn-ls-cut').addEventListener('click', () => {
+  if(!lassoMask) return; saveUndo(); const lc=getAL().ctx;
+  const id2=lc.getImageData(0,0,MC.width,MC.height);
+  for(let i=0;i<lassoMask.data.length;i+=4) if(lassoMask.data[i+3]>0) id2.data[i+3]=0;
+  lc.putImageData(id2,0,0); renderAll(); saveUndo(); clearSelection();
+});
+$('btn-ls-copy').addEventListener('click', () => {
+  if(!lassoMask) return; saveUndo();
+  const src=getAL().ctx.getImageData(0,0,MC.width,MC.height);
+  const nc=mkC(MC.width,MC.height), nx=nc.getContext('2d');
+  const nid=nx.createImageData(MC.width,MC.height);
+  for(let i=0;i<lassoMask.data.length;i+=4) if(lassoMask.data[i+3]>0){nid.data[i]=src.data[i];nid.data[i+1]=src.data[i+1];nid.data[i+2]=src.data[i+2];nid.data[i+3]=src.data[i+3];}
+  nx.putImageData(nid,0,0);
+  layers.splice(activeIdx,0,{id:Date.now(),name:'선택 복사',canvas:nc,ctx:nx,opacity:1,blend:'source-over',visible:true,mask:null,maskActive:false});
+  renderAll(); renderLayerList(); clearSelection(); setStatus('선택 → 새 레이어');
+});
+$('btn-ls-blur').addEventListener('click', () => {
+  if(!lassoMask) return; saveUndo();
+  const r2=parseInt(prompt('블러 반경 (px)','8'))||8;
+  const lc=getAL().ctx, blurred=applyBlurCSS(lc.canvas,r2);
+  const orig=lc.getImageData(0,0,MC.width,MC.height);
+  const blurData=blurred.getContext('2d').getImageData(0,0,MC.width,MC.height);
+  for(let i=0;i<lassoMask.data.length;i+=4) if(lassoMask.data[i+3]>0){orig.data[i]=blurData.data[i];orig.data[i+1]=blurData.data[i+1];orig.data[i+2]=blurData.data[i+2];}
+  lc.putImageData(orig,0,0); renderAll(); saveUndo(); clearSelection();
+});
+
+// ═══════════════════════════════════════════════════════
+// COLOR RANGE SELECTION
+// ═══════════════════════════════════════════════════════
+function pickColorRange(x, y) {
+  const p=MX.getImageData(Math.round(x),Math.round(y),1,1).data;
+  crColor={r:p[0],g:p[1],b:p[2]};
+  const hex='#'+[p[0],p[1],p[2]].map(v=>v.toString(16).padStart(2,'0')).join('');
+  $('cr-swatch').style.background=hex; $('cr-info').textContent=`RGB(${p[0]},${p[1]},${p[2]})`;
+  buildCRMask();
+}
+function buildCRMask() {
+  if(!crColor||!MC.width) return;
+  const tol=parseInt($('cr-tol').value), inv=$('cr-inv').checked, add=$('cr-add').checked;
+  const W=MC.width,H=MC.height, src=MX.getImageData(0,0,W,H).data;
+  const oc=mkC(W,H), ox=oc.getContext('2d');
+  const id2=ox.createImageData(W,H), d=id2.data;
+  const prev=add&&crMask?crMask.data:null;
+  const {r,g,b}=crColor;
+  for(let i=0;i<src.length;i+=4){
+    const dr=src[i]-r,dg=src[i+1]-g,db=src[i+2]-b;
+    let a=Math.max(0,Math.min(255,Math.round((1-Math.sqrt(dr*dr+dg*dg+db*db)/tol)*255)));
+    if(inv) a=255-a;
+    if(prev) a=Math.max(a,prev[i+3]);
+    d[i]=255;d[i+1]=255;d[i+2]=255;d[i+3]=a;
+  }
+  ox.putImageData(id2,0,0); crMask=id2; drawCROverlay(); drawCRPreview();
+}
+function drawCROverlay() {
+  LX.clearRect(0,0,LC.width,LC.height);
+  if(!crMask) return; drawSelOverlay(crMask);
+}
+function drawCRPreview() {
+  const prev=$('cr-prev-cv'); if(!prev) return;
+  const W=MC.width||300,H=MC.height||200,sc=Math.min(232/W,120/H,1);
+  prev.width=Math.round(W*sc); prev.height=Math.round(H*sc);
+  const pc=prev.getContext('2d'); pc.clearRect(0,0,prev.width,prev.height);
+  if(crMask){
+    const oc=mkC(W,H),ox=oc.getContext('2d'),id2=ox.createImageData(W,H),d=id2.data,md=crMask.data;
+    for(let i=0;i<d.length;i+=4){const v=md[i+3];d[i]=v;d[i+1]=v;d[i+2]=v;d[i+3]=255;}
+    ox.putImageData(id2,0,0); pc.drawImage(oc,0,0,prev.width,prev.height);
+  } else if(MC.width) { pc.drawImage(MC,0,0,prev.width,prev.height); }
+}
+$('cr-tol').addEventListener('input', function(){$('pv-crt').textContent=this.value; if(crColor)buildCRMask();});
+$('cr-inv').addEventListener('change', ()=>{ if(crColor)buildCRMask(); });
+$('cr-add').addEventListener('change', ()=>{ if(crColor)buildCRMask(); });
+$('btn-cr-rst').addEventListener('click', ()=>{ crColor=null;crMask=null;$('cr-swatch').style.background='#888';$('cr-info').textContent='클릭으로 선택';LX.clearRect(0,0,LC.width,LC.height);drawCRPreview(); });
+$('btn-cr-ok').addEventListener('click', ()=>{ if(!crMask)return; lassoMask=crMask; drawSelOverlay(lassoMask); showSelActions(); closeFP('fp-cr'); crColor=null;crMask=null; setStatus('색상 범위 선택 완료'); });
+
+// ═══════════════════════════════════════════════════════
+// QUICK MASK
+// ═══════════════════════════════════════════════════════
+function enterQuickMask() {
+  if(!MC.width){alert('캔버스를 먼저 만드세요');return;}
+  qmActive=true; QC.width=MC.width; QC.height=MC.height; QC.style.display='block';
+  QX.clearRect(0,0,QC.width,QC.height);
+  if(lassoMask){
+    const id2=QX.createImageData(MC.width,MC.height),d=id2.data,md=lassoMask.data;
+    for(let i=0;i<d.length;i+=4) if(md[i+3]<128){d[i]=220;d[i+1]=30;d[i+2]=30;d[i+3]=160;}
+    QX.putImageData(id2,0,0); clearSelection();
+  }
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  const tbQm=$('tb-qm'); tbQm.classList.add('active'); tbQm.style.background='rgba(220,60,60,.25)'; tbQm.style.borderColor='#e04040';
+  openFP('fp-qm'); setStatus('퀵 마스크 — 흰 브러시: 선택 추가, 검은 브러시: 선택 제거');
+}
+function exitQuickMask() {
+  if(!qmActive) return; qmActive=false;
+  const id2=QX.getImageData(0,0,QC.width,QC.height), md=id2.data;
+  const oc=mkC(MC.width,MC.height), ox=oc.getContext('2d');
+  const nid=ox.createImageData(MC.width,MC.height), nd=nid.data;
+  for(let i=0;i<md.length;i+=4){ const isRed=md[i]>150&&md[i+1]<80&&md[i+3]>50; nd[i]=255;nd[i+1]=255;nd[i+2]=255;nd[i+3]=isRed?0:255; }
+  ox.putImageData(nid,0,0); lassoMask=nid;
+  drawSelOverlay(lassoMask); showSelActions();
+  QC.style.display='none'; QX.clearRect(0,0,QC.width,QC.height);
+  const tbQm=$('tb-qm'); tbQm.classList.remove('active'); tbQm.style.background=''; tbQm.style.borderColor='';
+  closeFP('fp-qm'); setStatus('퀵 마스크 → 선택 영역 변환');
+}
+function paintQuickMask(x, y) {
+  const r=parseInt($('o-sz').value)/2;
+  const fg=hexRgb($('color-fg').value), bright=(fg[0]+fg[1]+fg[2])/3;
+  if(bright>128){ QX.save(); QX.globalCompositeOperation='destination-out'; const g=QX.createRadialGradient(x,y,0,x,y,r); g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(1,'rgba(0,0,0,0)'); QX.fillStyle=g; QX.beginPath(); QX.arc(x,y,r,0,Math.PI*2); QX.fill(); QX.restore(); }
+  else { const g=QX.createRadialGradient(x,y,0,x,y,r); g.addColorStop(0,'rgba(220,30,30,.85)'); g.addColorStop(1,'rgba(220,30,30,0)'); QX.fillStyle=g; QX.beginPath(); QX.arc(x,y,r,0,Math.PI*2); QX.fill(); }
+}
+$('tb-qm').addEventListener('click', ()=>{ if(qmActive) exitQuickMask(); else enterQuickMask(); });
+$('btn-qm-exit').addEventListener('click', exitQuickMask);
+
+// ═══════════════════════════════════════════════════════
+// GAUSSIAN BLUR (CSS)
+// ═══════════════════════════════════════════════════════
+function applyBlurCSS(srcCanvas, radius) {
+  const W=srcCanvas.width, H=srcCanvas.height;
+  const tmp=mkC(W+radius*4,H+radius*4), tc=tmp.getContext('2d');
+  tc.filter=`blur(${radius}px)`; tc.drawImage(srcCanvas,radius*2,radius*2); tc.filter='none';
+  const out=mkC(W,H); out.getContext('2d').drawImage(tmp,radius*2,radius*2,W,H,0,0,W,H);
   return out;
 }
-
-// 마스크 적용 블러용 (pixel-level, 작은 radius만 사용하므로 OK)
-function applyGaussBlurMasked(lc, mask, radius) {
-  const W = lc.canvas.width, H = lc.canvas.height;
-  const blurred = applyGaussBlurCSS(lc.canvas, radius);
-  const orig = lc.getImageData(0, 0, W, H);
-  const blurData = blurred.getContext('2d').getImageData(0, 0, W, H);
-  for (let i = 0; i < mask.data.length; i += 4) {
-    if (mask.data[i+3] > 0) {
-      orig.data[i]   = blurData.data[i];
-      orig.data[i+1] = blurData.data[i+1];
-      orig.data[i+2] = blurData.data[i+2];
-    }
-  }
-  lc.putImageData(orig, 0, 0);
-}
-
-document.getElementById('btn-gaussian').addEventListener('click', () => { openFP('fp-blur'); updateBlurPreview(); });
-document.getElementById('gauss-r').addEventListener('input', function() {
-  document.getElementById('pv-gr').textContent = this.value;
-  updateBlurPreview();
-});
+$('btn-open-blur').addEventListener('click', ()=>{ openFP('fp-blur'); updateBlurPreview(); });
+$('blur-r').addEventListener('input', function(){ $('pv-blr').textContent=this.value; updateBlurPreview(); });
 function updateBlurPreview() {
-  const prev = document.getElementById('blur-preview-canvas');
-  const pc = prev.getContext('2d');
-  const radius = parseInt(document.getElementById('gauss-r').value);
-  if (!MC.width) { prev.width = 100; prev.height = 60; return; }
-  const W = MC.width, H = MC.height, sc = Math.min(260/W, 160/H, 1);
-  prev.width = Math.round(W * sc);
-  prev.height = Math.round(H * sc);
-  // Use CSS blur on a scaled-down copy for instant preview
-  const sc2 = mkC(prev.width, prev.height);
-  sc2.getContext('2d').drawImage(MC, 0, 0, prev.width, prev.height);
-  const previewRadius = Math.max(1, Math.round(radius * sc));
-  const blurred = applyGaussBlurCSS(sc2, previewRadius);
-  pc.clearRect(0, 0, prev.width, prev.height);
-  pc.drawImage(blurred, 0, 0);
+  const prev=$('blur-prev-cv'), pc=prev.getContext('2d'), r2=parseInt($('blur-r').value);
+  if(!MC.width){prev.width=100;prev.height=60;return;}
+  const W=MC.width,H=MC.height,sc=Math.min(260/W,160/H,1);
+  prev.width=Math.round(W*sc); prev.height=Math.round(H*sc);
+  const sc2=mkC(prev.width,prev.height); sc2.getContext('2d').drawImage(MC,0,0,prev.width,prev.height);
+  const blurred=applyBlurCSS(sc2,Math.max(1,Math.round(r2*sc)));
+  pc.clearRect(0,0,prev.width,prev.height); pc.drawImage(blurred,0,0);
 }
-document.getElementById('btn-blur-apply').addEventListener('click', () => {
-  saveUndo();
-  const lc = getAL().ctx;
-  const radius = parseInt(document.getElementById('gauss-r').value);
-  const blurred = applyGaussBlurCSS(lc.canvas, radius);
-  lc.clearRect(0, 0, lc.canvas.width, lc.canvas.height);
-  lc.drawImage(blurred, 0, 0);
+$('btn-blur-ok').addEventListener('click', ()=>{
+  saveUndo(); const lc=getAL().ctx, blurred=applyBlurCSS(lc.canvas,parseInt($('blur-r').value));
+  lc.clearRect(0,0,lc.canvas.width,lc.canvas.height); lc.drawImage(blurred,0,0);
   renderAll(); saveUndo(); closeFP('fp-blur'); setStatus('가우시안 블러 적용');
 });
 
-// ══════════════════════════════════════════
-// CURVES — Catmull-Rom Spline
-// ══════════════════════════════════════════
-const curvesC=document.getElementById('curves-canvas');
-const curvesX=curvesC.getContext('2d');
+// ═══════════════════════════════════════════════════════
+// CURVES (Catmull-Rom spline)
+// ═══════════════════════════════════════════════════════
 let curvePts={rgb:[[0,0],[255,255]],r:[[0,0],[255,255]],g:[[0,0],[255,255]],b:[[0,0],[255,255]]};
-let dragPt=null;
-const getCh=()=>document.getElementById('curves-channel').value;
-const getCPts=()=>curvePts[getCh()];
+let curveDragPt=null, curvesBase=null;
+const curvesCv=$('curves-cv'), curvesX=curvesCv.getContext('2d');
+const getCh=()=>$('cur-ch').value, getCPts=()=>curvePts[getCh()];
 
-// Catmull-Rom spline interpolation
-function catmullRomLUT(pts){
+function catmullLUT(pts) {
   const lut=new Uint8ClampedArray(256);
   const sorted=pts.slice().sort((a,b)=>a[0]-b[0]);
-  if(sorted.length<2){for(let i=0;i<256;i++) lut[i]=i;return lut;}
-  // Add phantom endpoints for spline
+  if(sorted.length<2){for(let i=0;i<256;i++)lut[i]=i;return lut;}
   const p=[...sorted];
-  const ext0=[2*p[0][0]-p[1][0], 2*p[0][1]-p[1][1]];
-  const extN=[2*p[p.length-1][0]-p[p.length-2][0], 2*p[p.length-1][1]-p[p.length-2][1]];
-  const pts2=[ext0,...p,extN];
-  function catmull(t,p0,p1,p2,p3){const t2=t*t,t3=t2*t;return .5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t2+(-p0+3*p1-3*p2+p3)*t3);}
+  const e0=[2*p[0][0]-p[1][0],2*p[0][1]-p[1][1]];
+  const eN=[2*p[p.length-1][0]-p[p.length-2][0],2*p[p.length-1][1]-p[p.length-2][1]];
+  const pts2=[e0,...p,eN];
+  const cr=(t,p0,p1,p2,p3)=>.5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t*t+(-p0+3*p1-3*p2+p3)*t*t*t);
   for(let x=0;x<=255;x++){
     let found=false;
     for(let i=1;i<pts2.length-2;i++){
       const x0=pts2[i][0],x1=pts2[i+1][0];
-      if(x>=x0&&x<=x1){
-        const t=x0===x1?0:(x-x0)/(x1-x0);
-        const y=catmull(t,pts2[i-1][1],pts2[i][1],pts2[i+1][1],pts2[i+2][1]);
-        lut[x]=Math.max(0,Math.min(255,Math.round(y)));found=true;break;
-      }
+      if(x>=x0&&x<=x1){const t=(x0===x1?0:(x-x0)/(x1-x0));lut[x]=Math.max(0,Math.min(255,Math.round(cr(t,pts2[i-1][1],pts2[i][1],pts2[i+1][1],pts2[i+2][1]))));found=true;break;}
     }
-    if(!found) lut[x]=x<=pts2[1][0]?Math.max(0,Math.min(255,pts2[1][1])):Math.max(0,Math.min(255,pts2[pts2.length-2][1]));
+    if(!found)lut[x]=x<=pts2[1][0]?Math.max(0,Math.min(255,pts2[1][1])):Math.max(0,Math.min(255,pts2[pts2.length-2][1]));
   }
   return lut;
 }
-
-function drawCurves(){
-  const W=256,H=256;curvesX.clearRect(0,0,W,H);curvesX.fillStyle='#0a0a0c';curvesX.fillRect(0,0,W,H);
-  curvesX.strokeStyle='#1e1e28';curvesX.lineWidth=1;
+function drawCurves() {
+  const W=256,H=256,pts=getCPts().slice().sort((a,b)=>a[0]-b[0]),lut=catmullLUT(pts),ch=getCh();
+  curvesX.clearRect(0,0,W,H); curvesX.fillStyle='#0a0a0c'; curvesX.fillRect(0,0,W,H);
+  curvesX.strokeStyle='#1e1e28'; curvesX.lineWidth=1;
   [64,128,192].forEach(v=>{curvesX.beginPath();curvesX.moveTo(v,0);curvesX.lineTo(v,H);curvesX.stroke();curvesX.beginPath();curvesX.moveTo(0,v);curvesX.lineTo(W,v);curvesX.stroke();});
-  curvesX.strokeStyle='#252535';curvesX.beginPath();curvesX.moveTo(0,H);curvesX.lineTo(W,0);curvesX.stroke();
-  // Spline curve
-  const pts=getCPts().slice().sort((a,b)=>a[0]-b[0]),lut=catmullRomLUT(pts),ch=getCh();
+  curvesX.strokeStyle='#252535'; curvesX.beginPath(); curvesX.moveTo(0,H); curvesX.lineTo(W,0); curvesX.stroke();
   curvesX.strokeStyle=ch==='r'?'#ff6666':ch==='g'?'#66ff88':ch==='b'?'#6699ff':'#e2e2e8';
-  curvesX.lineWidth=1.5;curvesX.beginPath();
-  for(let x=0;x<=255;x++){const y=H-lut[x];if(x===0) curvesX.moveTo(x,y);else curvesX.lineTo(x,y);}
+  curvesX.lineWidth=1.5; curvesX.beginPath();
+  for(let x=0;x<=255;x++){if(x===0)curvesX.moveTo(x,H-lut[x]);else curvesX.lineTo(x,H-lut[x]);}
   curvesX.stroke();
-  // Points
-  pts.forEach(([px,py],i)=>{
-    const isEnd=i===0||i===pts.length-1;
-    curvesX.fillStyle=isEnd?'#2a2a3a':'#1a1a24';
-    curvesX.beginPath();curvesX.arc(px,H-py,5,0,Math.PI*2);curvesX.fill();
-    curvesX.strokeStyle=isEnd?'#6699ff':'#4a9eff';curvesX.lineWidth=1.5;curvesX.stroke();
-  });
-  // Live preview on canvas
+  pts.forEach(([px,py],i)=>{ const isEnd=i===0||i===pts.length-1; curvesX.fillStyle=isEnd?'#2a2a3a':'#1a1a24'; curvesX.beginPath(); curvesX.arc(px,H-py,5,0,Math.PI*2); curvesX.fill(); curvesX.strokeStyle=isEnd?'#6699ff':'#4a9eff'; curvesX.lineWidth=1.5; curvesX.stroke(); });
   applyCurvesPreview();
 }
-
-let curvesPreviewBase=null;
-function applyCurvesPreview(){
-  // only preview when panel is open and base was captured
-  if(!curvesPreviewBase) return;
+function applyCurvesPreview() {
+  if(!curvesBase||!MC.width) return;
   const lc=getAL().ctx,W=lc.canvas.width,H=lc.canvas.height;
-  const id=new ImageData(new Uint8ClampedArray(curvesPreviewBase.data),W,H);
-  const d=id.data;
-  const luts={};['rgb','r','g','b'].forEach(ch=>{luts[ch]=catmullRomLUT(curvePts[ch].slice().sort((a,b)=>a[0]-b[0]));});
+  const id2=new ImageData(new Uint8ClampedArray(curvesBase.data),W,H),d=id2.data;
+  const luts={};['rgb','r','g','b'].forEach(ch=>{luts[ch]=catmullLUT(curvePts[ch].slice().sort((a,b)=>a[0]-b[0]));});
   for(let i=0;i<d.length;i+=4){d[i]=luts['r'][luts['rgb'][d[i]]];d[i+1]=luts['g'][luts['rgb'][d[i+1]]];d[i+2]=luts['b'][luts['rgb'][d[i+2]]];}
-  lc.putImageData(id,0,0);renderAll();
+  lc.putImageData(id2,0,0); renderAll();
 }
-
-document.getElementById('btn-curves').addEventListener('click',()=>{
-  openFP('fp-curves');
-  curvesPreviewBase=getAL().ctx.getImageData(0,0,MC.width,MC.height);
-  drawCurves();
-});
-document.getElementById('curves-channel').addEventListener('change',drawCurves);
-document.getElementById('btn-curves-reset').addEventListener('click',()=>{curvePts[getCh()]=[[0,0],[255,255]];drawCurves();});
-document.getElementById('btn-curves-apply').addEventListener('click',()=>{
-  if(curvesPreviewBase){curvesPreviewBase=null;}
-  saveUndo();renderAll();saveUndo();closeFP('fp-curves');setStatus('커브 적용');
-  curvePts={rgb:[[0,0],[255,255]],r:[[0,0],[255,255]],g:[[0,0],[255,255]],b:[[0,0],[255,255]]};
-});
-
-curvesC.addEventListener('mousedown',e=>{
-  const r=curvesC.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top,pts=getCPts();
-  let found=null;for(let i=0;i<pts.length;i++) if(Math.hypot(pts[i][0]-mx,256-pts[i][1]-my)<10){found=i;break;}
-  if(found!==null) dragPt=found;
-  else{pts.push([Math.round(mx),Math.max(0,Math.min(255,Math.round(256-my)))]);dragPt=pts.length-1;}
-  drawCurves();
-});
-curvesC.addEventListener('mousemove',e=>{
-  if(dragPt===null) return;
-  const r=curvesC.getBoundingClientRect();
-  getCPts()[dragPt]=[Math.max(0,Math.min(255,Math.round(e.clientX-r.left))),Math.max(0,Math.min(255,256-Math.round(e.clientY-r.top)))];
-  drawCurves();
-});
-curvesC.addEventListener('mouseup',()=>dragPt=null);
-curvesC.addEventListener('dblclick',e=>{
-  const r=curvesC.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top,pts=getCPts();
-  for(let i=1;i<pts.length-1;i++) if(Math.hypot(pts[i][0]-mx,256-pts[i][1]-my)<10){pts.splice(i,1);break;}
-  drawCurves();
-});
-
-// ══════════════════════════════════════════
-// LEVELS
-// ══════════════════════════════════════════
-function drawLevelsHistogram(){
-  const cv=document.getElementById('levels-canvas'),ctx2=cv.getContext('2d');
-  const W=256,H=80;cv.width=W;ctx2.clearRect(0,0,W,H);ctx2.fillStyle='#0a0a0c';ctx2.fillRect(0,0,W,H);
-  if(!MC.width) return;
-  const id=MX.getImageData(0,0,MC.width,MC.height),d=id.data;
-  const hist=new Float32Array(256);
-  for(let i=0;i<d.length;i+=4){const g=Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]);hist[g]++;}
-  const mx=Math.max(...hist);
-  ctx2.fillStyle='rgba(154,184,224,.7)';
-  for(let x=0;x<256;x++){const h2=Math.round((hist[x]/mx)*H);ctx2.fillRect(x,H-h2,1,h2);}
-}
-let levelsBase=null;
-function applyLevelsPreview(){
-  if(!levelsBase) return;
-  const black=parseInt(document.getElementById('lvl-black').value);
-  const white=parseInt(document.getElementById('lvl-white').value);
-  const gamma=parseInt(document.getElementById('lvl-gamma').value)/100;
-  const lc=getAL().ctx,W=lc.canvas.width,H=lc.canvas.height;
-  const id=new ImageData(new Uint8ClampedArray(levelsBase.data),W,H),d=id.data;
-  for(let i=0;i<d.length;i+=4){for(let c=0;c<3;c++){let v=(d[i+c]-black)/Math.max(1,white-black);v=Math.max(0,Math.min(1,v));v=Math.pow(v,1/gamma);d[i+c]=Math.round(v*255);}}
-  lc.putImageData(id,0,0);renderAll();
-}
-document.getElementById('btn-levels').addEventListener('click',()=>{openFP('fp-levels');drawLevelsHistogram();levelsBase=getAL().ctx.getImageData(0,0,MC.width,MC.height);});
-['lvl-black','lvl-white','lvl-gamma'].forEach(id=>{
-  document.getElementById(id).addEventListener('input',function(){
-    const v=id==='lvl-gamma'?(this.value/100).toFixed(1):this.value;
-    document.getElementById('pv-'+id.replace('lvl-','lvl')).textContent=v;
-    applyLevelsPreview();
+$('btn-open-curves').addEventListener('click',()=>{ openFP('fp-curves'); curvesBase=getAL()&&MC.width?getAL().ctx.getImageData(0,0,MC.width,MC.height):null; drawCurves(); });
+$('cur-ch').addEventListener('change',drawCurves);
+$('btn-cur-rst').addEventListener('click',()=>{ curvePts[getCh()]=[[0,0],[255,255]]; drawCurves(); });
+$('btn-cur-ok').addEventListener('click',()=>{ curvesBase=null; saveUndo(); closeFP('fp-curves'); setStatus('커브 적용'); curvePts={rgb:[[0,0],[255,255]],r:[[0,0],[255,255]],g:[[0,0],[255,255]],b:[[0,0],[255,255]]}; });
+curvesCv.addEventListener('mousedown',e=>{ const r2=curvesCv.getBoundingClientRect(),mx=e.clientX-r2.left,my=e.clientY-r2.top,pts=getCPts(); let found=null; for(let i=0;i<pts.length;i++) if(Math.hypot(pts[i][0]-mx,256-pts[i][1]-my)<10){found=i;break;} if(found!==null)curveDragPt=found; else{pts.push([Math.round(mx),Math.max(0,Math.min(255,Math.round(256-my)))]);curveDragPt=pts.length-1;} drawCurves(); });
+curvesCv.addEventListener('mousemove',e=>{ if(curveDragPt===null)return; const r2=curvesCv.getBoundingClientRect(); getCPts()[curveDragPt]=[Math.max(0,Math.min(255,Math.round(e.clientX-r2.left))),Math.max(0,Math.min(255,256-Math.round(e.clientY-r2.top)))]; drawCurves(); });
+curvesCv.addEventListener('mouseup',()=>curveDragPt=null);
+curvesCv.addEventListener('dblclick',e=>{ const r2=curvesCv.getBoundingClientRect(),mx=e.clientX-r2.left,my=e.clientY-r2.top,pts=getCPts(); for(let i=1;i<pts.length-1;i++) if(Math.hypot(pts[i][0]-mx,256-pts[i][1]-my)<10){pts.splice(i,1);break;} drawCurves(); });
+// Close reverts
+document.querySelectorAll('.fp-x').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const id2=btn.dataset.fp;
+    if(id2==='fp-curves'&&curvesBase){getAL().ctx.putImageData(curvesBase,0,0);renderAll();curvesBase=null;curvePts={rgb:[[0,0],[255,255]],r:[[0,0],[255,255]],g:[[0,0],[255,255]],b:[[0,0],[255,255]]};}
+    if(id2==='fp-levels'&&levelsBase){getAL().ctx.putImageData(levelsBase,0,0);renderAll();levelsBase=null;}
+    if(id2==='fp-hsl'&&hslBase){getAL().ctx.putImageData(hslBase,0,0);renderAll();hslBase=null;}
+    if(id2==='fp-qm') exitQuickMask();
+    closeFP(id2);
   });
 });
-document.getElementById('btn-lvl-reset').addEventListener('click',()=>{document.getElementById('lvl-black').value=0;document.getElementById('pv-lvlb').textContent='0';document.getElementById('lvl-white').value=255;document.getElementById('pv-lvlw').textContent='255';document.getElementById('lvl-gamma').value=100;document.getElementById('pv-lvlg').textContent='1.0';if(levelsBase){getAL().ctx.putImageData(levelsBase,0,0);renderAll();}});
-document.getElementById('btn-lvl-apply').addEventListener('click',()=>{levelsBase=null;saveUndo();closeFP('fp-levels');setStatus('레벨 적용');});
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// LEVELS
+// ═══════════════════════════════════════════════════════
+let levelsBase=null;
+function drawLevelsHist(){
+  const cv=$('levels-cv'),ctx2=cv.getContext('2d');cv.width=256;ctx2.fillStyle='#0a0a0c';ctx2.fillRect(0,0,256,80);
+  if(!MC.width)return; const id2=MX.getImageData(0,0,MC.width,MC.height),d=id2.data,hist=new Float32Array(256);
+  for(let i=0;i<d.length;i+=4)hist[Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2])]++;
+  const mx=Math.max(...hist); ctx2.fillStyle='rgba(154,184,224,.7)';
+  for(let x=0;x<256;x++){const h2=Math.round((hist[x]/mx)*80);ctx2.fillRect(x,80-h2,1,h2);}
+}
+function applyLevelsPreview(){
+  if(!levelsBase)return;
+  const black=parseInt($('lvl-b').value),white=parseInt($('lvl-w').value),gamma=parseInt($('lvl-g').value)/100;
+  const lc=getAL().ctx,W=lc.canvas.width,H=lc.canvas.height;
+  const id2=new ImageData(new Uint8ClampedArray(levelsBase.data),W,H),d=id2.data;
+  for(let i=0;i<d.length;i+=4) for(let c=0;c<3;c++){let v=Math.max(0,Math.min(1,(d[i+c]-black)/Math.max(1,white-black)));v=Math.pow(v,1/gamma);d[i+c]=Math.round(v*255);}
+  lc.putImageData(id2,0,0);renderAll();
+}
+$('btn-open-levels').addEventListener('click',()=>{openFP('fp-levels');drawLevelsHist();levelsBase=getAL()&&MC.width?getAL().ctx.getImageData(0,0,MC.width,MC.height):null;});
+$('lvl-b').addEventListener('input',function(){$('pv-lvb').textContent=this.value;applyLevelsPreview();});
+$('lvl-w').addEventListener('input',function(){$('pv-lvw').textContent=this.value;applyLevelsPreview();});
+$('lvl-g').addEventListener('input',function(){$('pv-lvg').textContent=(this.value/100).toFixed(1);applyLevelsPreview();});
+$('btn-lvl-rst').addEventListener('click',()=>{$('lvl-b').value=0;$('pv-lvb').textContent='0';$('lvl-w').value=255;$('pv-lvw').textContent='255';$('lvl-g').value=100;$('pv-lvg').textContent='1.0';if(levelsBase){getAL().ctx.putImageData(levelsBase,0,0);renderAll();}});
+$('btn-lvl-ok').addEventListener('click',()=>{levelsBase=null;saveUndo();closeFP('fp-levels');setStatus('레벨 적용');});
+
+// ═══════════════════════════════════════════════════════
 // HUE / SAT
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 let hslBase=null;
 function applyHSLPreview(){
-  if(!hslBase) return;
-  const H2=parseInt(document.getElementById('hsl-h').value);
-  const S=parseInt(document.getElementById('hsl-s').value)/100;
-  const L=parseInt(document.getElementById('hsl-l').value);
-  const colorize=document.getElementById('hsl-colorize').checked;
-  const lc=getAL().ctx,W=lc.canvas.width,H=lc.canvas.height;
-  const id=new ImageData(new Uint8ClampedArray(hslBase.data),W,H),d=id.data;
+  if(!hslBase)return;
+  const H2=parseInt($('hsl-h').value),S=parseInt($('hsl-s').value)/100,L=parseInt($('hsl-l').value),col=$('hsl-col').checked;
+  const lc=getAL().ctx,W=lc.canvas.width,Hh=lc.canvas.height;
+  const id2=new ImageData(new Uint8ClampedArray(hslBase.data),W,Hh),d=id2.data;
   for(let i=0;i<d.length;i+=4){
     let r=d[i],g=d[i+1],b=d[i+2];
-    if(colorize){const gy=.299*r+.587*g+.114*b;const sat=(S+1)*.5;const hr=(H2+180)/360;r=gy+sat*(1-gy)*Math.cos(hr*2*Math.PI)*255;g=gy+sat*(1-gy)*Math.cos((hr-.333)*2*Math.PI)*255;b=gy+sat*(1-gy)*Math.cos((hr-.667)*2*Math.PI)*255;}
-    else{if(H2!==0){const hr=H2*Math.PI/180,ch=Math.cos(hr),sh=Math.sin(hr);const nr=r*(.213+ch*.787-sh*.213)+g*(.715-ch*.715-sh*.715)+b*(.072-ch*.072+sh*.928);const ng=r*(.213-ch*.213+sh*.143)+g*(.715+ch*.285+sh*.140)+b*(.072-ch*.072-sh*.283);const nb=r*(.213-ch*.213-sh*.787)+g*(.715-ch*.715+sh*.715)+b*(.072+ch*.928+sh*.072);r=nr;g=ng;b=nb;}const gy=.299*r+.587*g+.114*b,s=(S+1);r=gy+(r-gy)*s;g=gy+(g-gy)*s;b=gy+(b-gy)*s;}
-    r+=L;g+=L;b+=L;
-    d[i]=Math.max(0,Math.min(255,Math.round(r)));d[i+1]=Math.max(0,Math.min(255,Math.round(g)));d[i+2]=Math.max(0,Math.min(255,Math.round(b)));
+    const gy=.299*r+.587*g+.114*b;
+    if(col){const hr=(H2+180)/360,sat=(S+1)*.5;r=gy+sat*(1-gy)*Math.cos(hr*2*Math.PI)*255;g=gy+sat*(1-gy)*Math.cos((hr-.333)*2*Math.PI)*255;b=gy+sat*(1-gy)*Math.cos((hr-.667)*2*Math.PI)*255;}
+    else{if(H2!==0){const hr2=H2*Math.PI/180,ch=Math.cos(hr2),sh=Math.sin(hr2);const nr=r*(.213+ch*.787-sh*.213)+g*(.715-ch*.715-sh*.715)+b*(.072-ch*.072+sh*.928);const ng=r*(.213-ch*.213+sh*.143)+g*(.715+ch*.285+sh*.140)+b*(.072-ch*.072-sh*.283);const nb=r*(.213-ch*.213-sh*.787)+g*(.715-ch*.715+sh*.715)+b*(.072+ch*.928+sh*.072);r=nr;g=ng;b=nb;}const s2=(S+1);r=gy+(r-gy)*s2;g=gy+(g-gy)*s2;b=gy+(b-gy)*s2;}
+    r+=L;g+=L;b+=L;d[i]=Math.max(0,Math.min(255,Math.round(r)));d[i+1]=Math.max(0,Math.min(255,Math.round(g)));d[i+2]=Math.max(0,Math.min(255,Math.round(b)));
   }
-  lc.putImageData(id,0,0);renderAll();
+  lc.putImageData(id2,0,0);renderAll();
 }
-document.getElementById('btn-hsl').addEventListener('click',()=>{openFP('fp-hsl');hslBase=getAL().ctx.getImageData(0,0,MC.width,MC.height);});
-['hsl-h','hsl-s','hsl-l'].forEach(id=>{document.getElementById(id).addEventListener('input',function(){const suf=id==='hsl-h'?'°':'';document.getElementById('pv-'+id.replace('-','sl').replace('hsl','pv-hs').replace('pv-hs','pv-hs')).textContent=this.value+suf;applyHSLPreview();});});
-document.getElementById('hsl-colorize').addEventListener('change',applyHSLPreview);
-document.getElementById('pv-hslh').textContent='0°';
-document.getElementById('pv-hsls').textContent='0';
-document.getElementById('pv-hsll').textContent='0';
-['hsl-h','hsl-s','hsl-l'].forEach(id=>{document.getElementById(id).addEventListener('input',function(){const k=id.split('-')[1];const suf=k==='h'?'°':'';document.getElementById(`pv-hsl${k}`).textContent=this.value+suf;applyHSLPreview();});});
-document.getElementById('btn-hsl-reset').addEventListener('click',()=>{['hsl-h','hsl-s','hsl-l'].forEach(id=>{document.getElementById(id).value=0;});document.getElementById('pv-hslh').textContent='0°';document.getElementById('pv-hsls').textContent='0';document.getElementById('pv-hsll').textContent='0';if(hslBase){getAL().ctx.putImageData(hslBase,0,0);renderAll();}});
-document.getElementById('btn-hsl-apply').addEventListener('click',()=>{hslBase=null;saveUndo();closeFP('fp-hsl');setStatus('색조/채도 적용');});
+$('btn-open-hsl').addEventListener('click',()=>{openFP('fp-hsl');hslBase=getAL()&&MC.width?getAL().ctx.getImageData(0,0,MC.width,MC.height):null;});
+$('hsl-h').addEventListener('input',function(){$('pv-hslh').textContent=this.value+'°';applyHSLPreview();});
+$('hsl-s').addEventListener('input',function(){$('pv-hsls').textContent=this.value;applyHSLPreview();});
+$('hsl-l').addEventListener('input',function(){$('pv-hsll').textContent=this.value;applyHSLPreview();});
+$('hsl-col').addEventListener('change',applyHSLPreview);
+$('btn-hsl-rst').addEventListener('click',()=>{$('hsl-h').value=0;$('pv-hslh').textContent='0°';$('hsl-s').value=0;$('pv-hsls').textContent='0';$('hsl-l').value=0;$('pv-hsll').textContent='0';if(hslBase){getAL().ctx.putImageData(hslBase,0,0);renderAll();}});
+$('btn-hsl-ok').addEventListener('click',()=>{hslBase=null;saveUndo();closeFP('fp-hsl');setStatus('색조/채도 적용');});
 
-// ══════════════════════════════════════════
-// HISTOGRAM
-// ══════════════════════════════════════════
-function updateHistogram(){
-  const cv=document.getElementById('histogram-canvas');
-  if(!cv||!MC.width) return;
-  const ctx2=cv.getContext('2d'),W=cv.clientWidth||220,H=60;
-  cv.width=W;ctx2.fillStyle='#0a0a0c';ctx2.fillRect(0,0,W,H);
-  const id=MX.getImageData(0,0,MC.width,MC.height),d=id.data;
-  const hr=new Float32Array(256),hg=new Float32Array(256),hb=new Float32Array(256);
-  for(let i=0;i<d.length;i+=4){hr[d[i]]++;hg[d[i+1]]++;hb[d[i+2]]++;}
-  const mx=Math.max(Math.max(...hr),Math.max(...hg),Math.max(...hb));
-  [[hr,'rgba(255,80,80,.5)'],[hg,'rgba(80,220,120,.5)'],[hb,'rgba(80,150,255,.5)']].forEach(([h,col])=>{
-    ctx2.fillStyle=col;for(let x=0;x<256;x++){const bw=Math.max(1,W/256);const bh=Math.round((h[Math.floor(x*256/W)]/mx)*H);ctx2.fillRect(x*W/256,H-bh,bw,bh);}
-  });
-}
-
-// ══════════════════════════════════════════
-// ADJUSTMENTS
-// ══════════════════════════════════════════
-['brightness','contrast','saturation','hue','exposure','vibrance'].forEach(k=>{
-  const el=document.getElementById('adj-'+k);if(el) el.addEventListener('input',function(){document.getElementById('val-'+k).textContent=this.value;});
+// ═══════════════════════════════════════════════════════
+// BASIC ADJUSTMENTS
+// ═══════════════════════════════════════════════════════
+[['adj-br','av-br'],['adj-co','av-co'],['adj-sa','av-sa'],['adj-hu','av-hu'],['adj-ex','av-ex']].forEach(([sid,vid])=>{
+  $(sid).addEventListener('input',function(){$(vid).textContent=this.value;});
 });
-document.getElementById('btn-adj-apply').addEventListener('click',()=>{
-  saveUndo();const lc=getAL().ctx;
-  const br=parseInt(document.getElementById('adj-brightness').value);
-  const co=parseInt(document.getElementById('adj-contrast').value);
-  const sa=parseInt(document.getElementById('adj-saturation').value);
-  const hu=parseInt(document.getElementById('adj-hue').value);
-  const ex=parseInt(document.getElementById('adj-exposure').value)*.5;
-  const id=lc.getImageData(0,0,lc.canvas.width,lc.canvas.height),d=id.data;
+$('btn-adj-ok').addEventListener('click',()=>{
+  saveUndo(); const lc=getAL().ctx;
+  const br=parseInt($('adj-br').value),co=parseInt($('adj-co').value),sa=parseInt($('adj-sa').value),hu=parseInt($('adj-hu').value),ex=parseInt($('adj-ex').value)*.5;
+  const id2=lc.getImageData(0,0,lc.canvas.width,lc.canvas.height),d=id2.data;
   const fac=(259*(co+255))/(255*(259-co));
   for(let i=0;i<d.length;i+=4){
-    let r=d[i],g=d[i+1],b=d[i+2];
-    r+=br+ex;g+=br+ex;b+=br+ex;r=Math.round(fac*(r-128)+128);g=Math.round(fac*(g-128)+128);b=Math.round(fac*(b-128)+128);
+    let r=d[i]+br+ex,g=d[i+1]+br+ex,b=d[i+2]+br+ex;
+    r=Math.round(fac*(r-128)+128);g=Math.round(fac*(g-128)+128);b=Math.round(fac*(b-128)+128);
     const gy=.299*r+.587*g+.114*b,s=(sa+100)/100;r=gy+(r-gy)*s;g=gy+(g-gy)*s;b=gy+(b-gy)*s;
     if(hu!==0){const hr2=hu*Math.PI/180,ch=Math.cos(hr2),sh=Math.sin(hr2);const nr=r*(.213+ch*.787-sh*.213)+g*(.715-ch*.715-sh*.715)+b*(.072-ch*.072+sh*.928);const ng=r*(.213-ch*.213+sh*.143)+g*(.715+ch*.285+sh*.140)+b*(.072-ch*.072-sh*.283);const nb=r*(.213-ch*.213-sh*.787)+g*(.715-ch*.715+sh*.715)+b*(.072+ch*.928+sh*.072);r=nr;g=ng;b=nb;}
     d[i]=Math.max(0,Math.min(255,Math.round(r)));d[i+1]=Math.max(0,Math.min(255,Math.round(g)));d[i+2]=Math.max(0,Math.min(255,Math.round(b)));
   }
-  lc.putImageData(id,0,0);renderAll();saveUndo();setStatus('조정 적용');
+  lc.putImageData(id2,0,0);renderAll();saveUndo();setStatus('조정 적용');
 });
-document.getElementById('btn-adj-reset').addEventListener('click',()=>{['brightness','contrast','saturation','hue','exposure','vibrance'].forEach(k=>{const el=document.getElementById('adj-'+k);if(el){el.value=0;document.getElementById('val-'+k).textContent=0;}});});
+$('btn-adj-rst').addEventListener('click',()=>{ [['adj-br','av-br'],['adj-co','av-co'],['adj-sa','av-sa'],['adj-hu','av-hu'],['adj-ex','av-ex']].forEach(([s,v])=>{$(s).value=0;$(v).textContent='0';}); });
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// TRANSFORM
+// ═══════════════════════════════════════════════════════
+$('btn-rot-l').addEventListener('click',()=>rotAll(-90));
+$('btn-rot-r').addEventListener('click',()=>rotAll(90));
+$('btn-flip-h').addEventListener('click',()=>flipAll('h'));
+$('btn-flip-v').addEventListener('click',()=>flipAll('v'));
+function rotAll(deg){
+  saveUndo(); const ow=MC.width,oh=MC.height,nw=oh,nh=ow;
+  layers.forEach(l=>{const tc=mkC(nw,nh),tx=tc.getContext('2d');tx.translate(nw/2,nh/2);tx.rotate(deg*Math.PI/180);tx.drawImage(l.canvas,-ow/2,-oh/2);l.canvas.width=nw;l.canvas.height=nh;l.ctx.drawImage(tc,0,0);});
+  [MC,LC,OC,QC].forEach(c=>{c.width=nw;c.height=nh;});$('size-info').textContent=`${nw} × ${nh} px`;renderAll();saveUndo();
+}
+function flipAll(dir){
+  saveUndo(); const w=MC.width,h=MC.height;
+  layers.forEach(l=>{const tc=mkC(w,h),tx=tc.getContext('2d');if(dir==='h'){tx.translate(w,0);tx.scale(-1,1);}else{tx.translate(0,h);tx.scale(1,-1);}tx.drawImage(l.canvas,0,0);l.ctx.clearRect(0,0,w,h);l.ctx.drawImage(tc,0,0);});
+  renderAll();saveUndo();
+}
+$('btn-resize').addEventListener('click',()=>{
+  const w=parseInt($('rs-w').value),h=parseInt($('rs-h').value);if(!w||!h)return;
+  saveUndo();layers.forEach(l=>{const tc=mkC(w,h);tc.getContext('2d').drawImage(l.canvas,0,0,w,h);l.canvas.width=w;l.canvas.height=h;l.ctx.drawImage(tc,0,0);});
+  [MC,LC,OC,QC].forEach(c=>{c.width=w;c.height=h;});$('size-info').textContent=`${w} × ${h} px`;renderAll();saveUndo();
+});
+
+// ═══════════════════════════════════════════════════════
 // FILTERS
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 document.querySelectorAll('[data-filter]').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    saveUndo();const lc=getAL().ctx,W=lc.canvas.width,H=lc.canvas.height,id=lc.getImageData(0,0,W,H),d=id.data,f=btn.dataset.filter;
+    saveUndo(); const lc=getAL().ctx,W=lc.canvas.width,H=lc.canvas.height;
+    const id2=lc.getImageData(0,0,W,H),d=id2.data,f=btn.dataset.filter;
     if(f==='grayscale'){for(let i=0;i<d.length;i+=4){const g=.299*d[i]+.587*d[i+1]+.114*d[i+2];d[i]=d[i+1]=d[i+2]=g;}}
     else if(f==='sepia'){for(let i=0;i<d.length;i+=4){const r=d[i],g=d[i+1],b=d[i+2];d[i]=Math.min(255,r*.393+g*.769+b*.189);d[i+1]=Math.min(255,r*.349+g*.686+b*.168);d[i+2]=Math.min(255,r*.272+g*.534+b*.131);}}
     else if(f==='invert'){for(let i=0;i<d.length;i+=4){d[i]=255-d[i];d[i+1]=255-d[i+1];d[i+2]=255-d[i+2];}}
@@ -1746,97 +1574,85 @@ document.querySelectorAll('[data-filter]').forEach(btn=>{
     else if(f==='warm'){for(let i=0;i<d.length;i+=4){d[i]=Math.min(255,d[i]+20);d[i+1]=Math.min(255,d[i+1]+5);d[i+2]=Math.max(0,d[i+2]-15);}}
     else if(f==='fade'){for(let i=0;i<d.length;i+=4){d[i]=Math.round(d[i]*.8+40);d[i+1]=Math.round(d[i+1]*.8+40);d[i+2]=Math.round(d[i+2]*.8+40);}}
     else if(f==='sharpen'){const o=new Uint8ClampedArray(d),k=[0,-1,0,-1,5,-1,0,-1,0];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++){let r=0,g=0,b=0;for(let ky=-1;ky<=1;ky++)for(let kx=-1;kx<=1;kx++){const ki=(ky+1)*3+(kx+1),pi=((y+ky)*W+(x+kx))*4;r+=o[pi]*k[ki];g+=o[pi+1]*k[ki];b+=o[pi+2]*k[ki];}const i=(y*W+x)*4;d[i]=Math.max(0,Math.min(255,r));d[i+1]=Math.max(0,Math.min(255,g));d[i+2]=Math.max(0,Math.min(255,b));}}
-    else if(f==='unsharp'){const o=new Uint8ClampedArray(d);const blurC=applyGaussBlurCSS(lc.canvas,2);const blurId=blurC.getContext('2d').getImageData(0,0,W,H);const bl=blurId.data;for(let i=0;i<d.length;i+=4){d[i]=Math.max(0,Math.min(255,o[i]*1.5-bl[i]*.5));d[i+1]=Math.max(0,Math.min(255,o[i+1]*1.5-bl[i+1]*.5));d[i+2]=Math.max(0,Math.min(255,o[i+2]*1.5-bl[i+2]*.5));}}
-    else if(f==='motionblur'){const steps=12,o=new Uint8ClampedArray(d);for(let y=0;y<H;y++)for(let x=0;x<W;x++){let r=0,g=0,b=0,c=0;for(let s=-steps;s<=steps;s++){const nx=Math.max(0,Math.min(W-1,x+s)),pi=(y*W+nx)*4;r+=o[pi];g+=o[pi+1];b+=o[pi+2];c++;}const i=(y*W+x)*4;d[i]=r/c;d[i+1]=g/c;d[i+2]=b/c;}}
+    else if(f==='motionblur'){const steps=12,o=new Uint8ClampedArray(d);for(let y=0;y<H;y++)for(let x=1;x<W;x++){let r=0,g=0,b=0,c=0;for(let s=-steps;s<=steps;s++){const nx=Math.max(0,Math.min(W-1,x+s)),pi=(y*W+nx)*4;r+=o[pi];g+=o[pi+1];b+=o[pi+2];c++;}const i=(y*W+x)*4;d[i]=r/c;d[i+1]=g/c;d[i+2]=b/c;}}
+    else if(f==='unsharp'){const o=new Uint8ClampedArray(d),blC=applyBlurCSS(lc.canvas,2),blD=blC.getContext('2d').getImageData(0,0,W,H).data;for(let i=0;i<d.length;i+=4){d[i]=Math.max(0,Math.min(255,o[i]*1.5-blD[i]*.5));d[i+1]=Math.max(0,Math.min(255,o[i+1]*1.5-blD[i+1]*.5));d[i+2]=Math.max(0,Math.min(255,o[i+2]*1.5-blD[i+2]*.5));}}
     else if(f==='emboss'){const o=new Uint8ClampedArray(d),k=[-2,-1,0,-1,1,1,0,1,2];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++){let r=128,g=128,b=128;for(let ky=-1;ky<=1;ky++)for(let kx=-1;kx<=1;kx++){const ki=(ky+1)*3+(kx+1),pi=((y+ky)*W+(x+kx))*4;r+=o[pi]*k[ki];g+=o[pi+1]*k[ki];b+=o[pi+2]*k[ki];}const i=(y*W+x)*4;d[i]=Math.max(0,Math.min(255,r));d[i+1]=Math.max(0,Math.min(255,g));d[i+2]=Math.max(0,Math.min(255,b));}}
-    else if(f==='vignette'){const cx2=W/2,cy2=H/2,md=Math.sqrt(cx2*cx2+cy2*cy2);for(let y=0;y<H;y++)for(let x=0;x<W;x++){const dist=Math.sqrt((x-cx2)**2+(y-cy2)**2)/md,v=1-Math.pow(dist,2)*1.4,i=(y*W+x)*4;d[i]=Math.max(0,d[i]*v);d[i+1]=Math.max(0,d[i+1]*v);d[i+2]=Math.max(0,d[i+2]*v);}}
+    else if(f==='vignette'){const cx2=W/2,cy2=H/2,md2=Math.sqrt(cx2*cx2+cy2*cy2);for(let y=0;y<H;y++)for(let x=0;x<W;x++){const dist=Math.sqrt((x-cx2)**2+(y-cy2)**2)/md2,v=1-Math.pow(dist,2)*1.4,i=(y*W+x)*4;d[i]=Math.max(0,d[i]*v);d[i+1]=Math.max(0,d[i+1]*v);d[i+2]=Math.max(0,d[i+2]*v);}}
     else if(f==='noise'){for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*60;d[i]=Math.max(0,Math.min(255,d[i]+n));d[i+1]=Math.max(0,Math.min(255,d[i+1]+n));d[i+2]=Math.max(0,Math.min(255,d[i+2]+n));}}
     else if(f==='pixelate'){const ps=8;for(let y=0;y<H;y+=ps)for(let x=0;x<W;x+=ps){const pi=(y*W+x)*4,pr=d[pi],pg=d[pi+1],pb=d[pi+2];for(let dy=0;dy<ps&&y+dy<H;dy++)for(let dx=0;dx<ps&&x+dx<W;dx++){const i=((y+dy)*W+(x+dx))*4;d[i]=pr;d[i+1]=pg;d[i+2]=pb;}}}
     else if(f==='posterize'){for(let i=0;i<d.length;i+=4){d[i]=Math.round(d[i]/64)*64;d[i+1]=Math.round(d[i+1]/64)*64;d[i+2]=Math.round(d[i+2]/64)*64;}}
     else if(f==='threshold'){for(let i=0;i<d.length;i+=4){const g=.299*d[i]+.587*d[i+1]+.114*d[i+2];const v=g>128?255:0;d[i]=d[i+1]=d[i+2]=v;}}
-    lc.putImageData(id,0,0);renderAll();saveUndo();setStatus(`필터: ${f}`);
+    lc.putImageData(id2,0,0);renderAll();saveUndo();setStatus(`필터: ${f}`);
   });
 });
 
-// ══════════════════════════════════════════
-// TRANSFORM
-// ══════════════════════════════════════════
-document.getElementById('btn-rot-l').addEventListener('click',()=>rotAll(-90));
-document.getElementById('btn-rot-r').addEventListener('click',()=>rotAll(90));
-document.getElementById('btn-flip-h').addEventListener('click',()=>flipAll('h'));
-document.getElementById('btn-flip-v').addEventListener('click',()=>flipAll('v'));
-function rotAll(deg){
-  saveUndo();const ow=MC.width,oh=MC.height,nw=oh,nh=ow;
-  layers.forEach(l=>{const tc=mkC(nw,nh);const tx=tc.getContext('2d');tx.translate(nw/2,nh/2);tx.rotate(deg*Math.PI/180);tx.drawImage(l.canvas,-ow/2,-oh/2);l.canvas.width=nw;l.canvas.height=nh;l.ctx.drawImage(tc,0,0);});
-  [MC,LC,OC].forEach(c=>{c.width=nw;c.height=nh;});document.getElementById('size-info').textContent=`${nw} × ${nh} px`;renderAll();saveUndo();
-}
-function flipAll(dir){
-  saveUndo();const w=MC.width,h=MC.height;
-  layers.forEach(l=>{const tc=mkC(w,h);const tx=tc.getContext('2d');if(dir==='h'){tx.translate(w,0);tx.scale(-1,1);}else{tx.translate(0,h);tx.scale(1,-1);}tx.drawImage(l.canvas,0,0);l.ctx.clearRect(0,0,w,h);l.ctx.drawImage(tc,0,0);});
-  renderAll();saveUndo();
-}
-document.getElementById('btn-resize').addEventListener('click',()=>{
-  const w=parseInt(document.getElementById('rw').value),h=parseInt(document.getElementById('rh').value);if(!w||!h) return;
-  saveUndo();layers.forEach(l=>{const tc=mkC(w,h);tc.getContext('2d').drawImage(l.canvas,0,0,w,h);l.canvas.width=w;l.canvas.height=h;l.ctx.drawImage(tc,0,0);});
-  [MC,LC,OC].forEach(c=>{c.width=w;c.height=h;});document.getElementById('size-info').textContent=`${w} × ${h} px`;renderAll();saveUndo();
-});
-
-// ══════════════════════════════════════════
-// SLIDER SYNC
-// ══════════════════════════════════════════
-function syncS(a,b,va,suf=''){const ea=document.getElementById(a),eb=document.getElementById(b),ev=document.getElementById(va);ea.addEventListener('input',function(){eb.value=this.value;ev.textContent=this.value+suf;});eb.addEventListener('input',function(){ea.value=this.value;ev.textContent=this.value+suf;});}
-syncS('brush-size','p-sz','v-sz');syncS('opacity','p-op','v-op','%');syncS('flow','p-fl','v-fl','%');syncS('hardness','p-hd','v-hd','%');syncS('spacing','p-sp','v-sp','%');
-document.getElementById('p-sc').addEventListener('input',function(){document.getElementById('pv-sc').textContent=this.value;});
-document.getElementById('p-ag').addEventListener('input',function(){document.getElementById('pv-ag').textContent=this.value+'°';});
-document.getElementById('font-size').addEventListener('input',function(){document.getElementById('pv-fs').textContent=this.value;});
-document.getElementById('color-fg').addEventListener('input',function(){document.getElementById('swatch-fg').style.background=this.value;});
-document.getElementById('color-bg').addEventListener('input',function(){document.getElementById('swatch-bg').style.background=this.value;});
-document.getElementById('swatch-fg').addEventListener('click',()=>document.getElementById('color-fg').click());
-document.getElementById('swatch-bg').addEventListener('click',()=>document.getElementById('color-bg').click());
-
-// ══════════════════════════════════════════
-// FLOATING PANELS
-// ══════════════════════════════════════════
-function openFP(id){document.getElementById(id).classList.add('open');}
-function closeFP(id){document.getElementById(id).classList.remove('open');}
-
-// Close on X
-document.querySelectorAll('.fpanel-close').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const id=btn.dataset.close;
-    // revert preview if closing without apply
-    if(id==='fp-curves'&&curvesPreviewBase){getAL().ctx.putImageData(curvesPreviewBase,0,0);renderAll();curvesPreviewBase=null;curvePts={rgb:[[0,0],[255,255]],r:[[0,0],[255,255]],g:[[0,0],[255,255]],b:[[0,0],[255,255]]};}
-    if(id==='fp-levels'&&levelsBase){getAL().ctx.putImageData(levelsBase,0,0);renderAll();levelsBase=null;}
-    if(id==='fp-hsl'&&hslBase){getAL().ctx.putImageData(hslBase,0,0);renderAll();hslBase=null;}
-    closeFP(id);
+// ═══════════════════════════════════════════════════════
+// HISTOGRAM
+// ═══════════════════════════════════════════════════════
+function updateHistogram(){
+  const cv=$('histogram-cv'); if(!cv||!MC.width)return;
+  const ctx2=cv.getContext('2d'),W2=cv.clientWidth||220,H2=60;
+  cv.width=W2; ctx2.fillStyle='#0a0a0c'; ctx2.fillRect(0,0,W2,H2);
+  const id2=MX.getImageData(0,0,MC.width,MC.height),d=id2.data;
+  const hr=new Float32Array(256),hg=new Float32Array(256),hb=new Float32Array(256);
+  for(let i=0;i<d.length;i+=4){hr[d[i]]++;hg[d[i+1]]++;hb[d[i+2]]++;}
+  const mx=Math.max(Math.max(...hr),Math.max(...hg),Math.max(...hb));
+  [[hr,'rgba(255,80,80,.5)'],[hg,'rgba(80,220,120,.5)'],[hb,'rgba(80,150,255,.5)']].forEach(([h,col])=>{
+    ctx2.fillStyle=col; for(let x=0;x<256;x++){const bw=Math.max(1,W2/256),bh=Math.round((h[Math.floor(x*256/W2)]/mx)*H2);ctx2.fillRect(x*W2/256,H2-bh,bw,bh);}
   });
+}
+
+// ═══════════════════════════════════════════════════════
+// FLOATING PANEL HELPERS
+// ═══════════════════════════════════════════════════════
+function openFP(id2){ $(id2).classList.add('open'); }
+function closeFP(id2){ $(id2).classList.remove('open'); }
+
+// Draggable panels
+document.querySelectorAll('.fp-hd').forEach(hd=>{
+  let ox=0,oy=0,drag=false;
+  hd.addEventListener('mousedown',e=>{ if(e.target.classList.contains('fp-x'))return; drag=true; const r=hd.parentElement.getBoundingClientRect(); ox=e.clientX-r.left; oy=e.clientY-r.top; });
+  document.addEventListener('mousemove',e=>{ if(!drag)return; hd.parentElement.style.left=(e.clientX-ox)+'px'; hd.parentElement.style.top=(e.clientY-oy)+'px'; hd.parentElement.style.right='auto'; });
+  document.addEventListener('mouseup',()=>drag=false);
 });
 
-// Draggable floating panels
-document.querySelectorAll('.fpanel-header').forEach(header=>{
-  let ox=0,oy=0,dragging=false;
-  header.addEventListener('mousedown',e=>{if(e.target.classList.contains('fpanel-close')) return;dragging=true;const r=header.parentElement.getBoundingClientRect();ox=e.clientX-r.left;oy=e.clientY-r.top;});
-  document.addEventListener('mousemove',e=>{if(!dragging) return;header.parentElement.style.left=(e.clientX-ox)+'px';header.parentElement.style.top=(e.clientY-oy)+'px';header.parentElement.style.right='auto';});
-  document.addEventListener('mouseup',()=>dragging=false);
-});
+// ═══════════════════════════════════════════════════════
+// SLIDER SYNC (options bar ↔ panel)
+// ═══════════════════════════════════════════════════════
+function syncSliders(a, b, va, vb, suf='') {
+  const ea=$( a),eb=$(b),eva=$(va),evb=$(vb);
+  ea.addEventListener('input',function(){eb.value=this.value;eva.textContent=this.value+suf;evb.textContent=this.value+suf;});
+  eb.addEventListener('input',function(){ea.value=this.value;eva.textContent=this.value+suf;evb.textContent=this.value+suf;});
+}
+syncSliders('o-sz','p-sz','ov-sz','pv-sz');
+syncSliders('o-op','p-op','ov-op','pv-op','%');
+syncSliders('o-fl','p-fl','ov-fl','pv-fl','%');
+syncSliders('o-hd','p-hd','ov-hd','pv-hd','%');
+syncSliders('o-sp','p-sp','ov-sp','pv-sp','%');
+$('p-sc').addEventListener('input',function(){$('pv-sc').textContent=this.value;});
+$('p-ag').addEventListener('input',function(){$('pv-ag').textContent=this.value+'°';});
+$('txt-sz').addEventListener('input',function(){$('pv-txtsz').textContent=this.value;});
+$('color-fg').addEventListener('input',function(){$('sw-fg').style.background=this.value;});
+$('color-bg').addEventListener('input',function(){$('sw-bg').style.background=this.value;});
+$('sw-fg').addEventListener('click',()=>$('color-fg').click());
+$('sw-bg').addEventListener('click',()=>$('color-bg').click());
 
-// ══════════════════════════════════════════
-// PANEL TABS / SECTIONS
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// PANEL TABS & COLLAPSIBLE SECTIONS
+// ═══════════════════════════════════════════════════════
 document.querySelectorAll('.ptab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('pane-'+tab.dataset.pane).classList.add('active');
+    document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active'); $('pane-'+tab.dataset.pane).classList.add('active');
     if(tab.dataset.pane==='adjust') updateHistogram();
   });
 });
 document.querySelectorAll('.sec-hd').forEach(hd=>hd.addEventListener('click',()=>hd.parentElement.classList.toggle('collapsed')));
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // BOOT
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 buildBrushGrid();
 </script>
 </body>
